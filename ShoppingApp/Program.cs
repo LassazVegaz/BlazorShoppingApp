@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Services;
+using ShoppingApp.Logic.Services;
 using ShoppingApp.Web.Components;
 
 var mySQLVersion = new MySqlServerVersion(new Version(8, 0, 29));
@@ -14,6 +16,9 @@ builder.Services
 builder.Services
     .AddDbContext<ShoppingAppContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), mySQLVersion));
+
+// custom services
+builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
 

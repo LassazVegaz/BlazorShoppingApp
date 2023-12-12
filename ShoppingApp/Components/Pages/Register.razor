@@ -1,6 +1,7 @@
 ﻿@page "/register"
-@using System.ComponentModel.DataAnnotations
 @rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+@inject IUsersService usersService
 
 <PageTitle>Register</PageTitle>
 
@@ -35,9 +36,15 @@
     [SupplyParameterFromForm]
     RegisterModel Model { get; set; } = new RegisterModel();
 
-    void Submit()
+    async void Submit()
     {
-        Console.WriteLine($"Email: {Model.Email}");
+        var user = new User
+        {
+            Email = Model.Email,
+            Password = Model.Password
+        };
+        usersService.CreateUser(user);
+        await Task.CompletedTask;
     }
 
     class RegisterModel
