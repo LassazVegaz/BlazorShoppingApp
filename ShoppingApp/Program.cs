@@ -16,8 +16,7 @@ builder.Services
 
 builder.Services.AddMudServices();
 
-builder.Services
-    .AddDbContext<ShoppingAppContext>(options =>
+builder.Services.AddDbContextFactory<ShoppingAppContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), mySQLVersion));
 
 // custom services
