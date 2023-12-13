@@ -26,7 +26,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -42,10 +42,10 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", t =>
-                        {
-                            t.HasCheckConstraint("CK_unique_email", "UNIQUE(Email)");
-                        });
+                    b.HasIndex(new[] { "Email" }, "IX_unique_email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

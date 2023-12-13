@@ -11,7 +11,8 @@ public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : 
     {
         modelBuilder.Entity<User>(entity =>
         {
-            entity.ToTable(t => t.HasCheckConstraint("CK_unique_email", "UNIQUE(Email)"));
+            entity.HasIndex(e => e.Email, "IX_unique_email")
+                  .IsUnique();
         });
 
         base.OnModelCreating(modelBuilder);
