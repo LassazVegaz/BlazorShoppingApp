@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MudBlazor.Services;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddMudServices();
 
 builder.Services
     .AddDbContext<ShoppingAppContext>(options =>
