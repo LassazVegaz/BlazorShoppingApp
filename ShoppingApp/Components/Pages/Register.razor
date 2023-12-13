@@ -1,6 +1,5 @@
 ﻿@page "/register"
 @rendermode InteractiveServer
-@using System.ComponentModel.DataAnnotations
 @inject IUsersService usersService
 
 <PageTitle>Register</PageTitle>
@@ -37,16 +36,5 @@
             };
         usersService.CreateUser(user);
         await Task.CompletedTask;
-    }
-
-    class RegisterModel
-    {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; } = null!;
-
-        [Required]
-        [MinLength(8, ErrorMessage = "Password must contain at least 8 characters")]
-        public string Password { get; set; } = null!;
     }
 }

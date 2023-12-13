@@ -4,6 +4,7 @@ using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
 using ShoppingApp.Web.Components;
+using ShoppingApp.Web.Mapper;
 
 var mySQLVersion = new MySqlServerVersion(new Version(8, 0, 29));
 
@@ -14,10 +15,15 @@ builder.Services
     .AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// MudBlazor
 builder.Services.AddMudServices();
 
+// ef core
 builder.Services.AddDbContextFactory<ShoppingAppContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), mySQLVersion));
+
+// automapper
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 // custom services
 builder.Services.AddScoped<IUsersService, UsersService>();
