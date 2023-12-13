@@ -5,32 +5,24 @@
 
 <PageTitle>Register</PageTitle>
 
-<h1 class="text-5xl text-center pt-6">Register</h1>
+<MudText Typo="Typo.h3" Align="Align.Center">Register</MudText>
 
-<div class="flex justify-center mt-24">
-    <EditForm class="border-4 border-indigo py-8 px-16 rounded-lg flex gap-4 flex-col"
-              OnValidSubmit="@Submit"
-              Model="@Model"
-              FormName="registerform"
-    >
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
+    <MudPaper style="min-width:500px" Class="px-10 py-4">
+        <EditForm OnValidSubmit="@Submit" Model="@Model" FormName="registerform">
+            <DataAnnotationsValidator />
 
-        <div>
-            <label for="email" class="inline-block w-24 text-lg">Email</label>
-            <InputText @bind-Value="@Model.Email" name="email" type="email" class="border-2 border-indigo p-1 px-2 w-[250px]" />
-        </div>
+            <MudStack>
+                <MudTextField For="() => Model.Email" @bind-Value="@Model.Email" Label="Email" Required="true" Variant="Variant.Outlined" />
+                <MudTextField For="() => Model.Password" @bind-Value="@Model.Password" Label="Password" Required="true" Variant="Variant.Outlined" />
+            </MudStack>
 
-        <div>
-            <label for="password" class="inline-block w-24 text-lg">Password</label>
-            <InputText @bind-Value="@Model.Password" name="password" type="password" class="border-2 border-indigo p-1 px-2 w-[250px]" />
-        </div>
-
-        <div class="mt-8 flex justify-center">
-            <button type="submit" class="bg-blue-100 p-1 px-4 rounded-md border-blue-200 border-2">Register</button>
-        </div>
-    </EditForm>
-</div>
+            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
+                <MudButton Color="Color.Primary" Variant="Variant.Filled">Register</MudButton>
+            </MudStack>
+        </EditForm>
+    </MudPaper>
+</MudStack>
 
 @code {
     [SupplyParameterFromForm]
@@ -39,10 +31,10 @@
     async void Submit()
     {
         var user = new User
-        {
-            Email = Model.Email,
-            Password = Model.Password
-        };
+            {
+                Email = Model.Email,
+                Password = Model.Password
+            };
         usersService.CreateUser(user);
         await Task.CompletedTask;
     }
