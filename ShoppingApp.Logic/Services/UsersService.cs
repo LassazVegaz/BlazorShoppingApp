@@ -16,4 +16,6 @@ public class UsersService(ShoppingAppContext context) : IUsersService
 
         return newUser;
     }
+
+    public bool EmailExists(string email) => _context.Users.Any(u => u.Email == email);
 }
