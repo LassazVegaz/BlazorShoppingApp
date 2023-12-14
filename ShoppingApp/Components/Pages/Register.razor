@@ -1,5 +1,6 @@
 ﻿@page "/register"
 @rendermode InteractiveServer
+@implements IDisposable
 @inject IUsersService usersService
 @inject IMapper mapper
 
@@ -9,7 +10,7 @@
 
 <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
     <MudPaper style="min-width:700px" Class="px-10 py-4">
-        <EditForm OnValidSubmit="@Submit" Model="@Model" FormName="registerform">
+        <EditForm OnValidSubmit="@Submit" FormName="registerform" EditContext="editContext">
             <DataAnnotationsValidator />
 
             <MudStack>
@@ -31,12 +32,39 @@
 
 @code {
     [SupplyParameterFromForm]
-    RegisterModel Model { get; set; } = new RegisterModel();
+    RegisterModel Model { get; set; } = new();
 
-    async void Submit()
+    private EditContext? editContext;
+    private ValidationMessageStore? messageStore;
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+        editContext = new(Model);
+        editContext.OnValidationRequested += HandleValidationRequested;
+        messageStore ??= new(editContext);
+    }
+
+    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    {
+        messageStore?.Clear();
+
+        if (usersService.EmailExists(Model.Email))
+        {
+            messageStore?.Add(() => Model.Email, "This email is already in use");
+        }
+    }
+
+    private Task Submit()
     {
         var user = mapper.Map<User>(Model);
         usersService.CreateUser(user);
-        await Task.CompletedTask;
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        if (editContext is not null)
+            editContext.OnValidationRequested -= HandleValidationRequested;
     }
 }
