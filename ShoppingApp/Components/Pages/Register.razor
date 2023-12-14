@@ -1,23 +1,29 @@
 ﻿@page "/register"
 @rendermode InteractiveServer
 @inject IUsersService usersService
+@inject IMapper mapper
 
 <PageTitle>Register</PageTitle>
 
 <MudText Typo="Typo.h3" Align="Align.Center">Register</MudText>
 
 <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
-    <MudPaper style="min-width:500px" Class="px-10 py-4">
+    <MudPaper style="min-width:700px" Class="px-10 py-4">
         <EditForm OnValidSubmit="@Submit" Model="@Model" FormName="registerform">
             <DataAnnotationsValidator />
 
             <MudStack>
-                <MudTextField For="() => Model.Email" @bind-Value="@Model.Email" Label="Email" Required="true" Variant="Variant.Outlined" />
-                <MudTextField For="() => Model.Password" @bind-Value="@Model.Password" Label="Password" Required="true" Variant="Variant.Outlined" />
+                <MudStack Row>
+                    <MudTextField For="() => Model.FirstName" @bind-Value="@Model.FirstName" Label="First Name" Required="true" Variant="Variant.Outlined" />
+                    <MudTextField For="() => Model.LastName" @bind-Value="@Model.LastName" Label="Last Name" Required="true" Variant="Variant.Outlined" />
+                </MudStack>
+                <MudTextField For="() => Model.Email" @bind-Value="@Model.Email" Label="Email" Required="true" Variant="Variant.Outlined" InputType="InputType.Email" />
+                <MudTextField For="() => Model.Password" @bind-Value="@Model.Password" Label="Password" Required="true" Variant="Variant.Outlined" InputType="InputType.Password" />
+                <MudTextField For="() => Model.ConfirmPassword" @bind-Value="@Model.ConfirmPassword" Label="Confirm password" Required="true" Variant="Variant.Outlined" InputType="InputType.Password" />
             </MudStack>
 
             <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
-                <MudButton Color="Color.Primary" Variant="Variant.Filled">Register</MudButton>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit">Register</MudButton>
             </MudStack>
         </EditForm>
     </MudPaper>
@@ -29,11 +35,7 @@
 
     async void Submit()
     {
-        var user = new User
-            {
-                Email = Model.Email,
-                Password = Model.Password
-            };
+        var user = mapper.Map<User>(Model);
         usersService.CreateUser(user);
         await Task.CompletedTask;
     }
