@@ -12,6 +12,8 @@ public class UsersService(ShoppingAppContext context) : IUsersService
     {
         newUser.Id = 0;
         _context.Users.Add(newUser);
+
+        // if the email already exists, an exception will be thrown from the DB side
         _context.SaveChanges();
 
         return newUser;
