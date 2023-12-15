@@ -32,7 +32,7 @@
             </MudStack>
 
             <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
-                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@validatingEmail">Register</MudButton>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@isSubmiting">Register</MudButton>
             </MudStack>
         </EditForm>
     </MudPaper>
@@ -46,6 +46,7 @@
     private EditContext? editContext;
     private ValidationMessageStore? messageStore;
     private bool validatingEmail = false;
+    private bool isSubmiting = false;
 
     protected override void OnInitialized()
     {
@@ -57,13 +58,7 @@
 
     private void OnValidationRequested(object? sender, ValidationRequestedEventArgs e)
     {
-        validatingEmail = true;
         messageStore?.Clear();
-        DoAsyncValidations().ContinueWith((_) =>
-        {
-            validatingEmail = false;
-            InvokeAsync(StateHasChanged);
-        }, cancelationTokenSrc.Token);
     }
 
     private async Task<bool> DoAsyncValidations()
@@ -80,8 +75,19 @@
 
     private async void Submit()
     {
-        var user = mapper.Map<User>(Model);
-        await usersService.CreateUser(user);
+        validatingEmail = true;
+        isSubmiting = true;
+        messageStore?.Clear();
+
+        if (await DoAsyncValidations())
+        {
+            var user = mapper.Map<User>(Model);
+            await usersService.CreateUser(user);
+        }
+
+        validatingEmail = false;
+        isSubmiting = false;
+        StateHasChanged();
     }
 
     public void Dispose()
