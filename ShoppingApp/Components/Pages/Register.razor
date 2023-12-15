@@ -18,13 +18,21 @@
                     <MudTextField For="() => Model.FirstName" @bind-Value="@Model.FirstName" Label="First Name" Required="true" Variant="Variant.Outlined" />
                     <MudTextField For="() => Model.LastName" @bind-Value="@Model.LastName" Label="Last Name" Required="true" Variant="Variant.Outlined" />
                 </MudStack>
-                <MudTextField For="() => Model.Email" @bind-Value="@Model.Email" Label="Email" Required="true" Variant="Variant.Outlined" InputType="InputType.Email" />
+
+                <MudStack AlignItems="AlignItems.End">
+                    <MudTextField For="() => Model.Email" @bind-Value="@Model.Email" Label="Email" Required="true" Variant="Variant.Outlined" InputType="InputType.Email" FullWidth />
+                     @if (validatingEmail)
+                    {
+                        <MudProgressCircular Class="absolute mr-3 mt-5" Size="Size.Small" Indeterminate="true" StrokeWidth="5" Color="Color.Warning" />
+                    }
+                </MudStack>
+
                 <MudTextField For="() => Model.Password" @bind-Value="@Model.Password" Label="Password" Required="true" Variant="Variant.Outlined" InputType="InputType.Password" />
                 <MudTextField For="() => Model.ConfirmPassword" @bind-Value="@Model.ConfirmPassword" Label="Confirm password" Required="true" Variant="Variant.Outlined" InputType="InputType.Password" />
             </MudStack>
 
             <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="mt-10">
-                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit">Register</MudButton>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@validatingEmail">Register</MudButton>
             </MudStack>
         </EditForm>
     </MudPaper>
@@ -34,37 +42,61 @@
     [SupplyParameterFromForm]
     RegisterModel Model { get; set; } = new();
 
+    private CancellationTokenSource cancelationTokenSrc = new();
     private EditContext? editContext;
     private ValidationMessageStore? messageStore;
+    private bool validatingEmail = false;
 
     protected override void OnInitialized()
     {
         Model ??= new();
         editContext = new(Model);
-        editContext.OnValidationRequested += HandleValidationRequested;
         messageStore ??= new(editContext);
+        editContext.OnValidationRequested += OnValidationRequested;
     }
 
-    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    private void OnValidationRequested(object? sender, ValidationRequestedEventArgs e)
     {
+        validatingEmail = true;
         messageStore?.Clear();
+        DoAsyncValidations().ContinueWith((_) =>
+        {
+            validatingEmail = false;
+            InvokeAsync(StateHasChanged);
+        }, cancelationTokenSrc.Token);
+    }
 
-        if (usersService.EmailExists(Model.Email))
+    private async Task<bool> DoAsyncValidations()
+    {
+        if (await usersService.EmailExists(Model.Email))
         {
             messageStore?.Add(() => Model.Email, "This email is already in use");
+            editContext?.NotifyValidationStateChanged();
+            return false;
         }
+
+        return true;
     }
 
-    private Task Submit()
+    private async void Submit()
     {
+        validatingEmail = true;
+        messageStore?.Clear();
+        if (!await DoAsyncValidations())
+        {
+            validatingEmail = false;
+            StateHasChanged();
+            return;
+        }
+
         var user = mapper.Map<User>(Model);
-        usersService.CreateUser(user);
-        return Task.CompletedTask;
+        await usersService.CreateUser(user);
     }
 
     public void Dispose()
     {
+        cancelationTokenSrc.Cancel();
         if (editContext is not null)
-            editContext.OnValidationRequested -= HandleValidationRequested;
+            editContext.OnValidationRequested -= OnValidationRequested;
     }
 }
