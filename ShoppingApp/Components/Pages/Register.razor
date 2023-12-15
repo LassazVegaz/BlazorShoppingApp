@@ -80,15 +80,6 @@
 
     private async void Submit()
     {
-        validatingEmail = true;
-        messageStore?.Clear();
-        if (!await DoAsyncValidations())
-        {
-            validatingEmail = false;
-            StateHasChanged();
-            return;
-        }
-
         var user = mapper.Map<User>(Model);
         await usersService.CreateUser(user);
     }
