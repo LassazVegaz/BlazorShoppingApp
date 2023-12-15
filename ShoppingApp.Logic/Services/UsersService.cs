@@ -22,9 +22,9 @@ public class UsersService(IDbContextFactory<ShoppingAppContext> contextFactory) 
         return newUser;
     }
 
-    public Task<bool> EmailExists(string email)
+    public async Task<bool> EmailExists(string email)
     {
         using var _context = _contextFactory.CreateDbContext();
-        return _context.Users.AnyAsync(u => u.Email == email);
+        return await _context.Users.AnyAsync(u => u.Email == email);
     }
 }
