@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Web", "ShoppingApp\ShoppingApp.Web.csproj", "{66BA0A69-A59D-47DC-A2BA-B4389018E90C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.Core", "ShoppingApp.Core\ShoppingApp.Core.csproj", "{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Core", "ShoppingApp.Core\ShoppingApp.Core.csproj", "{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.Logic", "ShoppingApp.Logic\ShoppingApp.Logic.csproj", "{AA7A9445-6458-4B43-8D50-2B5F94D8D216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Logic", "ShoppingApp.Logic\ShoppingApp.Logic.csproj", "{AA7A9445-6458-4B43-8D50-2B5F94D8D216}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
