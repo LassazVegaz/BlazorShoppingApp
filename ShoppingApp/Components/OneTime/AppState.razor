@@ -1,0 +1,17 @@
+﻿@implements IDisposable
+
+<CascadingValue Value="@pageLoaderState">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    // states
+    private readonly PageLoaderState pageLoaderState = new();
+
+    protected override void OnInitialized() => pageLoaderState.OnChange += StateHasChanged;
+
+    public void Dispose() => pageLoaderState.OnChange -= StateHasChanged;
+}
