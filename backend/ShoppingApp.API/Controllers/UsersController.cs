@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.DTO.In;
-using ShoppingApp.API.DTO.Out;
 using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
 
@@ -15,7 +14,7 @@ public class UsersController(IUsersService usersService, IMapper mapper) : Contr
     private readonly IMapper _mapper = mapper;
 
     [HttpPost]
-    public async Task<ActionResult<UserDto>> CreateUser(CreateUser newUser)
+    public async Task<ActionResult> CreateUser(CreateUser newUser)
     {
         try
         {
