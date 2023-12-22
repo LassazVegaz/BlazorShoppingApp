@@ -6,6 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 const SignInPage = () => {
   return (
@@ -17,6 +18,7 @@ const SignInPage = () => {
         borderRadius={2}
         overflow="hidden"
       >
+        {/* left panel */}
         <Grid
           item
           xs={4}
@@ -39,16 +41,21 @@ const SignInPage = () => {
             Still don&apos;t have an account?
           </Typography>
 
-          <Button
-            variant="outlined"
-            sx={{
-              mt: 5,
-              color: "white",
-              borderColor: "white",
-            }}
-          >
-            Sign Up
-          </Button>
+          <Link href="/auth/signup">
+            <Button
+              variant="outlined"
+              sx={{
+                mt: 5,
+                color: "white",
+                borderColor: "white",
+                "&:hover": {
+                  borderColor: "wheat",
+                },
+              }}
+            >
+              Sign Up
+            </Button>
+          </Link>
         </Grid>
 
         {/* form */}
