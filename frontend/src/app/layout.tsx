@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { CssBaseline } from "@mui/material";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], display: "swap" });
 
@@ -19,8 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <AppRouterCacheProvider>
-          <CssBaseline />
-          {children}
+          <ThemeProvider>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
