@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
@@ -16,6 +17,9 @@ builder.Services.AddSwaggerGen();
 var mySqlVersion = new MySqlServerVersion(builder.Configuration.GetValue("MySQLVersion", "8.0.29"));
 builder.Services.AddDbContext<ShoppingAppContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
+
+// mapper
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 // app services
 builder.Services.AddScoped<IUsersService, UsersService>();
