@@ -15,4 +15,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingApp.Core\ShoppingApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>
