@@ -18,7 +18,8 @@ Business domain and the requirements of the application are not very focused as 
   - EF Core - ORM for .NET
   - Prisma - ORM for NestJS
 
-I will add more technologies as I go. Some of the technologies are not decided yet. They are seperated by `|` in the list. I will try to explain why I chose one over the other later when I have time.
+I will add more technologies as I go. Some of the technologies are not decided yet. They are seperated by `|` in the list.\
+Detailed explanation of technologies, best practices, frameworks & libraries in this project are discussed [here](./TECHNOLOGIES.md).
 
 ## Features
 
@@ -33,7 +34,7 @@ I will add more technologies as I go. Some of the technologies are not decided y
     - [ ] Change email
     - [ ] Change password
 
-More features will be added as I go. Some of them are not completely decided yet such OpenID Connect. I will try to explain why I chose one over the other later when I have time.
+More features will be added as I go. Some of them are not completely decided yet such as OpenID Connect. I will try to explain why I chose one over the other later when I have time.
 
 ## Extra
 
