@@ -19,7 +19,7 @@ Business domain and the requirements of the application are not very focused as 
   - Prisma - ORM for NestJS
 
 I will add more technologies as I go. Some of the technologies are not decided yet. They are seperated by `|` in the list.\
-Detailed explanation of technologies, best practices, frameworks & libraries in this project are discussed [here](./TECHNOLOGIES.md).
+Detailed explanation of best practices, frameworks & libraries in this project are discussed [here](./TECHNOLOGIES.md).
 
 ## Features
 
