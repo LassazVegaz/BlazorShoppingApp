@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
@@ -6,7 +7,8 @@ using ShoppingApp.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Exception handlers
+builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,7 +28,8 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseExceptionHandler(ops => { });
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
