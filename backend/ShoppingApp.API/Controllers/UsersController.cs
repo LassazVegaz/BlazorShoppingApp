@@ -30,4 +30,17 @@ public class UsersController(IUsersService usersService, IMapper mapper) : Contr
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet("emailExists/{email}")]
+    public async Task<ActionResult<bool>> EmailExists(string email)
+    {
+        try
+        {
+            return await _usersService.EmailExists(email);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

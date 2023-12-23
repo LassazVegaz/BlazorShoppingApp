@@ -1,6 +1,19 @@
-@ShoppingApp.API_HostAddress = http://localhost:5049
+@ShoppingApp.API_HostAddress = http://localhost:8000
 
-GET {{ShoppingApp.API_HostAddress}}/weatherforecast/
-Accept: application/json
+###
+
+POST {{ShoppingApp.API_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john2@gmail.com",
+  "password": "123456"
+}
+
+###
+
+GET {{ShoppingApp.API_HostAddress}}/api/users/emailExists/john3@gmail.com
 
 ###
