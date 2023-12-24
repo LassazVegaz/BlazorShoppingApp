@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
@@ -23,7 +23,7 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
 
 // identity
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services.AddIdentityApiEndpoints<User>()
                 .AddEntityFrameworkStores<ShoppingAppContext>();
 builder.Services.ConfigureIdentityOptions();
 builder.Services.AddAuthorization();
@@ -38,7 +38,7 @@ var app = builder.Build();
 
 app.MapGroup("api/auth")
    .WithTags("Auth")
-   .MapIdentityApi<IdentityUser>();
+   .MapIdentityApi<User>();
 
 app.UseExceptionHandler(ops => { });
 
