@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Core.Data;
-using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
 
 namespace ShoppingApp.Logic.Services;
@@ -9,13 +9,10 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
 {
     private readonly ShoppingAppContext _context = contextFactory;
 
-    public async Task<User> CreateUser(User newUser)
+    public async Task<IdentityUser> CreateUser(IdentityUser newUser)
     {
-        newUser.Id = 0;
-
         await _context.Users.AddAsync(newUser);
 
-        // if the email already exists, an exception will be thrown from the DB side
         _context.SaveChanges();
 
         return newUser;
