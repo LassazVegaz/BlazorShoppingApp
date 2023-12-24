@@ -36,7 +36,9 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
 
-app.MapIdentityApi<IdentityUser>();
+app.MapGroup("api/auth")
+   .WithTags("Auth")
+   .MapIdentityApi<IdentityUser>();
 
 app.UseExceptionHandler(ops => { });
 
