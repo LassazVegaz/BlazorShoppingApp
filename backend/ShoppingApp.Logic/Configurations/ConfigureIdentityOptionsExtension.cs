@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ShoppingApp.Logic.Configure;
+namespace ShoppingApp.Logic.Configurations;
 
 public static class ConfigureIdentityOptionsExtension
 {

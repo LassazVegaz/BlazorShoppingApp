@@ -4,7 +4,7 @@ using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
-using ShoppingApp.Logic.Configure;
+using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShoppingApp.Core.Data;
-using ShoppingApp.Logic.Configure;
+using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
 
 namespace ShoppingApp.LogicTest.Services;
