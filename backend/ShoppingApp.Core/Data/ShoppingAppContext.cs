@@ -1,20 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ShoppingApp.Core.Models;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShoppingApp.Core.Data;
 
-public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : DbContext(options)
+public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : IdentityDbContext(options)
 {
-    public DbSet<User> Users { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasIndex(e => e.Email, "IX_unique_email")
-                  .IsUnique();
-        });
-
-        base.OnModelCreating(modelBuilder);
-    }
 }
