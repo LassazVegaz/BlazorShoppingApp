@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Services;
+using ShoppingApp.Logic.Configure;
 using ShoppingApp.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,12 @@ var mySqlVersion = new MySqlServerVersion(builder.Configuration.GetValue("MySQLV
 builder.Services.AddDbContext<ShoppingAppContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
 
+// identity
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+                .AddEntityFrameworkStores<ShoppingAppContext>();
+builder.Services.ConfigureIdentityOptions();
+builder.Services.AddAuthorization();
+
 // mapper
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
@@ -28,12 +36,15 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
 
+app.MapIdentityApi<IdentityUser>();
+
 app.UseExceptionHandler(ops => { });
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.MapSwagger().RequireAuthorization();
 }
 
 app.UseAuthorization();
