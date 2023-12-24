@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace ShoppingApp.Core.Services;
+﻿namespace ShoppingApp.Core.Services;
 
 public interface IUsersService
 {
-    Task<IdentityUser> CreateUser(IdentityUser newUser);
-
     /// <summary>
     /// Check if the email exists in the database
     /// </summary>

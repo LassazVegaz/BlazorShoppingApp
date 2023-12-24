@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ShoppingApp.Core.Data;
-using ShoppingApp.Logic.Services;
+using ShoppingApp.Logic.Configure;
 
 namespace ShoppingApp.LogicTest.Services;
 
@@ -12,10 +12,15 @@ internal class UsersServiceTest
     [SetUp]
     public void Setup()
     {
-        var ops = new DbContextOptionsBuilder<ShoppingAppContext>()
-            .UseInMemoryDatabase("InTestMemDb")
-            .Options;
-        context = new ShoppingAppContext(ops);
+        var services = new ServiceCollection();
+
+        services.AddDbContext<ShoppingAppContext>(ops =>
+                   ops.UseInMemoryDatabase("InTestMemDb"));
+        services.ConfigureIdentityOptions();
+
+        var serviceProvider = services.BuildServiceProvider();
+
+        context = serviceProvider.GetRequiredService<ShoppingAppContext>();
     }
 
     [TearDown]
@@ -26,14 +31,8 @@ internal class UsersServiceTest
 
     [Test]
     // just a simple test. For now, tests are not the focus of this course
-    public async Task CreateUserTest()
+    public void EmailExistsTest()
     {
-        var usersService = new UsersService(context);
-        var newUser = await usersService.CreateUser(new IdentityUser
-        {
-            Email = "abcd@abcd.com"
-        });
-
-        Assert.That(newUser.Email, Is.EqualTo("abcd@abcd.com"));
+        Assert.Fail("Not implemented");
     }
 }
