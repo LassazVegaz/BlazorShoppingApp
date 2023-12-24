@@ -29,6 +29,7 @@ internal class UsersServiceTest
     public void TearDown()
     {
         context.Database.EnsureDeleted();
+        context.Dispose();
     }
 
     [Test]
