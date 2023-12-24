@@ -11,8 +11,8 @@ using ShoppingApp.Core.Data;
 namespace ShoppingApp.Core.Migrations
 {
     [DbContext(typeof(ShoppingAppContext))]
-    [Migration("20231224122329_GenderCheckConstraint")]
-    partial class GenderCheckConstraint
+    [Migration("20231224125630_DefaultAspnetTableNamesChanged")]
+    partial class DefaultAspnetTableNamesChanged
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace ShoppingApp.Core.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -68,7 +68,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -91,7 +91,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -113,7 +113,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -128,7 +128,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -147,7 +147,7 @@ namespace ShoppingApp.Core.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("ShoppingApp.Core.Models.User", b =>
@@ -168,10 +168,6 @@ namespace ShoppingApp.Core.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
@@ -215,7 +211,7 @@ namespace ShoppingApp.Core.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", null, t =>
+                    b.ToTable("Users", null, t =>
                         {
                             t.HasCheckConstraint("CK_users_gender", "gender in ('male', 'female', 'other')");
                         });
