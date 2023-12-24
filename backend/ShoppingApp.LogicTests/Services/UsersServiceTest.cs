@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Models;
 using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
 
@@ -36,7 +36,7 @@ internal class UsersServiceTest
     // just a simple test. For now, tests are not the focus of this course
     public async Task EmailExistsTestAsync()
     {
-        context.Users.Add(new IdentityUser { Email = "abcd@abcd.com" });
+        context.Users.Add(new User { Email = "abcd@abcd.com" });
         await context.SaveChangesAsync();
 
         var usersService = new UsersService(context);
