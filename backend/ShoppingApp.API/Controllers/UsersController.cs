@@ -10,15 +10,5 @@ public class UsersController(IUsersService usersService) : ControllerBase
     private readonly IUsersService _usersService = usersService;
 
     [HttpGet("emailExists/{email}")]
-    public async Task<ActionResult<bool>> EmailExists(string email)
-    {
-        try
-        {
-            return await _usersService.EmailExists(email);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
+    public async Task<ActionResult<bool>> EmailExists(string email) => await _usersService.EmailExists(email);
 }
