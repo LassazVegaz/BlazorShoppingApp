@@ -23,7 +23,7 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
 
 // identity
-builder.Services.AddIdentityApiEndpoints<User>()
+builder.Services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ShoppingAppContext>();
 builder.Services.ConfigureIdentityOptions();
 builder.Services.AddAuthorization();
@@ -35,10 +35,6 @@ builder.Services.AddAutoMapper(typeof(MapperProfile));
 builder.Services.AddScoped<IUsersService, UsersService>();
 
 var app = builder.Build();
-
-app.MapGroup("api/auth")
-   .WithTags("Auth")
-   .MapIdentityApi<User>();
 
 app.UseExceptionHandler(ops => { });
 
