@@ -11,6 +11,7 @@ public class MapperProfile : Profile
     {
         // source first, destination second
         CreateMap<User, UserDto>();
-        CreateMap<CreateUser, User>();
+        CreateMap<CreateUser, User>()
+            .ForMember(u => u.DateOfBirth, o => o.MapFrom(u => DateOnly.FromDateTime(u.DateOfBirth)));
     }
 }
