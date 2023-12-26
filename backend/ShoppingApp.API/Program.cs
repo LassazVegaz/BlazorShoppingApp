@@ -6,6 +6,7 @@ using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
+using Proxies = ShoppingApp.Logic.Proxies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,8 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
 
 // identity
 builder.Services.AddIdentityCore<User>()
-                .AddEntityFrameworkStores<ShoppingAppContext>();
+                .AddEntityFrameworkStores<ShoppingAppContext>()
+                .AddUserManager<Proxies.UserManager>();
 builder.Services.ConfigureIdentityOptions();
 builder.Services.AddAuthorization();
 
