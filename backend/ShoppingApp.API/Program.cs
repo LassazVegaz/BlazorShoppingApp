@@ -29,7 +29,7 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
 
 // identity
-builder.Services.AddIdentityCore<User>()
+builder.Services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ShoppingAppContext>()
                 .AddUserManager<Proxies.UserManager>()
                 .AddSignInManager<Proxies.SignInManager>();
