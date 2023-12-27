@@ -30,4 +30,9 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
     {
         return await _context.Users.AnyAsync(u => u.Email == email);
     }
+
+    public async Task<User?> GetUserById(int id)
+    {
+        return await _context.Users.FindAsync(id);
+    }
 }

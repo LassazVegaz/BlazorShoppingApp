@@ -6,9 +6,10 @@ namespace ShoppingApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController(IAuthService authService) : ControllerBase
+public class AuthController(IAuthService authService, IUsersService usersService) : ControllerBase
 {
     private readonly IAuthService _authService = authService;
+    private readonly IUsersService _usersService = usersService;
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCredentials request)
@@ -24,5 +25,16 @@ public class AuthController(IAuthService authService) : ControllerBase
         });
 
         return Ok();
+    }
+
+    [HttpGet("profile")]
+    public async Task<ActionResult> GetLoggedInUser()
+    {
+        var userId = User.Identity!.Name!;
+
+        var user = await _usersService.GetUserById(int.Parse(userId));
+        if (user is null) return Unauthorized();
+
+        return Ok(user);
     }
 }
