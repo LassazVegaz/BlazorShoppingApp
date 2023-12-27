@@ -15,9 +15,6 @@ public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : 
 
             b.HasIndex(e => e.Email, "IX_unique_email")
              .IsUnique();
-
-            b.Property(e => e.DateOfBirth)
-             .HasDefaultValue(null);
         });
 
         base.OnModelCreating(modelBuilder);
