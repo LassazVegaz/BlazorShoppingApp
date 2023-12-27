@@ -26,4 +26,20 @@ public class AuthController(UserManager userManager, IMapper mapper) : Controlle
 
         return Ok();
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginCredentials credentials)
+    {
+        var user = await _userManager.FindByEmailAsync(credentials.Email);
+
+        if (user == null) return Unauthorized();
+
+        var isPasswordValid = await _userManager.CheckPasswordAsync(user, credentials.Password);
+
+        if (!isPasswordValid) return Unauthorized();
+
+        var roles = await _userManager.GetRolesAsync(user);
+
+        return Ok();
+    }
 }
