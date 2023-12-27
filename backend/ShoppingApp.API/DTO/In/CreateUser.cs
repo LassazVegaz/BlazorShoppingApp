@@ -7,5 +7,5 @@ public class CreateUser
     public string Email { get; set; } = null!;
     public string? Password { get; set; } = "a";
     public string? Gender { get; set; } = "male";
-    public DateTime? DateOfBirth { get; set; } = new DateTime(2000, 1, 1);
+    public DateOnly? DateOfBirth { get; set; } = new DateOnly(2000, 1, 1);
 }
