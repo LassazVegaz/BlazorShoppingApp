@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.DTO.In;
 using ShoppingApp.Core.Models;
@@ -29,7 +30,8 @@ public class AuthController(UserManager userManager, SignInManager signInManager
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login([FromBody] LoginCredentials credentials)
+    public async Task<ActionResult<string>> Login([FromBody] LoginCredentials credentials,
+        [FromQuery] bool useCookie = false, [FromQuery] bool securedCookie = false)
     {
         var user = await _userManager.FindByEmailAsync(credentials.Email);
 
@@ -41,6 +43,29 @@ public class AuthController(UserManager userManager, SignInManager signInManager
 
         var token = await _signInManager.GenerateTokenAsync(user);
 
+        if (useCookie)
+        {
+            Response.Cookies.Append("jwt", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = securedCookie,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddDays(3)
+            });
+            return Ok();
+        }
+
         return Ok(token);
+    }
+
+    [Authorize]
+    [HttpGet("profile")]
+    public async Task<ActionResult<User>> GetCurrentUser()
+    {
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user == null) return NotFound();
+
+        return Ok(user);
     }
 }
