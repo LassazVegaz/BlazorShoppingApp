@@ -4,12 +4,16 @@ using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
 using Proxies = ShoppingApp.Logic.Proxies;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// configuration options
+builder.Services.AddOptions<JwtOptions>().Bind(builder.Configuration.GetSection("JwtOptions"));
 
 // Exception handlers
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
