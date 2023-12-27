@@ -8,9 +8,10 @@ namespace ShoppingApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController(UserManager userManager, IMapper mapper) : ControllerBase
+public class AuthController(UserManager userManager, SignInManager signInManager, IMapper mapper) : ControllerBase
 {
     private readonly UserManager _userManager = userManager;
+    private readonly SignInManager _signInManager = signInManager;
     private readonly IMapper _mapper = mapper;
 
     [HttpPost("register")]
@@ -28,7 +29,7 @@ public class AuthController(UserManager userManager, IMapper mapper) : Controlle
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginCredentials credentials)
+    public async Task<ActionResult<string>> Login([FromBody] LoginCredentials credentials)
     {
         var user = await _userManager.FindByEmailAsync(credentials.Email);
 
@@ -38,8 +39,8 @@ public class AuthController(UserManager userManager, IMapper mapper) : Controlle
 
         if (!isPasswordValid) return Unauthorized();
 
-        var roles = await _userManager.GetRolesAsync(user);
+        var token = await _signInManager.GenerateTokenAsync(user);
 
-        return Ok();
+        return Ok(token);
     }
 }
