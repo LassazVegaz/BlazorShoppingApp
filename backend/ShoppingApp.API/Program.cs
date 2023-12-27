@@ -29,6 +29,7 @@ builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 // app services
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
