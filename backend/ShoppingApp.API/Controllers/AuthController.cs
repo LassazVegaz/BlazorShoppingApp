@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Core.DTO.In;
 using ShoppingApp.Core.Services;
 
@@ -28,6 +29,7 @@ public class AuthController(IAuthService authService, IUsersService usersService
     }
 
     [HttpGet("profile")]
+    [Authorize]
     public async Task<ActionResult> GetLoggedInUser()
     {
         var userId = User.Identity!.Name!;
