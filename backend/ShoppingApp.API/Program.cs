@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
@@ -26,7 +27,8 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
 // identity
 builder.Services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ShoppingAppContext>()
-                .AddUserManager<Proxies.UserManager>();
+                .AddUserManager<Proxies.UserManager>()
+                .AddSignInManager<Proxies.SignInManager>();
 builder.Services.ConfigureIdentityOptions();
 builder.Services.AddAuthorization();
 
