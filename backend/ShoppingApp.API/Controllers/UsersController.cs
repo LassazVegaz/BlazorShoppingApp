@@ -19,10 +19,8 @@ public class UsersController(IUsersService usersService, IMapper mapper) : Contr
         var newUserMapped = _mapper.Map<User>(newUser);
         await _usersService.CreateUser(newUserMapped);
 
-        // there is no endpoint to get the created user's details because
-        // there is no endpoint get a user by id
-        // only logged in user can get their own details
-        return Created();
+        // when an empty Create result is returned, the status code is 204 (stupid .NET)
+        return StatusCode(StatusCodes.Status201Created);
     }
 
     [HttpGet("emailExists/{email}")]
