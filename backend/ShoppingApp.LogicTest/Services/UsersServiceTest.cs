@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Models;
-using ShoppingApp.Logic.Configurations;
 using ShoppingApp.Logic.Services;
 
 namespace ShoppingApp.LogicTest.Services;
@@ -18,7 +17,6 @@ internal class UsersServiceTest
 
         services.AddDbContext<ShoppingAppContext>(ops =>
                    ops.UseInMemoryDatabase("InTestMemDb"));
-        services.ConfigureIdentityOptions();
 
         var serviceProvider = services.BuildServiceProvider();
 
