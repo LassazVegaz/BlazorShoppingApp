@@ -7,6 +7,7 @@ using ShoppingApp.Core.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ShoppingApp.Logic.Services;
 
@@ -17,8 +18,11 @@ public class AuthService(ShoppingAppContext context, IOptions<JwtOptions> jwtOpt
 
     public async Task<string?> Login(string email, string password)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (user is null) return null;
+
+        var passwordValid = BC.Verify(password, user.Password);
+        if (!passwordValid) return null;
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);

@@ -2,6 +2,7 @@
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ShoppingApp.Logic.Services;
 
@@ -14,6 +15,8 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
         newUser.Id = 0;
         newUser.Email = newUser.Email.ToLower();
         newUser.Gender = newUser.Gender.ToLower();
+
+        newUser.Password = BC.HashPassword(newUser.Password);
 
         await _context.Users.AddAsync(newUser);
 
