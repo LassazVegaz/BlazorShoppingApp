@@ -2,10 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// options
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 
 // Exception handlers
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
