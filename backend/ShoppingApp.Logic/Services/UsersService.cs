@@ -12,6 +12,8 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
     public async Task<User> CreateUser(User newUser)
     {
         newUser.Id = 0;
+        newUser.Email = newUser.Email.ToLower();
+        newUser.Gender = newUser.Gender.ToLower();
 
         await _context.Users.AddAsync(newUser);
 

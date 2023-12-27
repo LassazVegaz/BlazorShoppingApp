@@ -17,17 +17,6 @@ public partial class UsersController(IUsersService usersService, IMapper mapper)
     [HttpPost]
     public async Task<ActionResult> CreateUser(CreateUser newUser)
     {
-        if (!GenderRegex().IsMatch(newUser.Gender))
-        {
-            return BadRequest(new
-            {
-                errors = new
-                {
-                    Gender = "Gender must be male, female or other"
-                }
-            });
-        }
-
         var newUserMapped = _mapper.Map<User>(newUser);
         await _usersService.CreateUser(newUserMapped);
 
