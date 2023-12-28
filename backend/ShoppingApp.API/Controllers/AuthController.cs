@@ -1,0 +1,40 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ShoppingApp.API.DTO.Out;
+using ShoppingApp.Core.DTO.In;
+using ShoppingApp.Core.Services;
+
+namespace ShoppingApp.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class AuthController(IAuthService authService, IUsersService usersService, IMapper mapper) : ControllerBase
+{
+    private readonly IAuthService _authService = authService;
+    private readonly IUsersService _usersService = usersService;
+    private readonly IMapper _mapper = mapper;
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginCredentials request)
+    {
+        var token = await _authService.Login(request.Email, request.Password);
+        if (token is null) return Unauthorized("Invalid credentials");
+
+        return Ok(token);
+    }
+
+    [HttpGet("profile")]
+    [Authorize]
+    public async Task<ActionResult> GetLoggedInUser()
+    {
+        var userId = User.Identity!.Name!;
+
+        var user = await _usersService.GetUserById(int.Parse(userId));
+        if (user is null) return Unauthorized();
+
+        var mapped = _mapper.Map<UserDto>(user);
+
+        return Ok(mapped);
+    }
+}

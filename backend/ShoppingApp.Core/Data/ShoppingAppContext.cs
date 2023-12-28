@@ -9,10 +9,12 @@ public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<User>(b =>
         {
-            entity.HasIndex(e => e.Email, "IX_unique_email")
-                  .IsUnique();
+            b.ToTable(table => table.HasCheckConstraint("CK_gender", "gender in ('male', 'female', 'other')"));
+
+            b.HasIndex(e => e.Email, "IX_unique_email")
+             .IsUnique();
         });
 
         base.OnModelCreating(modelBuilder);

@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.DTO.In;
 using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Services;
+using System.Text.RegularExpressions;
 
 namespace ShoppingApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UsersController(IUsersService usersService, IMapper mapper) : ControllerBase
+public partial class UsersController(IUsersService usersService, IMapper mapper) : ControllerBase
 {
     private readonly IUsersService _usersService = usersService;
     private readonly IMapper _mapper = mapper;
@@ -16,31 +17,19 @@ public class UsersController(IUsersService usersService, IMapper mapper) : Contr
     [HttpPost]
     public async Task<ActionResult> CreateUser(CreateUser newUser)
     {
-        try
-        {
-            var newUserMapped = _mapper.Map<User>(newUser);
-            await _usersService.CreateUser(newUserMapped);
+        var newUserMapped = _mapper.Map<User>(newUser);
+        await _usersService.CreateUser(newUserMapped);
 
-            // this endpoint does not provide the created user's details because
-            // there is no endpoint get a user by id
-            return Created();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        // when an empty Create result is returned, the status code is 204 (stupid .NET)
+        return StatusCode(StatusCodes.Status201Created);
     }
 
     [HttpGet("emailExists/{email}")]
     public async Task<ActionResult<bool>> EmailExists(string email)
     {
-        try
-        {
-            return await _usersService.EmailExists(email);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        return await _usersService.EmailExists(email);
     }
+
+    [GeneratedRegex(@"^(male|female|other)$", RegexOptions.IgnoreCase)]
+    private static partial Regex GenderRegex();
 }

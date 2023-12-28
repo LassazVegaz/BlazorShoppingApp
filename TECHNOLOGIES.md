@@ -24,3 +24,21 @@ This doc explain the best practices, frameworks & libraries used in this project
   - Easy source control
   - It also feels like divine to create the database using C#
 - Fluent API - More control over the database schema
+
+### Authentication
+
+- With .NET 8, Microsoft introduced **API endpoints in the `Identity Framework`**
+  - Previously it only supported MVC with Razor pages
+  - With this new feature, it is possible to create API endpoints for authentication in a RESTful way
+  - **BUT** it is not possible to customize the given endpoints
+    - It is only possible to use the default endpoints provided by the framework
+    - You cannot add new endpoints or remove existing endpoints
+    - You have to use all the endpoints provided by the framework or none of them
+    - You can add your own endpoints and use managers provided by the framework to perform authentication
+    - But those managers are not designed to be used in a RESTful way
+    - So you will end up customizing the managers to make them RESTful
+    - So it is better to **do the authentication from scratch**
+    - Official documentation for this feature can be found [here](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-8.0)
+    - [This SO answer](https://stackoverflow.com/a/77624113/12072012) can be a motivation to skip this feature and do the authentication from scratch
+- **JWT** - JSON Web Token
+  - Use JWT in header
