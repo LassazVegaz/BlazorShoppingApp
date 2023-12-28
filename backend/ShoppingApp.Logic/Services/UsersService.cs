@@ -33,6 +33,11 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
 
     public async Task<User?> GetUserById(int id)
     {
-        return await _context.Users.FindAsync(id);
+        var user = await _context.Users.FindAsync(id);
+        if (user == null) return null;
+
+        user.Password = string.Empty;
+
+        return user;
     }
 }
