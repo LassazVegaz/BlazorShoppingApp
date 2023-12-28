@@ -35,6 +35,6 @@ public class AuthController(IAuthService authService, IUsersService usersService
 
         var mapped = _mapper.Map<UserDto>(user);
 
-        return Ok(user);
+        return Ok(mapped);
     }
 }
