@@ -5,6 +5,7 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import useSignUpUtils from "../hooks";
 import MuiTanTextField from "@/components/MuiTanTextField";
+import { validations } from "../helpers";
 
 const Form = () => {
   const { form } = useSignUpUtils();
@@ -20,17 +21,23 @@ const Form = () => {
         }}
       >
         <FormsFieldsContainer>
-          <form.Field name="firstName">
+          <form.Field
+            name="firstName"
+            validators={{ onChange: validations.firstName }}
+          >
             {(field) => (
               <MuiTanTextField field={field} label="First name" size="small" />
             )}
           </form.Field>
-          <form.Field name="lastName">
+          <form.Field
+            name="lastName"
+            validators={{ onChange: validations.lastName }}
+          >
             {(field) => (
               <MuiTanTextField field={field} label="Last name" size="small" />
             )}
           </form.Field>
-          <form.Field name="email">
+          <form.Field name="email" validators={{ onChange: validations.email }}>
             {(field) => (
               <MuiTanTextField
                 field={field}
@@ -55,7 +62,10 @@ const Form = () => {
             />
           </MuiLocalizationProvider>
           <TextField label="Gender" size="small" />
-          <form.Field name="password">
+          <form.Field
+            name="password"
+            validators={{ onChange: validations.password }}
+          >
             {(field) => (
               <MuiTanTextField
                 field={field}
@@ -65,7 +75,10 @@ const Form = () => {
               />
             )}
           </form.Field>
-          <form.Field name="passwordConfirmation">
+          <form.Field
+            name="passwordConfirmation"
+            validators={{ onChange: validations.passwordConfirmation }}
+          >
             {(field) => (
               <MuiTanTextField
                 field={field}

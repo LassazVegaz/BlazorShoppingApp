@@ -1,5 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { formDefaultValues } from "../helpers";
+import { yupValidator } from "@tanstack/yup-form-adapter";
 
 const useSignUpUtils = () => {
   const form = useForm({
@@ -7,6 +8,7 @@ const useSignUpUtils = () => {
     onSubmit: (values) => {
       console.log(values);
     },
+    validatorAdapter: yupValidator,
   });
 
   return { form };
