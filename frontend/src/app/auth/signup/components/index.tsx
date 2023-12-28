@@ -13,6 +13,11 @@ const Form = () => {
   return (
     <form.Provider>
       <Box
+        py={5}
+        maxHeight={"85vh"}
+        sx={{
+          overflow: "auto",
+        }}
         component="form"
         onSubmit={(e) => {
           e.preventDefault();
