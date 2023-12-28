@@ -9,7 +9,7 @@ export const formDefaultValues = {
   passwordConfirmation: "",
 };
 
-export const validations = {
+export const validators = {
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Email is invalid").required("Email is required"),

@@ -5,7 +5,7 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import useSignUpUtils from "../hooks";
 import MuiTanTextField from "@/components/MuiTanTextField";
-import { validations } from "../helpers";
+import { validators } from "../helpers";
 
 const Form = () => {
   const { form } = useSignUpUtils();
@@ -23,7 +23,7 @@ const Form = () => {
         <FormsFieldsContainer>
           <form.Field
             name="firstName"
-            validators={{ onChange: validations.firstName }}
+            validators={{ onChange: validators.firstName }}
           >
             {(field) => (
               <MuiTanTextField field={field} label="First name" size="small" />
@@ -31,13 +31,13 @@ const Form = () => {
           </form.Field>
           <form.Field
             name="lastName"
-            validators={{ onChange: validations.lastName }}
+            validators={{ onChange: validators.lastName }}
           >
             {(field) => (
               <MuiTanTextField field={field} label="Last name" size="small" />
             )}
           </form.Field>
-          <form.Field name="email" validators={{ onChange: validations.email }}>
+          <form.Field name="email" validators={{ onChange: validators.email }}>
             {(field) => (
               <MuiTanTextField
                 field={field}
@@ -64,7 +64,7 @@ const Form = () => {
           <TextField label="Gender" size="small" />
           <form.Field
             name="password"
-            validators={{ onChange: validations.password }}
+            validators={{ onChange: validators.password }}
           >
             {(field) => (
               <MuiTanTextField
@@ -77,7 +77,7 @@ const Form = () => {
           </form.Field>
           <form.Field
             name="passwordConfirmation"
-            validators={{ onChange: validations.passwordConfirmation }}
+            validators={{ onChange: validators.passwordConfirmation }}
           >
             {(field) => (
               <MuiTanTextField
