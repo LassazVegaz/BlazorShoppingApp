@@ -1,5 +1,5 @@
 import AuthContainer from "@/components/AuthContainer";
-import Form from "./components";
+import { Form } from "./components";
 
 const SignUpPage = () => {
   return (

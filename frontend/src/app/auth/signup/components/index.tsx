@@ -7,7 +7,7 @@ import { validators } from "../helpers";
 import { ValidationError } from "yup";
 import { MuiTanDateField, MuiTanTextField } from "@/components/MuiTanFields";
 
-const Form = () => {
+export const Form = () => {
   const { form } = useSignUpUtils();
 
   return (
@@ -133,5 +133,3 @@ const Form = () => {
     </form.Provider>
   );
 };
-
-export default Form;
