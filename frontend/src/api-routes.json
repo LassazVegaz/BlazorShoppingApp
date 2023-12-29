@@ -1,7 +1,7 @@
 {
   "users": {
     "common": "users",
-    "emailExists": "users/emailExists"
+    "emailExists": "users/emailExists/{email}"
   },
   "auth": {
     "common": "auth",
