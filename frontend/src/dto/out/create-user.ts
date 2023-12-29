@@ -2,7 +2,7 @@ type CreateUser = {
   firstName: string;
   lastName: string;
   gender: string;
-  dateOfBirth?: Date;
+  dateOfBirth?: string;
   email: string;
   password: string;
 };

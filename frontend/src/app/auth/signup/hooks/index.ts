@@ -18,7 +18,7 @@ const useSignUpUtils = () => {
         const { passwordConfirmation: _, dateOfBirth, ...rest } = value;
         await usersApi.createUser({
           ...rest,
-          dateOfBirth: dateOfBirth!.toDate(),
+          dateOfBirth: dateOfBirth!.format("YYYY-MM-DD"),
         });
         toast.success("Account created successfully");
       } catch (error) {
