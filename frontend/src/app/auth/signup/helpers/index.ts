@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { Dayjs } from "dayjs";
 
 export const formDefaultValues = {
   firstName: "",
@@ -7,6 +8,7 @@ export const formDefaultValues = {
   gender: "",
   password: "",
   passwordConfirmation: "",
+  dateOfBirth: null as Dayjs | null,
 };
 
 export const validators = {

@@ -63,20 +63,27 @@ const Form = () => {
               />
             )}
           </form.Field>
-          <MuiLocalizationProvider>
-            <DatePicker
-              label="Date of birth"
-              // TODO: make the datepicker small like the other fields
-              // sx={{
-              //   "& .MuiOutlinedInput-input": {
-              //     py: 1.0625,
-              //   },
-              //   "& .MuiFormLabel-root": {
-              //     transform: "translate(14px, 8.5px) scale(1)",
-              //   },
-              // }}
-            />
-          </MuiLocalizationProvider>
+          <form.Field name="dateOfBirth">
+            {(field) => (
+              <MuiLocalizationProvider>
+                <DatePicker
+                  label="Date of birth"
+                  name={field.name}
+                  value={field.state.value ?? null}
+                  onChange={(v) => field.handleChange(v)}
+                  // TODO: make the datepicker small like the other fields
+                  // sx={{
+                  //   "& .MuiOutlinedInput-input": {
+                  //     py: 1.0625,
+                  //   },
+                  //   "& .MuiFormLabel-root": {
+                  //     transform: "translate(14px, 8.5px) scale(1)",
+                  //   },
+                  // }}
+                />
+              </MuiLocalizationProvider>
+            )}
+          </form.Field>
           <TextField label="Gender" size="small" />
           <form.Field
             name="password"
