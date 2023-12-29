@@ -22,7 +22,10 @@ export const validators = {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
       "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter and one special character from @$!%*?&"
     ),
-  passwordConfirmation: Yup.string()
-    .required("Required")
-    .oneOf([Yup.ref("password")], "Passwords must match"),
+  /**
+   * @param password Value of password field
+   * @returns Yup validation schema for password confirmation field
+   */
+  passwordConfirmation: (password: string) =>
+    Yup.string().required("Required").oneOf([password], "Passwords must match"),
 };

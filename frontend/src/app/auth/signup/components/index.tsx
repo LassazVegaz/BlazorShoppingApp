@@ -6,6 +6,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import useSignUpUtils from "../hooks";
 import MuiTanTextField from "@/components/MuiTanTextField";
 import { validators } from "../helpers";
+import { ValidationError } from "yup";
 
 const Form = () => {
   const { form } = useSignUpUtils();
@@ -100,7 +101,19 @@ const Form = () => {
           </form.Field>
           <form.Field
             name="passwordConfirmation"
-            validators={{ onChange: validators.passwordConfirmation }}
+            validators={{
+              onChange: (data) => {
+                try {
+                  const password = data.fieldApi.form.getFieldValue("password");
+                  validators
+                    .passwordConfirmation(password)
+                    .validateSync(data.value);
+                } catch (error) {
+                  if (error instanceof ValidationError) return error.message;
+                  throw error;
+                }
+              },
+            }}
           >
             {(field) => (
               <MuiTanTextField
