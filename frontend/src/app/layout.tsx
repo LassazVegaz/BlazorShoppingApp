@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { CssBaseline } from "@mui/material";
 import ThemeProvider from "@/components/ThemeProvider";
 import { ToastContainer } from "react-toastify";
+import FullPageLoader from "@/components/FullPageLoader";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], display: "swap" });
 
@@ -25,6 +26,8 @@ export default function RootLayout({
             <CssBaseline />
 
             {children}
+
+            <FullPageLoader />
 
             <ToastContainer />
           </ThemeProvider>
