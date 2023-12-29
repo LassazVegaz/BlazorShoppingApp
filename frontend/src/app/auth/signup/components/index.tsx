@@ -53,6 +53,7 @@ export const Form = () => {
               <MuiTanTextField field={field} label="Last name" size="small" />
             )}
           </form.Field>
+
           <form.Field name="email" validators={{ onChange: validators.email }}>
             {(field) => (
               <MuiTanTextField
@@ -63,6 +64,7 @@ export const Form = () => {
               />
             )}
           </form.Field>
+
           <form.Field
             name="dateOfBirth"
             validators={{ onChange: validators.dateOfBirth }}
@@ -79,7 +81,9 @@ export const Form = () => {
               </MuiLocalizationProvider>
             )}
           </form.Field>
+
           <TextField label="Gender" size="small" />
+
           <form.Field
             name="password"
             validators={{ onChange: validators.password }}
@@ -93,6 +97,7 @@ export const Form = () => {
               />
             )}
           </form.Field>
+
           <form.Field
             name="passwordConfirmation"
             validators={{
