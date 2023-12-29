@@ -14,9 +14,7 @@ export const MuiTanTextField = ({ field, ...props }: MuiTanTextFieldProps) => (
     value={field.state.value ?? ""}
     onChange={(e) => field.handleChange(e.target.value)}
     onBlur={field.handleBlur}
-    error={
-      field.state.meta.isTouched && field.state.meta.touchedErrors.length > 0
-    }
+    error={field.state.meta.touchedErrors.length > 0}
     helperText={field.state.meta.touchedErrors}
     {...props}
   />
@@ -40,8 +38,8 @@ export const MuiTanDateField = ({
     slotProps={{
       ...slotProps,
       textField: {
-        error: field.state.meta.errors.length > 0,
-        helperText: field.state.meta.errors,
+        error: field.state.meta.touchedErrors.length > 0,
+        helperText: field.state.meta.touchedErrors,
         ...slotProps?.textField,
       },
     }}
