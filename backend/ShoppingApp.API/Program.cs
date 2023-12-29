@@ -15,6 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 // options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 
+// cors
+builder.Services.AddCors(ops =>
+{
+    var frontEndUrl = builder.Configuration.GetValue<string>("FrontEndUrl")
+                      ?? throw new Exception("FrontEndUrl is not configured");
+    ops.AddDefaultPolicy(policy => policy.WithOrigins(frontEndUrl)
+                                         .AllowAnyHeader()
+                                         .AllowAnyMethod());
+});
+
 // Exception handlers
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
 
@@ -86,6 +96,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
