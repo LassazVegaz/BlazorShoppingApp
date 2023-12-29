@@ -15,7 +15,6 @@ public class MapperProfile : Profile
         CreateMap<User, UserDto>();
 
         // receiving from client
-        CreateMap<CreateUser, User>()
-            .ForMember(d => d.DateOfBirth, o => o.MapFrom(u => DateOnly.FromDateTime(u.DateOfBirth)));
+        CreateMap<CreateUser, User>();
     }
 }
