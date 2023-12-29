@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
