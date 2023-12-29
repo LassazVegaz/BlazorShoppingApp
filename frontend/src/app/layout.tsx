@@ -3,6 +3,7 @@ import { Roboto_Flex } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { CssBaseline } from "@mui/material";
 import ThemeProvider from "@/components/ThemeProvider";
+import { ToastContainer } from "react-toastify";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], display: "swap" });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider>
             <CssBaseline />
+
             {children}
+
+            <ToastContainer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
