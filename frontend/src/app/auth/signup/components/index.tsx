@@ -1,11 +1,12 @@
 "use client";
 import { FormsFieldsContainer } from "@/components/AuthContainer/styled-components";
 import MuiLocalizationProvider from "@/components/MuiLocalizationProvider";
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import useSignUpUtils from "../hooks";
 import { validators } from "../helpers";
 import { ValidationError } from "yup";
 import { MuiTanDateField, MuiTanTextField } from "@/components/MuiTanFields";
+import GenderDropdown from "./GenderDropdown";
 
 export const Form = () => {
   const { form } = useSignUpUtils();
@@ -82,7 +83,12 @@ export const Form = () => {
             )}
           </form.Field>
 
-          <TextField label="Gender" size="small" />
+          <form.Field
+            name="gender"
+            validators={{ onChange: validators.gender }}
+          >
+            {(field) => <GenderDropdown field={field} />}
+          </form.Field>
 
           <form.Field
             name="password"
