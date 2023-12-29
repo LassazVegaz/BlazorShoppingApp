@@ -15,7 +15,7 @@ public partial class UsersController(IUsersService usersService, IMapper mapper)
     private readonly IMapper _mapper = mapper;
 
     [HttpPost]
-    public async Task<ActionResult> CreateUser(CreateUser newUser)
+    public async Task<ActionResult> CreateUser([FromBody] CreateUser newUser)
     {
         var newUserMapped = _mapper.Map<User>(newUser);
         await _usersService.CreateUser(newUserMapped);

@@ -7,7 +7,7 @@ public class CreateUser
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;
     public string Gender { get; set; } = default!;
-    public DateOnly DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
     [EmailAddress]
     public string Email { get; set; } = default!;
