@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import { Dayjs } from "dayjs";
+import usersApi from "@/lib/users-api";
 
 const genderValues = ["male", "female", "other"] as const;
 
@@ -17,6 +18,14 @@ export const validators = {
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Email is invalid").required("Email is required"),
+  emailAsync: async (email: string) => {
+    try {
+      const emailTaken = await usersApi.emailExists(email);
+      if (emailTaken) return "Email is already taken";
+    } catch (error) {
+      return "Cannot validate email at this time";
+    }
+  },
   gender: Yup.string().oneOf(genderValues, "Select a gender"),
   password: Yup.string()
     .required("Required")

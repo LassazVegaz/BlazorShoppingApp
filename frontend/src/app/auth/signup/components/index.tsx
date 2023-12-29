@@ -1,7 +1,7 @@
 "use client";
 import { FormsFieldsContainer } from "@/components/AuthContainer/styled-components";
 import MuiLocalizationProvider from "@/components/MuiLocalizationProvider";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, CircularProgress, Stack } from "@mui/material";
 import useSignUpUtils from "../hooks";
 import { validators } from "../helpers";
 import { ValidationError } from "yup";
@@ -55,14 +55,35 @@ export const Form = () => {
             )}
           </form.Field>
 
-          <form.Field name="email" validators={{ onChange: validators.email }}>
+          <form.Field
+            name="email"
+            validators={{
+              onChangeAsyncDebounceMs: 700,
+              onChange: validators.email,
+              onChangeAsync: ({ value }) => validators.emailAsync(value),
+            }}
+          >
             {(field) => (
-              <MuiTanTextField
-                field={field}
-                label="Email"
-                type="email"
-                size="small"
-              />
+              <Stack position="relative">
+                <MuiTanTextField
+                  field={field}
+                  label="Email"
+                  type="email"
+                  size="small"
+                />
+                <CircularProgress
+                  size={20}
+                  sx={{
+                    position: "absolute",
+                    right: 10,
+                    top: 10,
+                    visibility: !field.state.meta.isValidating
+                      ? "hidden"
+                      : undefined,
+                  }}
+                  color="inherit"
+                />
+              </Stack>
             )}
           </form.Field>
 
