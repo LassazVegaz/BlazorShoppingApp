@@ -3,10 +3,9 @@ import { FormsFieldsContainer } from "@/components/AuthContainer/styled-componen
 import MuiLocalizationProvider from "@/components/MuiLocalizationProvider";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import useSignUpUtils from "../hooks";
-import MuiTanTextField from "@/components/MuiTanTextField";
 import { validators } from "../helpers";
 import { ValidationError } from "yup";
-import { MuiTanDateField } from "@/components/MuiTanFields";
+import { MuiTanDateField, MuiTanTextField } from "@/components/MuiTanFields";
 
 const Form = () => {
   const { form } = useSignUpUtils();

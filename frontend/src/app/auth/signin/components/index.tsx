@@ -3,7 +3,7 @@ import { FormsFieldsContainer } from "@/components/AuthContainer/styled-componen
 import { Box, Stack, Button } from "@mui/material";
 import useSignInUtils from "../hooks";
 import { validators } from "../helpers";
-import MuiTanTextField from "@/components/MuiTanTextField";
+import { MuiTanTextField } from "@/components/MuiTanFields";
 
 export const Form = () => {
   const { form } = useSignInUtils();
