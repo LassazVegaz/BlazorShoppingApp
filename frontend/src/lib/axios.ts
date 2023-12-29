@@ -1,7 +1,7 @@
-import { Axios } from "axios";
+import _axios from "axios";
 import tokenHandler from "./token-handler";
 
-const axios = new Axios({
+const axios = _axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
