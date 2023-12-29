@@ -28,4 +28,5 @@ export const validators = {
    */
   passwordConfirmation: (password: string) =>
     Yup.string().required("Required").oneOf([password], "Passwords must match"),
+  dateOfBirth: Yup.date().required("Required"),
 };
