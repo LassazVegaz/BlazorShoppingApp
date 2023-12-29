@@ -2,11 +2,11 @@
 import { FormsFieldsContainer } from "@/components/AuthContainer/styled-components";
 import MuiLocalizationProvider from "@/components/MuiLocalizationProvider";
 import { Box, Button, Stack, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
 import useSignUpUtils from "../hooks";
 import MuiTanTextField from "@/components/MuiTanTextField";
 import { validators } from "../helpers";
 import { ValidationError } from "yup";
+import { MuiTanDateField } from "@/components/MuiTanFields";
 
 const Form = () => {
   const { form } = useSignUpUtils();
@@ -64,23 +64,18 @@ const Form = () => {
               />
             )}
           </form.Field>
-          <form.Field name="dateOfBirth">
+          <form.Field
+            name="dateOfBirth"
+            validators={{ onChange: validators.dateOfBirth }}
+          >
             {(field) => (
               <MuiLocalizationProvider>
-                <DatePicker
+                <MuiTanDateField
+                  field={field}
                   label="Date of birth"
-                  name={field.name}
-                  value={field.state.value ?? null}
-                  onChange={(v) => field.handleChange(v)}
-                  // TODO: make the datepicker small like the other fields
-                  // sx={{
-                  //   "& .MuiOutlinedInput-input": {
-                  //     py: 1.0625,
-                  //   },
-                  //   "& .MuiFormLabel-root": {
-                  //     transform: "translate(14px, 8.5px) scale(1)",
-                  //   },
-                  // }}
+                  slotProps={{
+                    textField: { size: "small" },
+                  }}
                 />
               </MuiLocalizationProvider>
             )}
