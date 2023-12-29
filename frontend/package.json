@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@tanstack/react-form": "^0.11.0",
     "@tanstack/yup-form-adapter": "^0.11.0",
+    "axios": "^1.6.3",
     "dayjs": "^1.11.10",
     "next": "14.0.3",
     "react": "^18",
