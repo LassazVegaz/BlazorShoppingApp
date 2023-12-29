@@ -1,6 +1,8 @@
 import * as Yup from "yup";
 import { Dayjs } from "dayjs";
 
+const genderValues = ["male", "female", "other"] as const;
+
 export const formDefaultValues = {
   firstName: "",
   lastName: "",
@@ -15,7 +17,7 @@ export const validators = {
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Email is invalid").required("Email is required"),
-  gender: Yup.string().oneOf(["male", "female", "other"], "Select a gender"),
+  gender: Yup.string().oneOf(genderValues, "Select a gender"),
   password: Yup.string()
     .required("Required")
     .matches(
@@ -30,3 +32,17 @@ export const validators = {
     Yup.string().required("Required").oneOf([password], "Passwords must match"),
   dateOfBirth: Yup.date().required("Required"),
 };
+
+const makeFirstLetterUppercase = (str: string) =>
+  str[0].toUpperCase() + str.slice(1);
+
+/**
+ * Use to generate Gender field's dropdown options
+ */
+export const genderDropdowns = genderValues.map(
+  (value) =>
+    ({
+      label: makeFirstLetterUppercase(value),
+      value,
+    } as const)
+);
