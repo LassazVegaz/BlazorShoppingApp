@@ -14,9 +14,12 @@ type GenderDropdownProps = {
 };
 
 const GenderDropdown = ({ field }: GenderDropdownProps) => {
+  const hasError = field.state.meta.touchedErrors.length > 0;
   return (
     <FormControl size="small">
-      <InputLabel id="signup-gender-field">Gender</InputLabel>
+      <InputLabel id="signup-gender-field" error={hasError}>
+        Gender
+      </InputLabel>
       <Select
         name={field.name}
         labelId="signup-gender-field"
@@ -24,7 +27,7 @@ const GenderDropdown = ({ field }: GenderDropdownProps) => {
         label="Gender"
         onBlur={field.handleBlur}
         onChange={(v) => field.handleChange(v.target.value)}
-        error={field.state.meta.touchedErrors.length > 0}
+        error={hasError}
       >
         {genderDropdowns.map((o) => (
           <MenuItem key={o.value} value={o.value}>
@@ -32,7 +35,7 @@ const GenderDropdown = ({ field }: GenderDropdownProps) => {
           </MenuItem>
         ))}
       </Select>
-      {field.state.meta.touchedErrors && (
+      {hasError && (
         <FormHelperText error>{field.state.meta.touchedErrors}</FormHelperText>
       )}
     </FormControl>
