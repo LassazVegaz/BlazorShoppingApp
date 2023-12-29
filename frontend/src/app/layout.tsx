@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import ThemeProvider from "@/components/ThemeProvider";
 import { ToastContainer } from "react-toastify";
 import FullPageLoader from "@/components/FullPageLoader";
+import ReduxProvider from "@/components/ReduxProvider";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], display: "swap" });
 
@@ -21,17 +22,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider>
-            <CssBaseline />
+        <ReduxProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider>
+              <CssBaseline />
 
-            {children}
+              {children}
 
-            <FullPageLoader />
+              <FullPageLoader />
 
-            <ToastContainer />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+              <ToastContainer />
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
