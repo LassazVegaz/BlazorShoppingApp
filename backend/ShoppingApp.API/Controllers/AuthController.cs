@@ -39,6 +39,14 @@ public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authSe
         return Ok(token);
     }
 
+    [HttpPost("logout")]
+    [Authorize]
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete(CookieNames.JwtToken);
+        return Ok();
+    }
+
     [HttpGet("profile")]
     [Authorize]
     public async Task<ActionResult> GetLoggedInUser()
