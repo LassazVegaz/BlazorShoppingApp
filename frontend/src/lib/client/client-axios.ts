@@ -1,7 +1,7 @@
 import _axios from "axios";
-import tokenHandler from "./client-tokens";
+import clientTokens from "./client-tokens";
 
-const axios = _axios.create({
+const clientAxios = _axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
   headers: {
@@ -9,9 +9,9 @@ const axios = _axios.create({
   },
 });
 
-axios.interceptors.request.use(
+clientAxios.interceptors.request.use(
   (config) => {
-    const token = tokenHandler.getToken();
+    const token = clientTokens.getToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -20,4 +20,4 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export default axios;
+export default clientAxios;

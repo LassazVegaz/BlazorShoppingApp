@@ -1,9 +1,9 @@
 import apiRoutes from "@/api-routes.json";
-import axios from "./client-axios";
+import clientAxios from "./client-axios";
 import UserDto from "@/dto/in/user.dto";
 
 const login = async (email: string, password: string) => {
-  const response = await axios.post<string>(apiRoutes.auth.login, {
+  const response = await clientAxios.post<string>(apiRoutes.auth.login, {
     email,
     password,
   });
@@ -11,7 +11,7 @@ const login = async (email: string, password: string) => {
 };
 
 const getProfile = async () => {
-  const response = await axios.get<UserDto>(apiRoutes.auth.profile);
+  const response = await clientAxios.get<UserDto>(apiRoutes.auth.profile);
   return response.data;
 };
 

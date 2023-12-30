@@ -12,10 +12,10 @@ const removeToken = () => {
   localStorage.removeItem(tokenKey);
 };
 
-const tokenHandler = {
+const clientTokens = {
   getToken,
   setToken,
   removeToken,
 };
 
-export default tokenHandler;
+export default clientTokens;
