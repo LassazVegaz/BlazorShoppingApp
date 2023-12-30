@@ -24,7 +24,8 @@ builder.Services.AddCors(ops =>
                       ?? throw new Exception("FrontEndUrl is not configured");
     ops.AddDefaultPolicy(policy => policy.WithOrigins(frontEndUrl)
                                          .AllowAnyHeader()
-                                         .AllowAnyMethod());
+                                         .AllowAnyMethod()
+                                         .AllowCredentials());
 });
 
 // Exception handlers
