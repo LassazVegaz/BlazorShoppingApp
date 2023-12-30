@@ -3,7 +3,7 @@ import { formDefaultValues } from "../helpers";
 import { yupValidator } from "@tanstack/yup-form-adapter";
 import { useAppDispatch } from "@/redux/hooks";
 import { pageLoaderActions } from "@/redux/slices/page-loader.slice";
-import usersApi from "@/lib/users-api";
+import usersApi from "@/lib/client/users-api";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 

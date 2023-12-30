@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { Dayjs } from "dayjs";
-import usersApi from "@/lib/users-api";
+import usersApi from "@/lib/client/users-api";
 
 const genderValues = ["male", "female", "other"] as const;
 

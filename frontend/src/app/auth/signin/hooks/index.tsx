@@ -3,10 +3,10 @@ import { yupValidator } from "@tanstack/yup-form-adapter";
 import { formDefaultValues } from "../helpers";
 import { useAppDispatch } from "@/redux/hooks";
 import { pageLoaderActions } from "@/redux/slices/page-loader.slice";
-import authApi from "@/lib/auth-api";
+import authApi from "@/lib/client/auth-api";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import tokenHandler from "@/lib/token-handler";
+import tokenHandler from "@/lib/client/token-handler";
 import { useRouter } from "next/navigation";
 
 const useSignInUtils = () => {
