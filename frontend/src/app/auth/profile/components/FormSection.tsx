@@ -1,13 +1,20 @@
-import { Paper, Stack, Typography } from "@mui/material";
+import { Paper, PaperProps, Stack, Typography } from "@mui/material";
 
 type FormSectionProps = {
   title: string;
   children?: React.ReactNode;
   buttons?: React.ReactNode;
+  onSubmit?: PaperProps<"form">["onSubmit"];
 };
 
 const FormSection = (props: FormSectionProps) => (
   <Paper
+    component="form"
+    onSubmit={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      props.onSubmit?.(e);
+    }}
     elevation={3}
     sx={{
       p: 2,
