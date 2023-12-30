@@ -6,9 +6,12 @@ import { pageLoaderActions } from "@/redux/slices/page-loader.slice";
 import authApi from "@/lib/auth-api";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import tokenHandler from "@/lib/token-handler";
+import { useRouter } from "next/navigation";
 
 const useSignInUtils = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const form = useForm({
     defaultValues: formDefaultValues,
@@ -17,7 +20,8 @@ const useSignInUtils = () => {
       dispatch(pageLoaderActions.setLoading(true));
       try {
         const token = await authApi.login(value.email, value.password);
-        console.log("token:", token);
+        tokenHandler.setToken(token);
+        router.push("/auth/profile");
       } catch (error) {
         if (error instanceof AxiosError && error.status === 401) {
           toast.error("Invalid credentials");
