@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ShoppingApp.API.Constants;
 using ShoppingApp.API.ExceptionHandlers;
+using ShoppingApp.API.Extensions;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,22 +58,7 @@ builder.Services.AddSwaggerGen(ops =>
     });
 });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, ops =>
-    {
-        var jwtOptions = builder.Configuration.GetSection(OptionsNames.JwtOptions).Get<JwtOptions>()!;
-        ops.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-
-            ValidIssuer = jwtOptions.Issuer,
-            ValidAudience = jwtOptions.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
-        };
-    });
+builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
 
 // db context
