@@ -6,6 +6,7 @@
   "auth": {
     "common": "auth",
     "login": "auth/login",
+    "logout": "auth/logout",
     "profile": "auth/profile"
   }
 }

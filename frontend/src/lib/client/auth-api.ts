@@ -10,6 +10,10 @@ const login = async (email: string, password: string) => {
   return response.data;
 };
 
+const logout = async () => {
+  await clientAxios.post(apiRoutes.auth.logout);
+};
+
 const getProfile = async () => {
   const response = await clientAxios.get<UserDto>(apiRoutes.auth.profile);
   return response.data;
@@ -17,6 +21,7 @@ const getProfile = async () => {
 
 const authApi = {
   login,
+  logout,
   getProfile,
 };
 

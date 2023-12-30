@@ -1,5 +1,5 @@
-import { Container, Stack, TextField, Typography } from "@mui/material/index";
-import { BasicInfoForm, FormSection } from "./components";
+import { Container, Stack, TextField, Typography } from "@mui/material";
+import { BasicInfoForm, FormSection, LogoutButton } from "./components";
 import { FormButton } from "./components/styled-components";
 import serverAuth from "@/lib/server/server-auth";
 import { redirect } from "next/navigation";
@@ -43,6 +43,8 @@ const SignUpPage = async () => {
           <TextField label="Confirm password" type="password" />
         </FormSection>
       </Stack>
+
+      <LogoutButton />
     </Container>
   );
 };
