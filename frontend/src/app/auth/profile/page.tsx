@@ -1,8 +1,12 @@
 import { Container, Stack, TextField, Typography } from "@mui/material/index";
 import { BasicInfoForm, FormSection } from "./components";
 import { FormButton } from "./components/styled-components";
+import serverAuth from "@/lib/server/server-auth";
+import { redirect } from "next/navigation";
 
-const SignUpPage = () => {
+const SignUpPage = async () => {
+  if (!(await serverAuth.isAuthenticated())) redirect("/auth/signin");
+
   return (
     <Container sx={{ pb: 5, pt: 1 }}>
       <Typography variant="h1" fontSize={45} textAlign="center">
