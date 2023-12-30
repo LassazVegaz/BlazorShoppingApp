@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ShoppingApp.API.Constants;
 using ShoppingApp.API.ExceptionHandlers;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
@@ -15,12 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // options
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(OptionsNames.JwtOptions));
 
 // cors
 builder.Services.AddCors(ops =>
 {
-    var frontEndUrl = builder.Configuration.GetValue<string>("FrontEndUrl")
+    var frontEndUrl = builder.Configuration.GetValue<string>(ConfigurationKeys.FrontEndUrl)
                       ?? throw new Exception("FrontEndUrl is not configured");
     ops.AddDefaultPolicy(policy => policy.WithOrigins(frontEndUrl)
                                          .AllowAnyHeader()
@@ -61,7 +62,7 @@ builder.Services.AddSwaggerGen(ops =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, ops =>
     {
-        var jwtOptions = builder.Configuration.GetSection("JwtOptions").Get<JwtOptions>()!;
+        var jwtOptions = builder.Configuration.GetSection(OptionsNames.JwtOptions).Get<JwtOptions>()!;
         ops.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
