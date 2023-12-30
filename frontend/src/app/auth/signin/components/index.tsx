@@ -52,9 +52,9 @@ export const Form = () => {
         </FormsFieldsContainer>
 
         <Stack alignItems="center" mt={5}>
-          <form.Subscribe selector={(s) => s.isSubmitted}>
-            {(isSubmitted) => (
-              <Button variant="contained" type="submit" disabled={isSubmitted}>
+          <form.Subscribe selector={(s) => s.isSubmitting}>
+            {(isSubmitting) => (
+              <Button variant="contained" type="submit" disabled={isSubmitting}>
                 Sign In
               </Button>
             )}
