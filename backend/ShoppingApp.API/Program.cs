@@ -12,6 +12,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 // options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 
@@ -28,7 +30,6 @@ builder.Services.AddCors(ops =>
 // Exception handlers
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(ops =>
