@@ -1,5 +1,5 @@
 import apiRoutes from "@/api-routes.json";
-import axios from "./axios";
+import axios from "./client-axios";
 import UserDto from "@/dto/in/user.dto";
 
 const login = async (email: string, password: string) => {

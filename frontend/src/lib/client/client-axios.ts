@@ -1,5 +1,5 @@
 import _axios from "axios";
-import tokenHandler from "./token-handler";
+import tokenHandler from "./client-tokens";
 
 const axios = _axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

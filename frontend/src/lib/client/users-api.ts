@@ -1,5 +1,5 @@
 import apiRoutes from "@/api-routes.json";
-import axios from "./axios";
+import axios from "./client-axios";
 import CreateUser from "@/dto/out/create-user";
 
 const emailExists = async (email: string) => {

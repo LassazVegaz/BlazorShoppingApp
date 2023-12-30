@@ -6,7 +6,7 @@ import { pageLoaderActions } from "@/redux/slices/page-loader.slice";
 import authApi from "@/lib/client/auth-api";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import tokenHandler from "@/lib/client/token-handler";
+import tokenHandler from "@/lib/client/client-tokens";
 import { useRouter } from "next/navigation";
 
 const useSignInUtils = () => {
