@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingApp.API.Constants;
 using ShoppingApp.API.DTO.Out;
 using ShoppingApp.Core.DTO.In;
 using ShoppingApp.Core.Services;
@@ -16,10 +17,20 @@ public class AuthController(IAuthService authService, IUsersService usersService
     private readonly IMapper _mapper = mapper;
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginCredentials request)
+    public async Task<IActionResult> Login([FromBody] LoginCredentials request, [FromQuery] bool useCookie = true)
     {
         var token = await _authService.Login(request.Email, request.Password);
         if (token is null) return Unauthorized("Invalid credentials");
+
+        if (useCookie)
+        {
+            Response.Cookies.Append(CookieNames.JwtToken, token, new CookieOptions
+            {
+                HttpOnly = true,
+                SameSite = SameSiteMode.Strict,
+                Secure = HttpContext.Request.IsHttps
+            });
+        }
 
         return Ok(token);
     }

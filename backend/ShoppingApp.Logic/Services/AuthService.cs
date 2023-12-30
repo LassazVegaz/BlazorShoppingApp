@@ -31,7 +31,7 @@ public class AuthService(ShoppingAppContext context, IOptions<JwtOptions> jwtOpt
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity([new Claim(ClaimTypes.Name, user.Id.ToString())]),
-            Expires = DateTime.UtcNow.AddDays(7),
+            Expires = DateTime.UtcNow.AddDays(_jwtOptions.ExpirationInDays),
             Issuer = _jwtOptions.Issuer,
             Audience = _jwtOptions.Audience,
             SigningCredentials = signingCredentials
