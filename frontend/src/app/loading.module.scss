@@ -1,0 +1,44 @@
+$side-length: 250px;
+$primary-color: rgb(42, 6, 96);
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  .square {
+    width: $side-length;
+    height: $side-length;
+    border: 10px solid #ccc;
+    border-top-color: $primary-color;
+    border-bottom-color: $primary-color;
+    position: absolute;
+    animation: spin 2s infinite ease-in-out;
+  }
+
+  .text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 0 0 $primary-color;
+    border-radius: 0%;
+  }
+  50% {
+    transform: rotate(180deg);
+    box-shadow: 0 0 0 50vh $primary-color;
+    border-radius: 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 0 100vh transparent;
+    border-radius: 0%;
+  }
+}
