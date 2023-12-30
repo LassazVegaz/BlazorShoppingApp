@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.DTO.In;
+using ShoppingApp.API.DTO.Out;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Parameters;
 using ShoppingApp.Core.Services;
 using System.Text.RegularExpressions;
 
@@ -28,6 +31,17 @@ public partial class UsersController(IUsersService usersService, IMapper mapper)
     public async Task<ActionResult<bool>> EmailExists(string email)
     {
         return await _usersService.EmailExists(email);
+    }
+
+    [HttpPatch]
+    [Authorize]
+    public async Task<ActionResult<UserDto>> UpdateUser([FromBody] UpdateUser data)
+    {
+        var id = int.Parse(User.Identity!.Name!);
+        var user = await _usersService.UpdateUser(id, data);
+        var userDto = _mapper.Map<UserDto>(user);
+
+        return userDto;
     }
 
     [GeneratedRegex(@"^(male|female|other)$", RegexOptions.IgnoreCase)]
