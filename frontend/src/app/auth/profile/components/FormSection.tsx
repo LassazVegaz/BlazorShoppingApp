@@ -1,3 +1,4 @@
+"use client";
 import { Paper, PaperProps, Stack, Typography } from "@mui/material";
 
 type FormSectionProps = {
