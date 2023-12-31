@@ -6,7 +6,7 @@ import {
   FormHelperText,
 } from "@mui/material";
 import { FieldApi } from "@tanstack/react-form";
-import { genderDropdowns } from "../helpers";
+import { genderDropdowns } from "@/lib/client/form-constants";
 
 type GenderDropdownProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

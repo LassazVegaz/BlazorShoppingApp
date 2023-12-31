@@ -1,8 +1,13 @@
 import * as Yup from "yup";
 import { Dayjs } from "dayjs";
-import usersApi from "@/lib/client/users-api";
-
-const genderValues = ["male", "female", "other"] as const;
+import {
+  emailValidator,
+  emailValidatorAsync,
+  firstNameValidator,
+  genderValidator,
+  lastNameValidator,
+  passwordValidator,
+} from "@/lib/client/form-validators";
 
 export const formDefaultValues = {
   firstName: "",
@@ -15,24 +20,12 @@ export const formDefaultValues = {
 };
 
 export const validators = {
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
-  email: Yup.string().email("Email is invalid").required("Email is required"),
-  emailAsync: async (email: string) => {
-    try {
-      const emailTaken = await usersApi.emailExists(email);
-      if (emailTaken) return "Email is already taken";
-    } catch (error) {
-      return "Cannot validate email at this time";
-    }
-  },
-  gender: Yup.string().oneOf(genderValues, "Select a gender"),
-  password: Yup.string()
-    .required("Required")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
-      "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter and one special character from @$!%*?&"
-    ),
+  firstName: firstNameValidator,
+  lastName: lastNameValidator,
+  email: emailValidator,
+  emailAsync: emailValidatorAsync,
+  gender: genderValidator,
+  password: passwordValidator,
   /**
    * @param password Value of password field
    * @returns Yup validation schema for password confirmation field
@@ -41,17 +34,3 @@ export const validators = {
     Yup.string().required("Required").oneOf([password], "Passwords must match"),
   dateOfBirth: Yup.date().required("Required"),
 };
-
-const makeFirstLetterUppercase = (str: string) =>
-  str[0].toUpperCase() + str.slice(1);
-
-/**
- * Use to generate Gender field's dropdown options
- */
-export const genderDropdowns = genderValues.map(
-  (value) =>
-    ({
-      label: makeFirstLetterUppercase(value),
-      value,
-    } as const)
-);
