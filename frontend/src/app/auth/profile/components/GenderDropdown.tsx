@@ -18,7 +18,7 @@ type GenderDropdownProps = {
 const GenderDropdown = ({ field }: GenderDropdownProps) => {
   const hasError = field.state.meta.touchedErrors.length > 0;
   return (
-    <FormControl size="small">
+    <FormControl>
       <InputLabel id="signup-gender-field" error={hasError}>
         Gender
       </InputLabel>
