@@ -1,5 +1,6 @@
 import authApi from "@/lib/client/auth-api";
 import { useForm } from "@tanstack/react-form";
+import { yupValidator } from "@tanstack/yup-form-adapter";
 import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 
@@ -15,6 +16,7 @@ const useBasicInfoFormUtils = () => {
 
   const form = useForm({
     defaultValues,
+    validatorAdapter: yupValidator,
   });
 
   useEffect(() => {
