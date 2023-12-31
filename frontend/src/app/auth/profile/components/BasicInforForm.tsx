@@ -1,10 +1,10 @@
 "use client";
-import { TextField } from "@mui/material";
 import FormSection from "./FormSection";
 import { FormButton } from "./styled-components";
 import MuiLocalizationProvider from "@/components/MuiLocalizationProvider";
 import useUtils from "../hooks/basic-info-form.hook";
 import { MuiTanDateField, MuiTanTextField } from "@/components/MuiTanFields";
+import GenderDropdown from "./GenderDropdown";
 
 const BasicInfoForm = () => {
   const { form } = useUtils();
@@ -43,7 +43,9 @@ const BasicInfoForm = () => {
           )}
         </form.Field>
 
-        <TextField label="Gender" />
+        <form.Field name="gender">
+          {(field) => <GenderDropdown field={field} />}
+        </form.Field>
       </FormSection>
     </form.Provider>
   );
