@@ -7,17 +7,18 @@ import { MuiTanDateField, MuiTanTextField } from "@/components/MuiTanFields";
 import GenderDropdown from "./GenderDropdown";
 
 const BasicInfoForm = () => {
-  const { form } = useUtils();
+  const { form, state } = useUtils();
 
   return (
     <form.Provider>
       <FormSection
+        isLoading={state.isLoading}
+        title="Basic information"
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
           form.handleSubmit();
         }}
-        title="Basic information"
         buttons={
           <>
             <FormButton color="secondary" variant="contained">

@@ -1,7 +1,7 @@
 import authApi from "@/lib/client/auth-api";
 import { useForm } from "@tanstack/react-form";
 import dayjs, { Dayjs } from "dayjs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const defaultValues = {
   firstName: "",
@@ -11,24 +11,33 @@ const defaultValues = {
 };
 
 const useBasicInfoFormUtils = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const form = useForm({
     defaultValues,
   });
 
   useEffect(() => {
-    authApi.getProfile().then((profile) => {
-      form.setFieldValue("firstName", profile.firstName);
-      form.setFieldValue("lastName", profile.lastName);
-      form.setFieldValue("gender", profile.gender);
-      form.setFieldValue(
-        "dateOfBirth",
-        dayjs(profile.dateOfBirth, "YYYY-MM-DD")
-      );
-    });
+    setIsLoading(true);
+    authApi
+      .getProfile()
+      .then((profile) => {
+        form.setFieldValue("firstName", profile.firstName);
+        form.setFieldValue("lastName", profile.lastName);
+        form.setFieldValue("gender", profile.gender);
+        form.setFieldValue(
+          "dateOfBirth",
+          dayjs(profile.dateOfBirth, "YYYY-MM-DD")
+        );
+      })
+      .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { form };
+  return {
+    form,
+    state: { isLoading },
+  };
 };
 
 export default useBasicInfoFormUtils;
