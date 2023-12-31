@@ -1,14 +1,25 @@
+import UserDto from "@/dto/in/user.dto";
 import authApi from "@/lib/client/auth-api";
 import { useForm } from "@tanstack/react-form";
 import { yupValidator } from "@tanstack/yup-form-adapter";
 import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+type Form = ReturnType<typeof useBasicInfoFormUtils>["form"];
 
 const defaultValues = {
   firstName: "",
   lastName: "",
   gender: "",
   dateOfBirth: null as Dayjs | null,
+};
+
+const setFormFields = (form: Form, user: Omit<UserDto, "id" | "email">) => {
+  form.setFieldValue("firstName", user.firstName);
+  form.setFieldValue("lastName", user.lastName);
+  form.setFieldValue("gender", user.gender);
+  form.setFieldValue("dateOfBirth", dayjs(user.dateOfBirth, "YYYY-MM-DD"));
 };
 
 const useBasicInfoFormUtils = () => {
@@ -23,14 +34,10 @@ const useBasicInfoFormUtils = () => {
     setIsLoading(true);
     authApi
       .getProfile()
-      .then((profile) => {
-        form.setFieldValue("firstName", profile.firstName);
-        form.setFieldValue("lastName", profile.lastName);
-        form.setFieldValue("gender", profile.gender);
-        form.setFieldValue(
-          "dateOfBirth",
-          dayjs(profile.dateOfBirth, "YYYY-MM-DD")
-        );
+      .then((profile) => setFormFields(form, profile))
+      .catch((e) => {
+        toast.error("Failed to load basic info. Please refresh the page.");
+        console.error(e);
       })
       .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
