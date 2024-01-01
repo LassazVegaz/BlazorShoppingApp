@@ -8,22 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 
-type FormSectionProps = {
+type FormSectionProps = Pick<PaperProps<"form">, "onSubmit" | "onReset"> & {
   title: string;
   children?: React.ReactNode;
   buttons?: React.ReactNode;
-  onSubmit?: PaperProps<"form">["onSubmit"];
   isLoading?: boolean;
 };
 
 const FormSection = (props: FormSectionProps) => (
   <Paper
     component="form"
-    onSubmit={(e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      props.onSubmit?.(e);
-    }}
+    onReset={props.onReset}
+    onSubmit={props.onSubmit}
     elevation={3}
     sx={{
       p: 2,

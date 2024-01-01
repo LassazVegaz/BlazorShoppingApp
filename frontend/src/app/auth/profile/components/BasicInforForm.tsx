@@ -12,13 +12,14 @@ import {
 } from "@/lib/client/form-validators";
 
 const BasicInfoForm = () => {
-  const { form, state } = useUtils();
+  const { form, state, utils } = useUtils();
 
   return (
     <form.Provider>
       <FormSection
         isLoading={state.isLoading}
         title="Basic information"
+        onReset={utils.resetForm}
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -26,10 +27,12 @@ const BasicInfoForm = () => {
         }}
         buttons={
           <>
-            <FormButton color="secondary" variant="contained">
+            <FormButton type="reset" color="secondary" variant="contained">
               Reset
             </FormButton>
-            <FormButton variant="contained">Save</FormButton>
+            <FormButton type="submit" variant="contained">
+              Save
+            </FormButton>
           </>
         }
       >

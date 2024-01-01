@@ -3,7 +3,7 @@ import authApi from "@/lib/client/auth-api";
 import { useForm } from "@tanstack/react-form";
 import { yupValidator } from "@tanstack/yup-form-adapter";
 import dayjs, { Dayjs } from "dayjs";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 type Form = ReturnType<typeof useBasicInfoFormUtils>["form"];
@@ -31,21 +31,41 @@ const useBasicInfoFormUtils = () => {
   });
 
   useEffect(() => {
+    let mounted = true;
+
     setIsLoading(true);
     authApi
       .getProfile()
-      .then((profile) => setFormFields(form, profile))
+      .then((profile) => mounted && setFormFields(form, profile))
       .catch((e) => {
         toast.error("Failed to load basic info. Please refresh the page.");
         console.error(e);
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => mounted && setIsLoading(false));
+
+    return () => {
+      mounted = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const resetForm = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const profile = await authApi.getProfile();
+      setFormFields(form, profile);
+    } catch (error) {
+      toast.error("Failed to load basic info. Please refresh the page.");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [form]);
 
   return {
     form,
     state: { isLoading },
+    utils: { resetForm },
   };
 };
 
