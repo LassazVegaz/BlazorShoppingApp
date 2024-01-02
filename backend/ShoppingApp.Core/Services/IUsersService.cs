@@ -20,6 +20,11 @@ public interface IUsersService
     Task<User> UpdateUser(int id, UpdateUser updatedUser);
 
     /// <summary>
+    /// If old password is correct, change the password to new password and return true. Otherwise return false.
+    /// </summary>
+    Task<bool> ChangePassword(int id, string oldPassword, string newPassword);
+
+    /// <summary>
     /// Check if the email exists in the database
     /// </summary>
     Task<bool> EmailExists(string email);

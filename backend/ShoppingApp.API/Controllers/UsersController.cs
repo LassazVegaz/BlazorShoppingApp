@@ -47,6 +47,18 @@ public partial class UsersController(IOptions<UserOptions> userOptions, IUsersSe
         return userDto;
     }
 
+    [HttpPatch("password")]
+    [Authorize]
+    public async Task<ActionResult> ChangePassword([FromBody] ChangePassword data)
+    {
+        var id = int.Parse(User.Identity!.Name!);
+        var success = await _usersService.ChangePassword(id, data.OldPassword, data.NewPassword);
+
+        if (!success) return BadRequest("Old password is incorrect");
+
+        return Ok();
+    }
+
     [HttpGet("options")]
     public ActionResult<UserOptionsDto> GetUserOptions() => _mapper.Map<UserOptionsDto>(_userOptions);
 

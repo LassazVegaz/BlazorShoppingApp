@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ShoppingApp.API.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShoppingApp.API.DTO.In;
 
@@ -13,6 +14,6 @@ public class CreateUser
     public string Email { get; set; } = default!;
 
     [MinLength(8)]
-    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter and one special character from @$!%*?&")]
+    [RegularExpression(RegularExpressions.PasswordReg, ErrorMessage = "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter and one special character from @$!%*?&")]
     public string Password { get; set; } = default!;
 }

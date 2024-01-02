@@ -67,5 +67,17 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
         return user;
     }
 
+    public async Task<bool> ChangePassword(int id, string oldPassword, string newPassword)
+    {
+        var user = await _context.Users.FindAsync(id) ?? throw new NotFoundException("User not found");
+
+        if (!BC.Verify(oldPassword, user.Password)) return false;
+
+        user.Password = BC.HashPassword(newPassword);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+
     public async Task<bool> EmailExists(string email) => await _context.Users.AnyAsync(u => u.Email == email.ToLower());
 }
