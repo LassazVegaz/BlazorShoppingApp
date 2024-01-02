@@ -16,7 +16,7 @@ const createUser = async (data: CreateUser) => {
 };
 
 const updateUser = async (data: UpdateUser) => {
-  const res = await clientAxios.put<UserDto>(apiRoutes.users.common, data);
+  const res = await clientAxios.patch<UserDto>(apiRoutes.users.common, data);
   return res.data;
 };
 
