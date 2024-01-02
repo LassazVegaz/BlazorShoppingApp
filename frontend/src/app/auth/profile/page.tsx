@@ -1,11 +1,10 @@
-import { Container, Stack, TextField, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import {
   BasicInfoForm,
   ContactInfoForm,
-  FormSection,
   LogoutButton,
+  PasswordForm,
 } from "./components";
-import { FormButton } from "./components/styled-components";
 import serverAuth from "@/lib/server/server-auth";
 import { redirect } from "next/navigation";
 
@@ -23,14 +22,7 @@ const SignUpPage = async () => {
 
         <ContactInfoForm />
 
-        <FormSection
-          title="Password"
-          buttons={<FormButton variant="contained">Save</FormButton>}
-        >
-          <TextField label="Current password" type="password" />
-          <TextField label="Password" type="password" />
-          <TextField label="Confirm password" type="password" />
-        </FormSection>
+        <PasswordForm />
       </Stack>
 
       <LogoutButton />

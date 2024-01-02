@@ -2,7 +2,8 @@
   "users": {
     "common": "users",
     "emailExists": "users/emailExists/{email}",
-    "options": "users/options"
+    "options": "users/options",
+    "password": "users/password"
   },
   "auth": {
     "common": "auth",
