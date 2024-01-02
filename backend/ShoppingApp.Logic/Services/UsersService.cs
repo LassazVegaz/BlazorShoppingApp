@@ -50,7 +50,7 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
         if (updatedUser.Email != null)
         {
             user.Email = updatedUser.Email;
-            user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now);
+            user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now); // i dont care about UTC at the moment
         }
 
         await _context.SaveChangesAsync();
