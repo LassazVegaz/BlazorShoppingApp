@@ -30,25 +30,6 @@ const useBasicInfoFormUtils = () => {
     validatorAdapter: yupValidator,
   });
 
-  useEffect(() => {
-    let mounted = true;
-
-    setIsLoading(true);
-    authApi
-      .getProfile()
-      .then((profile) => mounted && setFormFields(form, profile))
-      .catch((e) => {
-        toast.error("Failed to load basic info. Please refresh the page.");
-        console.error(e);
-      })
-      .finally(() => mounted && setIsLoading(false));
-
-    return () => {
-      mounted = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const resetForm = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -61,6 +42,12 @@ const useBasicInfoFormUtils = () => {
       setIsLoading(false);
     }
   }, [form]);
+
+  useEffect(() => {
+    console.log("resetting form");
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     form,
