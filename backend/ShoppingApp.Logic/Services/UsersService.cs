@@ -42,16 +42,16 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
     {
         var user = _context.Users.Find(id) ?? throw new ArgumentException("User not found");
 
-        if (updatedUser.FirstName != null) user.FirstName = updatedUser.FirstName;
-        if (updatedUser.LastName != null) user.LastName = updatedUser.LastName;
-        if (updatedUser.Gender != null) user.Gender = updatedUser.Gender;
-        if (updatedUser.DateOfBirth != null) user.DateOfBirth = updatedUser.DateOfBirth.Value;
-
         if (updatedUser.Email != null)
         {
             user.Email = updatedUser.Email;
             user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now); // i dont care about UTC at the moment
         }
+
+        if (updatedUser.FirstName != null) user.FirstName = updatedUser.FirstName;
+        if (updatedUser.LastName != null) user.LastName = updatedUser.LastName;
+        if (updatedUser.Gender != null) user.Gender = updatedUser.Gender;
+        if (updatedUser.DateOfBirth != null) user.DateOfBirth = updatedUser.DateOfBirth.Value;
 
         await _context.SaveChangesAsync();
 

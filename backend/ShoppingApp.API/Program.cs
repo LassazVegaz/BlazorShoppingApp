@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 
 // options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(OptionsNames.JwtOptions));
+builder.Services.Configure<UserOptions>(builder.Configuration.GetSection(OptionsNames.UserOptions));
 
 // cors
 builder.Services.AddCors(ops =>
