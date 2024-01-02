@@ -32,3 +32,6 @@ export const passwordValidator = Yup.string()
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
     "Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter and one special character from @$!%*?&"
   );
+
+export const passwordConfirmationValidator = (password: string) =>
+  Yup.string().required("Required").oneOf([password], "Passwords must match");

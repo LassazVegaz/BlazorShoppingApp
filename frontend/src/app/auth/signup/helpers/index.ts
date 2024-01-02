@@ -6,6 +6,7 @@ import {
   firstNameValidator,
   genderValidator,
   lastNameValidator,
+  passwordConfirmationValidator,
   passwordValidator,
 } from "@/lib/client/form-validators";
 
@@ -30,7 +31,6 @@ export const validators = {
    * @param password Value of password field
    * @returns Yup validation schema for password confirmation field
    */
-  passwordConfirmation: (password: string) =>
-    Yup.string().required("Required").oneOf([password], "Passwords must match"),
+  passwordConfirmation: passwordConfirmationValidator,
   dateOfBirth: Yup.date().required("Required"),
 };
