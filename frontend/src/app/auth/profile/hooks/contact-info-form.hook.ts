@@ -1,3 +1,4 @@
+import { API_DATE_FORMAT } from "@/constants";
 import UserDto from "@/dto/in/user.dto";
 import authApi from "@/lib/client/auth-api";
 import usersApi from "@/lib/client/users-api";
@@ -29,7 +30,7 @@ const useContactInfoFormUtils = () => {
       setIsLoading(true);
       try {
         const user = await usersApi.updateUser(value);
-        setEmailUpdateOn(dayjs(user.emailUpdatedOn).toDate());
+        _setEmailUpdateOn(user);
 
         toast.success("Contact info updated successfully.");
       } catch (error) {
@@ -41,20 +42,31 @@ const useContactInfoFormUtils = () => {
     },
   });
 
+  const _setEmailUpdateOn = useCallback(
+    (user: Pick<UserDto, "emailUpdatedOn">) => {
+      if (user.emailUpdatedOn) {
+        setEmailUpdateOn(dayjs(user.emailUpdatedOn, API_DATE_FORMAT).toDate());
+      } else {
+        setEmailUpdateOn(null);
+      }
+    },
+    []
+  );
+
   const resetForm = useCallback(async () => {
     setIsLoading(true);
     try {
       const profile = await authApi.getProfile();
       form.reset();
       setFormFields(form, profile);
-      setEmailUpdateOn(dayjs(profile.emailUpdatedOn).toDate());
+      _setEmailUpdateOn(profile);
     } catch (error) {
       toast.error("Failed to load contact info. Please refresh the page.");
       console.error(error);
     } finally {
       setIsLoading(false);
     }
-  }, [form]);
+  }, [_setEmailUpdateOn, form]);
 
   const initData = useCallback(async () => {
     setIsLoading(true);
@@ -64,14 +76,14 @@ const useContactInfoFormUtils = () => {
 
       const profile = await authApi.getProfile();
       setFormFields(form, profile);
-      setEmailUpdateOn(dayjs(profile.emailUpdatedOn).toDate());
+      _setEmailUpdateOn(profile);
     } catch (error) {
       toast.error("Failed to load contact info. Please refresh the page.");
       console.error(error);
     } finally {
       setIsLoading(false);
     }
-  }, [form]);
+  }, [_setEmailUpdateOn, form]);
 
   useEffect(() => {
     initData();
