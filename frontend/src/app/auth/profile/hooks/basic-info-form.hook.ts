@@ -1,5 +1,6 @@
 import UserDto from "@/dto/in/user.dto";
 import authApi from "@/lib/client/auth-api";
+import usersApi from "@/lib/client/users-api";
 import { useForm } from "@tanstack/react-form";
 import { yupValidator } from "@tanstack/yup-form-adapter";
 import dayjs, { Dayjs } from "dayjs";
@@ -28,6 +29,21 @@ const useBasicInfoFormUtils = () => {
   const form = useForm({
     defaultValues,
     validatorAdapter: yupValidator,
+    onSubmit: async ({ value }) => {
+      setIsLoading(true);
+      try {
+        await usersApi.updateUser({
+          ...value,
+          dateOfBirth: value.dateOfBirth?.format("YYYY-MM-DD"),
+        });
+        toast.success("Basic info updated successfully.");
+      } catch (error) {
+        toast.error("Failed to update basic info. Please try again.");
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
   });
 
   const resetForm = useCallback(async () => {
@@ -44,7 +60,6 @@ const useBasicInfoFormUtils = () => {
   }, [form]);
 
   useEffect(() => {
-    console.log("resetting form");
     resetForm();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
