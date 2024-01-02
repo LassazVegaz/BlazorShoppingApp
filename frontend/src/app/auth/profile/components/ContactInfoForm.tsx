@@ -15,9 +15,9 @@ const ContactInfoForm = () => {
   const { form, state, utils } = useUtils();
 
   const updateEmailStatus = useMemo(() => {
-    if (state.emailUpdateOn === null) return null;
-
-    const updatedDateDiff = dayjs().diff(dayjs(state.emailUpdateOn), "day");
+    const updatedDateDiff = state.emailUpdateOn
+      ? dayjs().diff(dayjs(state.emailUpdateOn), "day")
+      : Infinity;
     return {
       waitingDays: state.defaultEmailUpdateInterval - updatedDateDiff,
       isAllowed: updatedDateDiff >= state.defaultEmailUpdateInterval,
@@ -41,7 +41,7 @@ const ContactInfoForm = () => {
               color="secondary"
               variant="contained"
               onClick={utils.resetForm}
-              disabled={updateEmailStatus?.isAllowed === false}
+              disabled={updateEmailStatus.isAllowed === false}
             >
               Reset
             </FormButton>
@@ -51,7 +51,7 @@ const ContactInfoForm = () => {
                   type="submit"
                   variant="contained"
                   disabled={
-                    isValidating || updateEmailStatus?.isAllowed === false
+                    isValidating || updateEmailStatus.isAllowed === false
                   }
                 >
                   Save
@@ -74,12 +74,12 @@ const ContactInfoForm = () => {
               field={field}
               label="Email"
               type="email"
-              disabled={updateEmailStatus?.isAllowed === false}
+              disabled={updateEmailStatus.isAllowed === false}
             />
           )}
         </form.Field>
 
-        {updateEmailStatus !== null && (
+        {!state.isLoading && (
           <Typography variant="body1">
             {updateEmailStatus.isAllowed ? (
               <>
