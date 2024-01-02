@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using ShoppingApp.API.DTO.In;
 using ShoppingApp.API.DTO.Out;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Options;
 
 namespace ShoppingApp.API.Mapper;
 
