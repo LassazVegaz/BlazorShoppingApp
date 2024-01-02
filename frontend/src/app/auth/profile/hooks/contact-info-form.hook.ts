@@ -29,9 +29,9 @@ const useContactInfoFormUtils = () => {
       setIsLoading(true);
       try {
         const user = await usersApi.updateUser(value);
-        toast.success("Contact info updated successfully.");
-
         setEmailUpdateOn(dayjs(user.emailUpdatedOn).toDate());
+
+        toast.success("Contact info updated successfully.");
       } catch (error) {
         toast.error("Failed to update contact info. Please try again.");
         console.error(error);
