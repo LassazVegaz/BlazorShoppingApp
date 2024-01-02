@@ -9,4 +9,5 @@ public class User
     public string Password { get; set; } = null!;
     public string Gender { get; set; } = null!;
     public DateOnly DateOfBirth { get; set; }
+    public DateOnly? EmailUpdatedOn { get; set; }
 }
