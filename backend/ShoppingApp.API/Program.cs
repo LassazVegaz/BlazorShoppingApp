@@ -30,6 +30,7 @@ builder.Services.AddCors(ops =>
 });
 
 // Exception handlers
+builder.Services.AddExceptionHandler<AppExceptionsHandler>();
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
