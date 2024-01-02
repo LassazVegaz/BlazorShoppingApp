@@ -6,6 +6,10 @@ import useUtils from "../hooks/contact-info-form.hook";
 import dayjs from "dayjs";
 import { useMemo } from "react";
 import { MuiTanTextField } from "@/components/MuiTanFields";
+import {
+  emailValidator,
+  emailValidatorAsync,
+} from "@/lib/client/form-validators";
 
 const ContactInfoForm = () => {
   const { form, state, utils } = useUtils();
@@ -38,13 +42,28 @@ const ContactInfoForm = () => {
             >
               Reset
             </FormButton>
-            <FormButton type="submit" variant="contained">
-              Save
-            </FormButton>
+            <form.Subscribe selector={(s) => s.isFieldsValidating}>
+              {(isValidating) => (
+                <FormButton
+                  type="submit"
+                  variant="contained"
+                  disabled={isValidating}
+                >
+                  Save
+                </FormButton>
+              )}
+            </form.Subscribe>
           </>
         }
       >
-        <form.Field name="email">
+        <form.Field
+          name="email"
+          validators={{
+            onBlur: emailValidator,
+            onBlurAsyncDebounceMs: 500,
+            onBlurAsync: ({ value }) => emailValidatorAsync(value),
+          }}
+        >
           {(field) => (
             <MuiTanTextField field={field} label="Email" type="email" />
           )}
