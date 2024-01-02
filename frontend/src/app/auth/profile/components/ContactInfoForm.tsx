@@ -1,5 +1,5 @@
 "use client";
-import { Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import FormSection from "./FormSection";
 import { FormButton } from "./styled-components";
 import useUtils from "../hooks/contact-info-form.hook";
@@ -70,12 +70,20 @@ const ContactInfoForm = () => {
           }}
         >
           {(field) => (
-            <MuiTanTextField
-              field={field}
-              label="Email"
-              type="email"
-              disabled={updateEmailStatus.isAllowed === false}
-            />
+            <Stack position="relative">
+              <MuiTanTextField
+                field={field}
+                label="Email"
+                type="email"
+                disabled={updateEmailStatus.isAllowed === false}
+              />
+              {field.state.meta.isValidating && (
+                <CircularProgress
+                  size={20}
+                  sx={{ position: "absolute", right: 15, top: 20 }}
+                />
+              )}
+            </Stack>
           )}
         </form.Field>
 
