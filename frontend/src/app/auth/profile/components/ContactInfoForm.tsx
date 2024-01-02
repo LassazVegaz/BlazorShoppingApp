@@ -14,12 +14,15 @@ import {
 const ContactInfoForm = () => {
   const { form, state, utils } = useUtils();
 
-  // number of days since last email update
-  const emailUpdateDiff = useMemo(() => {
-    return state.emailUpdateOn === null
-      ? null
-      : dayjs(state.emailUpdateOn).diff(dayjs(), "day");
-  }, [state.emailUpdateOn]);
+  const updateEmailStatus = useMemo(() => {
+    if (state.emailUpdateOn === null) return null;
+
+    const updatedDateDiff = dayjs().diff(dayjs(state.emailUpdateOn), "day");
+    return {
+      waitingDays: state.defaultEmailUpdateInterval - updatedDateDiff,
+      isAllowed: updatedDateDiff >= state.defaultEmailUpdateInterval,
+    };
+  }, [state.defaultEmailUpdateInterval, state.emailUpdateOn]);
 
   return (
     <form.Provider>
@@ -38,6 +41,7 @@ const ContactInfoForm = () => {
               color="secondary"
               variant="contained"
               onClick={utils.resetForm}
+              disabled={updateEmailStatus?.isAllowed === false}
             >
               Reset
             </FormButton>
@@ -46,7 +50,9 @@ const ContactInfoForm = () => {
                 <FormButton
                   type="submit"
                   variant="contained"
-                  disabled={isValidating}
+                  disabled={
+                    isValidating || updateEmailStatus?.isAllowed === false
+                  }
                 >
                   Save
                 </FormButton>
@@ -64,25 +70,31 @@ const ContactInfoForm = () => {
           }}
         >
           {(field) => (
-            <MuiTanTextField field={field} label="Email" type="email" />
+            <MuiTanTextField
+              field={field}
+              label="Email"
+              type="email"
+              disabled={updateEmailStatus?.isAllowed === false}
+            />
           )}
         </form.Field>
 
-        {!state.isLoading && emailUpdateDiff && (
+        {updateEmailStatus !== null && (
           <Typography variant="body1">
-            {emailUpdateDiff < state.defaultEmailUpdateInterval ? (
-              <>
-                You will be able to change your email address after{" "}
-                <strong>
-                  {emailUpdateDiff} day{emailUpdateDiff > 1 ? "s" : ""}
-                </strong>
-                .
-              </>
-            ) : (
+            {updateEmailStatus.isAllowed ? (
               <>
                 Once you change your email address, you will be able to change
                 it again after{" "}
                 <strong>{state.defaultEmailUpdateInterval} days</strong>.
+              </>
+            ) : (
+              <>
+                You will be able to change your email address after{" "}
+                <strong>
+                  {updateEmailStatus.waitingDays} day
+                  {updateEmailStatus.waitingDays > 1 ? "s" : ""}
+                </strong>
+                .
               </>
             )}
           </Typography>
