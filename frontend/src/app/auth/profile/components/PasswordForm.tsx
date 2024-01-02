@@ -22,17 +22,28 @@ const PasswordForm = () => {
           e.stopPropagation();
           form.handleSubmit();
         }}
+        onReset={form.reset}
         title="Password"
         buttons={
           <form.Subscribe selector={(s) => s.isSubmitting}>
             {(isSubmitting) => (
-              <FormButton
-                type="submit"
-                variant="contained"
-                disabled={isSubmitting}
-              >
-                Save
-              </FormButton>
+              <>
+                <FormButton
+                  type="reset"
+                  variant="contained"
+                  disabled={isSubmitting}
+                  color="secondary"
+                >
+                  Reset
+                </FormButton>
+                <FormButton
+                  type="submit"
+                  variant="contained"
+                  disabled={isSubmitting}
+                >
+                  Save
+                </FormButton>
+              </>
             )}
           </form.Subscribe>
         }
