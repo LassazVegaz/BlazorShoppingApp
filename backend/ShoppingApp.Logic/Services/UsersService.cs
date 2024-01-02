@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Exceptions;
 using ShoppingApp.Core.Models;
 using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Parameters;
@@ -43,13 +44,13 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
 
     public async Task<User> UpdateUser(int id, UpdateUser updatedUser)
     {
-        var user = _context.Users.Find(id) ?? throw new ArgumentException("User not found");
+        var user = _context.Users.Find(id) ?? throw new NotFoundException("User not found");
 
         if (updatedUser.Email != null && !updatedUser.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
         {
             var emailCanBeUpdatedOn = user.EmailUpdatedOn?.AddDays(_userOptions.EmailUpdateIntervalInDays);
             if (user.EmailUpdatedOn.HasValue && emailCanBeUpdatedOn > DateOnly.FromDateTime(DateTime.Now))
-                throw new Exception("Email cannot be updated until the buffer time is over. Whole update operation is aborted");
+                throw new BadArgumentsException("Email cannot be updated until the buffer time is over. Whole update operation is aborted");
 
             user.Email = updatedUser.Email.ToLower();
             user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now); // i dont care about UTC at the moment
