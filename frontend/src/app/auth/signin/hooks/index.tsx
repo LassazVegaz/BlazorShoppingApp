@@ -23,7 +23,7 @@ const useSignInUtils = () => {
         clientTokens.setToken(token);
         router.push("/auth/profile");
       } catch (error) {
-        if (error instanceof AxiosError && error.status === 401) {
+        if (error instanceof AxiosError && error.response?.status === 401) {
           toast.error("Invalid credentials");
         } else {
           toast.error("Something went wrong. Please try again later.");
