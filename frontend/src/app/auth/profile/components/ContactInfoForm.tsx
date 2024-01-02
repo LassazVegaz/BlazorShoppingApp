@@ -14,13 +14,12 @@ import {
 const ContactInfoForm = () => {
   const { form, state, utils } = useUtils();
 
-  const canUpdateEmailIn = useMemo(() => {
+  // number of days since last email update
+  const emailUpdateDiff = useMemo(() => {
     return state.emailUpdateOn === null
-      ? 0
-      : dayjs(state.emailUpdateOn)
-          .add(state.defaultEmailUpdateInterval, "day")
-          .diff(dayjs(), "day");
-  }, [state.defaultEmailUpdateInterval, state.emailUpdateOn]);
+      ? null
+      : dayjs(state.emailUpdateOn).diff(dayjs(), "day");
+  }, [state.emailUpdateOn]);
 
   return (
     <form.Provider>
@@ -69,21 +68,21 @@ const ContactInfoForm = () => {
           )}
         </form.Field>
 
-        {!state.isLoading && (
+        {!state.isLoading && emailUpdateDiff && (
           <Typography variant="body1">
-            {canUpdateEmailIn < 1 ? (
+            {emailUpdateDiff < state.defaultEmailUpdateInterval ? (
+              <>
+                You will be able to change your email address after{" "}
+                <strong>
+                  {emailUpdateDiff} day{emailUpdateDiff > 1 ? "s" : ""}
+                </strong>
+                .
+              </>
+            ) : (
               <>
                 Once you change your email address, you will be able to change
                 it again after{" "}
                 <strong>{state.defaultEmailUpdateInterval} days</strong>.
-              </>
-            ) : (
-              <>
-                You will be able to change your email address after{" "}
-                <strong>
-                  {canUpdateEmailIn} day{canUpdateEmailIn > 1 ? "s" : ""}
-                </strong>
-                .
               </>
             )}
           </Typography>
