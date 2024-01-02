@@ -20,6 +20,7 @@ const ContactInfoForm = () => {
   return (
     <FormSection
       title="Contact information"
+      isLoading={state.isLoading}
       onSubmit={(e) => {
         e.preventDefault();
         e.stopPropagation();
