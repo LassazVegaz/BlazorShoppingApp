@@ -50,6 +50,7 @@ const useBasicInfoFormUtils = () => {
     setIsLoading(true);
     try {
       const profile = await authApi.getProfile();
+      form.reset();
       setFormFields(form, profile);
     } catch (error) {
       toast.error("Failed to load basic info. Please refresh the page.");
