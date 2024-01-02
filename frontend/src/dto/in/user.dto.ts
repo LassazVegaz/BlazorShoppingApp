@@ -5,6 +5,7 @@ type UserDto = {
   email: string;
   gender: string;
   dateOfBirth: string;
+  emailUpdatedOn?: string;
 };
 
 export default UserDto;
