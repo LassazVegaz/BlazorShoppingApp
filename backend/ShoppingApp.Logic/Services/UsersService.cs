@@ -48,8 +48,8 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
 
         if (updatedUser.Email != null && !updatedUser.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
         {
-            var emailCanBeUpdatedOn = user.EmailUpdatedOn?.AddDays(_userOptions.EmailUpdateIntervalInDays);
-            if (user.EmailUpdatedOn.HasValue && emailCanBeUpdatedOn > DateOnly.FromDateTime(DateTime.Now))
+            var emailUpdateDiff = DateTime.Now.Date - user.EmailUpdatedOn?.ToDateTime(new TimeOnly(0));
+            if (emailUpdateDiff.HasValue && emailUpdateDiff.Value.TotalDays < _userOptions.EmailUpdateIntervalInDays)
                 throw new BadArgumentsException("Email cannot be updated until the buffer time is over. Whole update operation is aborted");
 
             user.Email = updatedUser.Email.ToLower();
