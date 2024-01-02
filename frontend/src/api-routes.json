@@ -1,7 +1,8 @@
 {
   "users": {
     "common": "users",
-    "emailExists": "users/emailExists/{email}"
+    "emailExists": "users/emailExists/{email}",
+    "options": "users/options"
   },
   "auth": {
     "common": "auth",

@@ -3,6 +3,7 @@ import clientAxios from "./client-axios";
 import CreateUser from "@/dto/out/create-user";
 import UpdateUser from "@/dto/out/update-user";
 import UserDto from "@/dto/in/user.dto";
+import UserOptionsDto from "@/dto/in/user-options.dto";
 
 const emailExists = async (email: string) => {
   const response = await clientAxios.get<boolean>(
@@ -20,10 +21,16 @@ const updateUser = async (data: UpdateUser) => {
   return res.data;
 };
 
+const getUserOptions = async () => {
+  const res = await clientAxios.get<UserOptionsDto>(apiRoutes.users.options);
+  return res.data;
+};
+
 const usersApi = {
   emailExists,
   createUser,
   updateUser,
+  getUserOptions,
 };
 
 export default usersApi;
