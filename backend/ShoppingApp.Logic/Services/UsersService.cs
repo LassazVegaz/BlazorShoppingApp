@@ -1,15 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Parameters;
 using ShoppingApp.Core.Services;
 using BC = BCrypt.Net.BCrypt;
 
 namespace ShoppingApp.Logic.Services;
 
-public class UsersService(ShoppingAppContext contextFactory) : IUsersService
+public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory) : IUsersService
 {
     private readonly ShoppingAppContext _context = contextFactory;
+    private readonly UserOptions _userOptions = userOptions.Value;
 
 
     public async Task<User?> GetUserById(int id)
@@ -42,15 +45,19 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
     {
         var user = _context.Users.Find(id) ?? throw new ArgumentException("User not found");
 
-        if (updatedUser.Email != null)
+        if (updatedUser.Email != null && !updatedUser.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
         {
-            user.Email = updatedUser.Email;
+            var emailCanBeUpdatedOn = user.EmailUpdatedOn?.AddDays(_userOptions.EmailUpdateIntervalInDays);
+            if (user.EmailUpdatedOn.HasValue && emailCanBeUpdatedOn > DateOnly.FromDateTime(DateTime.Now))
+                throw new Exception("Email cannot be updated until the buffer time is over. Whole update operation is aborted");
+
+            user.Email = updatedUser.Email.ToLower();
             user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now); // i dont care about UTC at the moment
         }
 
         if (updatedUser.FirstName != null) user.FirstName = updatedUser.FirstName;
         if (updatedUser.LastName != null) user.LastName = updatedUser.LastName;
-        if (updatedUser.Gender != null) user.Gender = updatedUser.Gender;
+        if (updatedUser.Gender != null) user.Gender = updatedUser.Gender.ToLower();
         if (updatedUser.DateOfBirth != null) user.DateOfBirth = updatedUser.DateOfBirth.Value;
 
         await _context.SaveChangesAsync();
@@ -61,6 +68,6 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
 
     public async Task<bool> EmailExists(string email)
     {
-        return await _context.Users.AnyAsync(u => u.Email == email);
+        return await _context.Users.AnyAsync(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
     }
 }
