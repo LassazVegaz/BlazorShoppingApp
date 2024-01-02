@@ -44,9 +44,14 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
 
         if (updatedUser.FirstName != null) user.FirstName = updatedUser.FirstName;
         if (updatedUser.LastName != null) user.LastName = updatedUser.LastName;
-        if (updatedUser.Email != null) user.Email = updatedUser.Email;
         if (updatedUser.Gender != null) user.Gender = updatedUser.Gender;
         if (updatedUser.DateOfBirth != null) user.DateOfBirth = updatedUser.DateOfBirth.Value;
+
+        if (updatedUser.Email != null)
+        {
+            user.Email = updatedUser.Email;
+            user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now);
+        }
 
         await _context.SaveChangesAsync();
 
