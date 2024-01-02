@@ -67,8 +67,5 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
         return user;
     }
 
-    public async Task<bool> EmailExists(string email)
-    {
-        return await _context.Users.AnyAsync(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
-    }
+    public async Task<bool> EmailExists(string email) => await _context.Users.AnyAsync(u => u.Email == email.ToLower());
 }
