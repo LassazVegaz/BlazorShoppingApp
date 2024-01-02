@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using ShoppingApp.API.DTO.In;
 using ShoppingApp.API.DTO.Out;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Parameters;
 using ShoppingApp.Core.Services;
 using System.Text.RegularExpressions;
@@ -12,8 +14,9 @@ namespace ShoppingApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public partial class UsersController(IUsersService usersService, IMapper mapper) : ControllerBase
+public partial class UsersController(IOptions<UserOptions> userOptions, IUsersService usersService, IMapper mapper) : ControllerBase
 {
+    private readonly UserOptions _userOptions = userOptions.Value;
     private readonly IUsersService _usersService = usersService;
     private readonly IMapper _mapper = mapper;
 
@@ -43,6 +46,9 @@ public partial class UsersController(IUsersService usersService, IMapper mapper)
 
         return userDto;
     }
+
+    [HttpGet("options")]
+    public ActionResult<UserOptionsDto> GetUserOptions() => _mapper.Map<UserOptionsDto>(_userOptions);
 
     [GeneratedRegex(@"^(male|female|other)$", RegexOptions.IgnoreCase)]
     private static partial Regex GenderRegex();
