@@ -8,7 +8,7 @@ using UsersService.API.Mapper;
 using UsersService.Core.Data;
 using UsersService.Core.Options;
 using UsersService.Core.Services;
-using UsersService.Logic.Services;
+using Services = UsersService.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,8 +73,8 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 // app services
-builder.Services.AddScoped<IUsersService, UsersService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUsersService, Services.UsersService>();
+builder.Services.AddScoped<IAuthService, Services.AuthService>();
 
 var app = builder.Build();
 
