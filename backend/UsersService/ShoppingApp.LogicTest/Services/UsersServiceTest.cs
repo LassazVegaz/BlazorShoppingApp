@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ShoppingApp.Core.Models;
-using ShoppingApp.Logic.Services;
 using UsersService.Core.Data;
 
 namespace UsersService.LogicTest.Services;

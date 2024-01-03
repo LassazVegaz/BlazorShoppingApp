@@ -1,29 +1,27 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ShoppingApp.Core.Migrations
+namespace ShoppingApp.Core.Migrations;
+
+/// <inheritdoc />
+public partial class EmailUpdatedOnCol : Migration
 {
     /// <inheritdoc />
-    public partial class EmailUpdatedOnCol : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<DateOnly>(
-                name: "EmailUpdatedOn",
-                table: "Users",
-                type: "date",
-                nullable: true);
-        }
+        migrationBuilder.AddColumn<DateOnly>(
+            name: "EmailUpdatedOn",
+            table: "Users",
+            type: "date",
+            nullable: true);
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "EmailUpdatedOn",
-                table: "Users");
-        }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropColumn(
+            name: "EmailUpdatedOn",
+            table: "Users");
     }
 }

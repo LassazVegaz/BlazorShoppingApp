@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ShoppingApp.Core.Exceptions;
 using UsersService.Core.Data;
 using UsersService.Core.Models;
 using UsersService.Core.Options;
