@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShoppingApp.Core\ShoppingApp.Core.csproj" />
-    <ProjectReference Include="..\ShoppingApp.Logic\ShoppingApp.Logic.csproj" />
+    <ProjectReference Include="..\ShoppingApp.Core\UsersService.Core.csproj" />
+    <ProjectReference Include="..\ShoppingApp.Logic\UsersService.Logic.csproj" />
   </ItemGroup>
 
 </Project>

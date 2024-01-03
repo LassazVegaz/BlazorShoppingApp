@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Core", "ShoppingApp.Core\ShoppingApp.Core.csproj", "{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Core", "ShoppingApp.Core\UsersService.Core.csproj", "{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Logic", "ShoppingApp.Logic\ShoppingApp.Logic.csproj", "{AA7A9445-6458-4B43-8D50-2B5F94D8D216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Logic", "ShoppingApp.Logic\UsersService.Logic.csproj", "{AA7A9445-6458-4B43-8D50-2B5F94D8D216}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.API", "ShoppingApp.API\ShoppingApp.API.csproj", "{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.API", "ShoppingApp.API\UsersService.API.csproj", "{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FD7F85D9-2DD3-46E3-B664-FF158A787BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.LogicTest", "ShoppingApp.LogicTest\ShoppingApp.LogicTest.csproj", "{BFA33C3B-2364-4442-986C-16C514C4BBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.LogicTest", "ShoppingApp.LogicTest\UsersService.LogicTest.csproj", "{BFA33C3B-2364-4442-986C-16C514C4BBD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
