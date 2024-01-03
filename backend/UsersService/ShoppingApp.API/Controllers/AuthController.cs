@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ShoppingApp.API.Constants;
-using ShoppingApp.API.DTO.Out;
-using ShoppingApp.Core.DTO.In;
-using ShoppingApp.Core.Options;
-using ShoppingApp.Core.Services;
+using UsersService.API.Constants;
+using UsersService.API.DTO.In;
+using UsersService.API.DTO.Out;
+using UsersService.Core.Options;
+using UsersService.Core.Services;
 
-namespace ShoppingApp.API.Controllers;
+namespace UsersService.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

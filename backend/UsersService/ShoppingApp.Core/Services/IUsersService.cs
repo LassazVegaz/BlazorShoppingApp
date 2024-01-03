@@ -1,7 +1,7 @@
-﻿using ShoppingApp.Core.Models;
-using ShoppingApp.Core.Parameters;
+﻿using UsersService.Core.Models;
+using UsersService.Core.Parameters;
 
-namespace ShoppingApp.Core.Services;
+namespace UsersService.Core.Services;
 
 public interface IUsersService
 {
@@ -14,7 +14,7 @@ public interface IUsersService
 
     /// <summary>
     /// Update user using non-null properties of
-    /// <see cref="ShoppingApp.Core.Parameters.UpdateUser">UpdateUser</see>. Currently all the properties of user
+    /// <see cref="Parameters.UpdateUser">UpdateUser</see>. Currently all the properties of user
     /// are non-null.
     /// </summary>
     Task<User> UpdateUser(int id, UpdateUser updatedUser);

@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Models;
+﻿namespace UsersService.Core.Models;
 
 public class User
 {

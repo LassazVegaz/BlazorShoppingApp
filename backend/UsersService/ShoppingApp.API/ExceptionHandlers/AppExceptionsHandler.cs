@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingApp.Core.Exceptions;
+using UsersService.Core.Exceptions;
 
-namespace ShoppingApp.API.ExceptionHandlers;
+namespace UsersService.API.ExceptionHandlers;
 
 // Handle custom exceptions defined in logical layer. They give a little support for web layers
 // so lets take that chance 🥳

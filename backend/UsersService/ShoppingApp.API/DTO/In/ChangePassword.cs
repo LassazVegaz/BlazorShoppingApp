@@ -1,7 +1,7 @@
-﻿using ShoppingApp.API.Constants;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using UsersService.API.Constants;
 
-namespace ShoppingApp.API.DTO.In;
+namespace UsersService.API.DTO.In;
 
 public class ChangePassword
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingApp.API.ExceptionHandlers;
+namespace UsersService.API.ExceptionHandlers;
 
 public class UnknownExceptionHandler(ILogger<UnknownExceptionHandler> logger, IWebHostEnvironment env) : IExceptionHandler
 {

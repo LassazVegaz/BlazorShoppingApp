@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Exceptions;
-using ShoppingApp.Core.Models;
-using ShoppingApp.Core.Options;
-using ShoppingApp.Core.Parameters;
-using ShoppingApp.Core.Services;
+using UsersService.Core.Data;
+using UsersService.Core.Models;
+using UsersService.Core.Options;
+using UsersService.Core.Parameters;
+using UsersService.Core.Services;
 using BC = BCrypt.Net.BCrypt;
 
-namespace ShoppingApp.Logic.Services;
+namespace UsersService.Logic.Services;
 
 public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory) : IUsersService
 {

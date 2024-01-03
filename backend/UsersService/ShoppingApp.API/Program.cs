@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using ShoppingApp.API.Constants;
-using ShoppingApp.API.ExceptionHandlers;
-using ShoppingApp.API.Extensions;
-using ShoppingApp.API.Mapper;
-using ShoppingApp.Core.Data;
-using ShoppingApp.Core.Options;
-using ShoppingApp.Core.Services;
-using ShoppingApp.Logic.Services;
+using UsersService.API.Constants;
+using UsersService.API.ExceptionHandlers;
+using UsersService.API.Extensions;
+using UsersService.API.Mapper;
+using UsersService.Core.Data;
+using UsersService.Core.Options;
+using UsersService.Core.Services;
+using UsersService.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

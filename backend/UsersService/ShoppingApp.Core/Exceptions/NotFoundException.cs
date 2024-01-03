@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Exceptions;
+﻿namespace UsersService.Core.Exceptions;
 
 // In a Web API, this exception can be considered as a 404 Not Found.
 public class NotFoundException(string? message = null, object? data = null)

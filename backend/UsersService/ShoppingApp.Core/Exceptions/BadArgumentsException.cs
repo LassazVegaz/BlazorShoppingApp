@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Exceptions;
+﻿namespace UsersService.Core.Exceptions;
 
 /// <summary>
 /// In a Web API, this exception can be considered as a 400 Bad Request.

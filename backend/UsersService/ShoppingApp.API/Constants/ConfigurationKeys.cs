@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.API.Constants;
+﻿namespace UsersService.API.Constants;
 
 internal static class ConfigurationKeys
 {

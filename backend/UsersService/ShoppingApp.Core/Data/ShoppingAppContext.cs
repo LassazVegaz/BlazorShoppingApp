@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingApp.Core.Models;
+using UsersService.Core.Models;
 
-namespace ShoppingApp.Core.Data;
+namespace UsersService.Core.Data;
 
 public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : DbContext(options)
 {

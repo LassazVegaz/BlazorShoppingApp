@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ShoppingApp.Core.Data;
-using ShoppingApp.Core.Options;
-using ShoppingApp.Core.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using UsersService.Core.Data;
+using UsersService.Core.Options;
+using UsersService.Core.Services;
 using BC = BCrypt.Net.BCrypt;
 
-namespace ShoppingApp.Logic.Services;
+namespace UsersService.Logic.Services;
 
 public class AuthService(ShoppingAppContext context, IOptions<JwtOptions> jwtOptions) : IAuthService
 {

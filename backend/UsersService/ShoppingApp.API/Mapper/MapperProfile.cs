@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using ShoppingApp.API.DTO.In;
-using ShoppingApp.API.DTO.Out;
-using ShoppingApp.Core.Models;
-using ShoppingApp.Core.Options;
+using UsersService.API.DTO.In;
+using UsersService.API.DTO.Out;
+using UsersService.Core.Models;
+using UsersService.Core.Options;
 
-namespace ShoppingApp.API.Mapper;
+namespace UsersService.API.Mapper;
 
 public class MapperProfile : Profile
 {

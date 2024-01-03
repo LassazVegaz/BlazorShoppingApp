@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Models;
 using ShoppingApp.Logic.Services;
+using UsersService.Core.Data;
 
-namespace ShoppingApp.LogicTest.Services;
+namespace UsersService.LogicTest.Services;
 
 internal class UsersServiceTest
 {

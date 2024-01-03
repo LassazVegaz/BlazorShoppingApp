@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.DTO.In;
+﻿namespace UsersService.API.DTO.In;
 
 public class LoginCredentials
 {

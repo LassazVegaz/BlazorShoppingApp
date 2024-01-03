@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using ShoppingApp.API.Constants;
-using ShoppingApp.Core.Options;
 using System.Text;
+using UsersService.API.Constants;
+using UsersService.API.Extensions;
+using UsersService.Core.Options;
 
-namespace ShoppingApp.API.Extensions;
+namespace UsersService.API.Extensions;
 
 internal static class AuthenticationExtensions
 {

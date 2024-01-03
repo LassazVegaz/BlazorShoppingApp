@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Services;
+﻿namespace UsersService.Core.Services;
 
 public interface IAuthService
 {

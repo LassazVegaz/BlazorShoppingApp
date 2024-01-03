@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Exceptions;
+﻿namespace UsersService.Core.Exceptions;
 
 /// <summary>
 /// statusCode can be considered as a little support given by this layer for web API layers, but this is not bound to

@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Parameters;
+﻿namespace UsersService.Core.Parameters;
 
 public class UpdateUser
 {

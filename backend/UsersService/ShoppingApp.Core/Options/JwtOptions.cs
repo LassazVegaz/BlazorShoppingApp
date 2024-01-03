@@ -1,4 +1,4 @@
-﻿namespace ShoppingApp.Core.Options;
+﻿namespace UsersService.Core.Options;
 
 public class JwtOptions
 {
