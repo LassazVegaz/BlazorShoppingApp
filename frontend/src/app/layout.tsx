@@ -1,8 +1,12 @@
+import "react-toastify/dist/ReactToastify.css";
 import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { CssBaseline } from "@mui/material";
 import ThemeProvider from "@/components/ThemeProvider";
+import { ToastContainer } from "react-toastify";
+import FullPageLoader from "@/components/FullPageLoader";
+import ReduxProvider from "@/components/ReduxProvider";
 
 const roboto = Roboto_Flex({ subsets: ["latin"], display: "swap" });
 
@@ -19,12 +23,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <ReduxProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider>
+              <CssBaseline />
+
+              {children}
+
+              <FullPageLoader />
+
+              <ToastContainer />
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

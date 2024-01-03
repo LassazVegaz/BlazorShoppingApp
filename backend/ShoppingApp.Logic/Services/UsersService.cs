@@ -1,14 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ShoppingApp.Core.Data;
+using ShoppingApp.Core.Exceptions;
 using ShoppingApp.Core.Models;
+using ShoppingApp.Core.Options;
+using ShoppingApp.Core.Parameters;
 using ShoppingApp.Core.Services;
 using BC = BCrypt.Net.BCrypt;
 
 namespace ShoppingApp.Logic.Services;
 
-public class UsersService(ShoppingAppContext contextFactory) : IUsersService
+public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory) : IUsersService
 {
     private readonly ShoppingAppContext _context = contextFactory;
+    private readonly UserOptions _userOptions = userOptions.Value;
+
+
+    public async Task<User?> GetUserById(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null) return null;
+
+        user.Password = string.Empty;
+
+        return user;
+    }
 
     public async Task<User> CreateUser(User newUser)
     {
@@ -26,18 +42,42 @@ public class UsersService(ShoppingAppContext contextFactory) : IUsersService
         return newUser;
     }
 
-    public async Task<bool> EmailExists(string email)
+    public async Task<User> UpdateUser(int id, UpdateUser updatedUser)
     {
-        return await _context.Users.AnyAsync(u => u.Email == email);
-    }
+        var user = _context.Users.Find(id) ?? throw new NotFoundException("User not found");
 
-    public async Task<User?> GetUserById(int id)
-    {
-        var user = await _context.Users.FindAsync(id);
-        if (user == null) return null;
+        if (updatedUser.Email != null && !updatedUser.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
+        {
+            var emailUpdateDiff = DateTime.Now.Date - user.EmailUpdatedOn?.ToDateTime(new TimeOnly(0));
+            if (emailUpdateDiff.HasValue && emailUpdateDiff.Value.TotalDays < _userOptions.EmailUpdateIntervalInDays)
+                throw new BadArgumentsException("Email cannot be updated until the buffer time is over. Whole update operation is aborted");
+
+            user.Email = updatedUser.Email.ToLower();
+            user.EmailUpdatedOn = DateOnly.FromDateTime(DateTime.Now); // i dont care about UTC at the moment
+        }
+
+        if (updatedUser.FirstName != null) user.FirstName = updatedUser.FirstName;
+        if (updatedUser.LastName != null) user.LastName = updatedUser.LastName;
+        if (updatedUser.Gender != null) user.Gender = updatedUser.Gender.ToLower();
+        if (updatedUser.DateOfBirth != null) user.DateOfBirth = updatedUser.DateOfBirth.Value;
+
+        await _context.SaveChangesAsync();
 
         user.Password = string.Empty;
-
         return user;
     }
+
+    public async Task<bool> ChangePassword(int id, string oldPassword, string newPassword)
+    {
+        var user = await _context.Users.FindAsync(id) ?? throw new NotFoundException("User not found");
+
+        if (!BC.Verify(oldPassword, user.Password)) return false;
+
+        user.Password = BC.HashPassword(newPassword);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task<bool> EmailExists(string email) => await _context.Users.AnyAsync(u => u.Email == email.ToLower());
 }

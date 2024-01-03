@@ -1,5 +1,5 @@
 "use client";
-import theme from "@/lib/theme";
+import theme from "@/lib/client/theme";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material";
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => (

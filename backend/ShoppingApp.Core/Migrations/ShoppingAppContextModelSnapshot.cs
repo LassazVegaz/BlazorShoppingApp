@@ -32,6 +32,9 @@ namespace ShoppingApp.Core.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
+                    b.Property<DateOnly?>("EmailUpdatedOn")
+                        .HasColumnType("date");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("longtext");

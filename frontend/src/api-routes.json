@@ -1,0 +1,14 @@
+{
+  "users": {
+    "common": "users",
+    "emailExists": "users/emailExists/{email}",
+    "options": "users/options",
+    "password": "users/password"
+  },
+  "auth": {
+    "common": "auth",
+    "login": "auth/login",
+    "logout": "auth/logout",
+    "profile": "auth/profile"
+  }
+}

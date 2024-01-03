@@ -1,24 +1,38 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ShoppingApp.API.Constants;
 using ShoppingApp.API.ExceptionHandlers;
+using ShoppingApp.API.Extensions;
 using ShoppingApp.API.Mapper;
 using ShoppingApp.Core.Data;
 using ShoppingApp.Core.Options;
 using ShoppingApp.Core.Services;
 using ShoppingApp.Logic.Services;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 // options
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(OptionsNames.JwtOptions));
+builder.Services.Configure<UserOptions>(builder.Configuration.GetSection(OptionsNames.UserOptions));
+
+// cors
+builder.Services.AddCors(ops =>
+{
+    var frontEndUrl = builder.Configuration.GetValue<string>(ConfigurationKeys.FrontEndUrl)
+                      ?? throw new Exception("FrontEndUrl is not configured");
+    ops.AddDefaultPolicy(policy => policy.WithOrigins(frontEndUrl)
+                                         .AllowAnyHeader()
+                                         .AllowAnyMethod()
+                                         .AllowCredentials());
+});
 
 // Exception handlers
+builder.Services.AddExceptionHandler<AppExceptionsHandler>();
 builder.Services.AddExceptionHandler<UnknownExceptionHandler>();
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(ops =>
@@ -47,22 +61,7 @@ builder.Services.AddSwaggerGen(ops =>
     });
 });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, ops =>
-    {
-        var jwtOptions = builder.Configuration.GetSection("JwtOptions").Get<JwtOptions>()!;
-        ops.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-
-            ValidIssuer = jwtOptions.Issuer,
-            ValidAudience = jwtOptions.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
-        };
-    });
+builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
 
 // db context
@@ -86,6 +85,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

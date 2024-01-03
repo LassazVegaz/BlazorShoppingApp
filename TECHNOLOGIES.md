@@ -41,4 +41,5 @@ This doc explain the best practices, frameworks & libraries used in this project
     - Official documentation for this feature can be found [here](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-8.0)
     - [This SO answer](https://stackoverflow.com/a/77624113/12072012) can be a motivation to skip this feature and do the authentication from scratch
 - **JWT** - JSON Web Token
-  - Use JWT in header
+  - Allow auth through both cookies and headers
+  - CSRF protected
