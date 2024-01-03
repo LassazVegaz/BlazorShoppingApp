@@ -1,5 +1,66 @@
 {
-  "Routes": [],
+  "Routes": [
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/items",
+      "DownstreamPathTemplate": "/api/items",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8102
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/users",
+      "DownstreamPathTemplate": "/api/users",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8101
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/users/{anything}",
+      "DownstreamPathTemplate": "/api/users/{anything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8101
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/auth",
+      "DownstreamPathTemplate": "/api/auth",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8101
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/auth/{anything}",
+      "DownstreamPathTemplate": "/api/auth/{anything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8101
+        }
+      ]
+    }
+  ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:8100"
   }
