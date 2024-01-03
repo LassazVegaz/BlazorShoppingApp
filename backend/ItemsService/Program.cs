@@ -1,5 +1,7 @@
 using ItemsService.Context;
+using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
+using Services = ItemsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<ItemsServiceContext>(ops =>
     var version = builder.Configuration.GetValue<string>("MySqlVersion");
     ops.UseMySql(connectionString, new MySqlServerVersion(version));
 });
+
+// app services
+builder.Services.AddScoped<IItemsService, Services.ItemsService>();
 
 var app = builder.Build();
 
