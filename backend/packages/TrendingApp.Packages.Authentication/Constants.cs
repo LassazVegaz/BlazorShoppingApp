@@ -7,4 +7,6 @@ public class Constants
     /// Name of the cookie used to store the JWT token
     /// </summary>
     public const string CookieName = InternalConstants.CookieName;
+
+    public const int TokenExpirationDays = InternalConstants.TokenExpirationDays;
 }
