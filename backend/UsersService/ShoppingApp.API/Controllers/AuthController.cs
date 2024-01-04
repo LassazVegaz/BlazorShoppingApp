@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using UsersService.API.Constants;
 using UsersService.API.DTO.In;
 using UsersService.API.DTO.Out;
 using UsersService.Core.Options;
 using UsersService.Core.Services;
+using AuthTokens = TrendingApp.Packages.Authentication.Constants;
 
 namespace UsersService.API.Controllers;
 
@@ -27,7 +27,7 @@ public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authSe
 
         if (useCookie)
         {
-            Response.Cookies.Append(CookieNames.JwtToken, token, new CookieOptions
+            Response.Cookies.Append(AuthTokens.CookieName, token, new CookieOptions
             {
                 HttpOnly = true,
                 SameSite = SameSiteMode.Strict,
@@ -43,7 +43,7 @@ public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authSe
     [Authorize]
     public IActionResult Logout()
     {
-        Response.Cookies.Delete(CookieNames.JwtToken);
+        Response.Cookies.Delete(AuthTokens.CookieName);
         return Ok();
     }
 
