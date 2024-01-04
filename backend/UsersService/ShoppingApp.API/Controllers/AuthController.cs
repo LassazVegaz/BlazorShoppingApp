@@ -1,23 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using UsersService.API.DTO.In;
 using UsersService.API.DTO.Out;
-using UsersService.Core.Options;
 using UsersService.Core.Services;
-using AuthTokens = TrendingApp.Packages.Authentication.Constants;
+using AuthConstants = TrendingApp.Packages.Authentication.Constants;
 
 namespace UsersService.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authService, IUsersService usersService, IMapper mapper) : ControllerBase
+public class AuthController(IAuthService authService, IUsersService usersService, IMapper mapper) : ControllerBase
 {
     private readonly IAuthService _authService = authService;
     private readonly IUsersService _usersService = usersService;
     private readonly IMapper _mapper = mapper;
-    private readonly JwtOptions _jwtOptions = jwtOptions.Value;
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCredentials request, [FromQuery] bool useCookie = true)
@@ -27,12 +24,12 @@ public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authSe
 
         if (useCookie)
         {
-            Response.Cookies.Append(AuthTokens.CookieName, token, new CookieOptions
+            Response.Cookies.Append(AuthConstants.CookieName, token, new CookieOptions
             {
                 HttpOnly = true,
                 SameSite = SameSiteMode.Strict,
                 Secure = HttpContext.Request.IsHttps,
-                Expires = DateTime.UtcNow.AddDays(_jwtOptions.ExpirationInDays)
+                Expires = DateTime.UtcNow.AddDays(AuthConstants.TokenExpirationDays)
             });
         }
 
@@ -43,7 +40,7 @@ public class AuthController(IOptions<JwtOptions> jwtOptions, IAuthService authSe
     [Authorize]
     public IActionResult Logout()
     {
-        Response.Cookies.Delete(AuthTokens.CookieName);
+        Response.Cookies.Delete(AuthConstants.CookieName);
         return Ok();
     }
 
