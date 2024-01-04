@@ -13,13 +13,13 @@ internal class TokensService : ITokensService
     public string GenerateToken(string userId)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(Constants.SigningKey);
+        var key = Encoding.ASCII.GetBytes(InternalConstants.SigningKey);
         var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity([new Claim(ClaimTypes.Name, userId)]),
-            Expires = DateTime.UtcNow.AddDays(Constants.TokenExpirationDays),
+            Expires = DateTime.UtcNow.AddDays(InternalConstants.TokenExpirationDays),
             SigningCredentials = signingCredentials
         };
 

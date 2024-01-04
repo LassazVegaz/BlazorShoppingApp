@@ -14,7 +14,7 @@ public static class AuthenticationExtension
         ValidateAudience = false,
         ValidateIssuerSigningKey = true,
 
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.SigningKey)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(InternalConstants.SigningKey)),
     };
 
 
@@ -35,7 +35,7 @@ public static class AuthenticationExtension
                             if (context.SecurityToken is not JsonWebToken headerToken)
                                 throw new Exception("Invalid token implementation");
 
-                            context.HttpContext.Request.Cookies.TryGetValue(Constants.CookieName, out var cookieToken);
+                            context.HttpContext.Request.Cookies.TryGetValue(InternalConstants.CookieName, out var cookieToken);
                             if (cookieToken is null) return;
                             else if (headerToken.EncodedToken != cookieToken) context.Fail("CSRF detected");
 
