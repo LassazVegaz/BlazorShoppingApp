@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
     <ProjectReference Include="..\ShoppingApp.Core\UsersService.Core.csproj" />
     <ProjectReference Include="..\ShoppingApp.Logic\UsersService.Logic.csproj" />
   </ItemGroup>

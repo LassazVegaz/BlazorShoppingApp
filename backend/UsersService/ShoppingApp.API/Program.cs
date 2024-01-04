@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using TrendingApp.Packages.Authentication.Extensions;
 using UsersService.API.Constants;
 using UsersService.API.ExceptionHandlers;
-using UsersService.API.Extensions;
 using UsersService.API.Mapper;
 using UsersService.Core.Data;
 using UsersService.Core.Options;
@@ -45,23 +45,12 @@ builder.Services.AddSwaggerGen(ops =>
         In = ParameterLocation.Header,
         Description = "JWT Authorization header using the Bearer scheme.",
     });
-    ops.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = JwtBearerDefaults.AuthenticationScheme
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
 });
 
-builder.Services.AddAuthentication(builder.Configuration);
+// authentication
+builder.Services.AddTrendingAppAuthentication();
+builder.Services.AddTokensService();
+
 builder.Services.AddAuthorization();
 
 // db context
