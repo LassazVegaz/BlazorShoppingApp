@@ -1,12 +1,16 @@
 using ItemsService.Context;
 using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
+using TrendingApp.Packages.Authentication.Extensions;
 using Services = ItemsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // controllers
 builder.Services.AddControllers();
+
+// authentication
+builder.Services.AddTrendingAppAuthentication();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -31,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
 
 app.MapControllers();
 
