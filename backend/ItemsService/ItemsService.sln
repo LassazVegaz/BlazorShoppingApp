@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemsService", "ItemsService.csproj", "{71D97883-ED8D-4463-8D6B-5CF3F4DC8A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemsService", "ItemsService.csproj", "{71D97883-ED8D-4463-8D6B-5CF3F4DC8A61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{92348C49-22BB-4C6D-B388-CFF20E5DE598}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Authentication", "..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj", "{92C00E4B-C476-4A7A-9210-662863EFDD9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{71D97883-ED8D-4463-8D6B-5CF3F4DC8A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D97883-ED8D-4463-8D6B-5CF3F4DC8A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D97883-ED8D-4463-8D6B-5CF3F4DC8A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92C00E4B-C476-4A7A-9210-662863EFDD9E} = {92348C49-22BB-4C6D-B388-CFF20E5DE598}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2220F3-7E73-4566-9AF5-F8F61C79E01C}
