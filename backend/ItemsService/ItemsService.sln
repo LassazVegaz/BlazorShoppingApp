@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{92348C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Authentication", "..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj", "{92C00E4B-C476-4A7A-9210-662863EFDD9E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Contracts", "..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj", "{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.MassTransitDependencyInjection", "..\packages\TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj", "{B811126D-CD67-46BB-92D9-DDDCADB91EB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,22 @@ Global
 		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C00E4B-C476-4A7A-9210-662863EFDD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B811126D-CD67-46BB-92D9-DDDCADB91EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B811126D-CD67-46BB-92D9-DDDCADB91EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B811126D-CD67-46BB-92D9-DDDCADB91EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B811126D-CD67-46BB-92D9-DDDCADB91EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{92C00E4B-C476-4A7A-9210-662863EFDD9E} = {92348C49-22BB-4C6D-B388-CFF20E5DE598}
+		{6F3D0887-6CAF-4F1D-84A7-7B05707B97BB} = {92348C49-22BB-4C6D-B388-CFF20E5DE598}
+		{B811126D-CD67-46BB-92D9-DDDCADB91EB3} = {92348C49-22BB-4C6D-B388-CFF20E5DE598}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2220F3-7E73-4566-9AF5-F8F61C79E01C}

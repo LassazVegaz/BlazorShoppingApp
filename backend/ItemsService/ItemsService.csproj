@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>
