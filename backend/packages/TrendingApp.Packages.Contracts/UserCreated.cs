@@ -1,9 +1,8 @@
-﻿namespace UsersService.Core.Models;
+﻿namespace TrendingApp.Packages.Contracts;
 
-public class User
+public record UserCreated
 {
     public int Id { get; set; }
-    public double Credits { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public string Email { get; set; } = null!;

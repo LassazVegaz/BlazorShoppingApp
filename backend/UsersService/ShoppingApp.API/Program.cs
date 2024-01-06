@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TrendingApp.Packages.Authentication.Extensions;
+using TrendingApp.Packages.MassTransitDependencyInjection;
 using UsersService.API.Constants;
 using UsersService.API.ExceptionHandlers;
 using UsersService.API.Mapper;
@@ -59,6 +60,9 @@ builder.Services.AddDbContext<ShoppingAppContext>(ops =>
 
 // mapper
 builder.Services.AddAutoMapper(typeof(MapperProfile));
+
+// MassTransit
+builder.Services.AddTrendingAppMassTransit();
 
 // app services
 builder.Services.AddScoped<IUsersService, Services.UsersService>();

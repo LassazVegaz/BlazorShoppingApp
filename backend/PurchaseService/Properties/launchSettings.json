@@ -2,23 +2,18 @@
   "profiles": {
     "http": {
       "commandName": "Project",
-      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:8102"
+      "applicationUrl": "http://localhost:8103"
     },
-    "IIS - prod": {
+    "IIS Express": {
       "commandName": "IISExpress",
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    },
-    "IIS - dev": {
-      "commandName": "IISExpress",
-      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -29,7 +24,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8102",
+      "applicationUrl": "http://localhost:48041",
       "sslPort": 0
     }
   }

@@ -1,10 +1,8 @@
-﻿using ItemsService.Context;
-using ItemsService.Core;
-using ItemsService.Models;
+﻿using ItemsService.Core;
 
-namespace ItemsService.Services;
+namespace ItemsService;
 
-public class ItemsService(ItemsServiceContext context) : IItemsService
+public class ItemsManager(ItemsServiceContext context) : IItemsManager
 {
     private readonly ItemsServiceContext _context = context;
 

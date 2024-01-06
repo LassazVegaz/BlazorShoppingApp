@@ -1,8 +1,8 @@
-using ItemsService.Context;
+using ItemsService;
 using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.Authentication.Extensions;
-using Services = ItemsService.Services;
+using TrendingApp.Packages.MassTransitDependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,9 @@ builder.Services.AddTrendingAppAuthentication();
 
 // authorization
 builder.Services.AddAuthorization();
+
+// automapper
+builder.Services.AddAutoMapper(typeof(Mapper));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,8 +30,11 @@ builder.Services.AddDbContext<ItemsServiceContext>(ops =>
     ops.UseMySql(connectionString, new MySqlServerVersion(version));
 });
 
+// MassTransit
+builder.Services.AddTrendingAppMassTransit();
+
 // app services
-builder.Services.AddScoped<IItemsService, Services.ItemsService>();
+builder.Services.AddScoped<IItemsManager, ItemsManager>();
 
 var app = builder.Build();
 

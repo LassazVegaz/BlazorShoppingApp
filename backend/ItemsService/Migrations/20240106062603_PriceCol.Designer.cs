@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ItemsService.Migrations
 {
     [DbContext(typeof(ItemsServiceContext))]
-    [Migration("20240103073307_InitContext")]
-    partial class InitContext
+    [Migration("20240106062603_PriceCol")]
+    partial class PriceCol
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,9 @@ namespace ItemsService.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
