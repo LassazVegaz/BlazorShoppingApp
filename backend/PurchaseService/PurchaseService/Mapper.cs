@@ -12,5 +12,6 @@ public class Mapper : Profile
 
         // contract -> model
         CreateMap<UserCreated, User>();
+        CreateMap<ItemCreated, Item>();
     }
 }
