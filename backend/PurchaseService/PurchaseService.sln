@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{CABA25
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Authentication", "..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj", "{CB694D4F-F392-46E9-A2D2-88C3F3886CEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{43F1AEBC-431D-469F-A09D-707A682046C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F4CA18A4-A86C-4277-A470-0AE91B68B7EF} = {43F1AEBC-431D-469F-A09D-707A682046C0}
 		{CB694D4F-F392-46E9-A2D2-88C3F3886CEE} = {CABA2531-2AA8-4467-8358-2648A540DD4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
