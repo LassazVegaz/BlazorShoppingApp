@@ -1,3 +1,4 @@
+using ItemsService;
 using ItemsService.Context;
 using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,9 @@ builder.Services.AddTrendingAppAuthentication();
 
 // authorization
 builder.Services.AddAuthorization();
+
+// automapper
+builder.Services.AddAutoMapper(typeof(Mapper));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
