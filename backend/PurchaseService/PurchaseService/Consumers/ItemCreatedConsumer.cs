@@ -12,7 +12,7 @@ public class ItemCreatedConsumer(PurchaseServiceContext context, IMapper mapper)
 
     public async Task Consume(ConsumeContext<ItemCreated> context)
     {
-        var model = _mapper.Map<Item>(context);
+        var model = _mapper.Map<Item>(context.Message);
         await _context.Items.AddAsync(model);
         await _context.SaveChangesAsync();
     }
