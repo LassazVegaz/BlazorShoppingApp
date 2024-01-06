@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UsersService.Core.Data;
 
@@ -10,9 +11,11 @@ using UsersService.Core.Data;
 namespace ShoppingApp.Core.Migrations
 {
     [DbContext(typeof(ShoppingAppContext))]
-    partial class ShoppingAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240106055656_CreditsCol")]
+    partial class CreditsCol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
