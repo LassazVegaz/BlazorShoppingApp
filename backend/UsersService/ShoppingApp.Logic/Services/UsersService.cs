@@ -29,6 +29,7 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
     public async Task<User> CreateUser(User newUser)
     {
         newUser.Id = 0;
+        newUser.Credits = _userOptions.InitialCredits;
         newUser.Email = newUser.Email.ToLower();
         newUser.Gender = newUser.Gender.ToLower();
 
