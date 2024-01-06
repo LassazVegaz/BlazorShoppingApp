@@ -5,9 +5,9 @@ namespace ItemsService;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ItemsController(IItemsService itemsService) : ControllerBase
+public class ItemsController(IItemsManager itemsService) : ControllerBase
 {
-    private readonly IItemsService _itemsService = itemsService;
+    private readonly IItemsManager _itemsService = itemsService;
 
     [HttpPost]
     public async Task<ActionResult<Item>> CreateItem(Item item)

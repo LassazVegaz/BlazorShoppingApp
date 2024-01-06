@@ -3,7 +3,6 @@ using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.Authentication.Extensions;
 using TrendingApp.Packages.MassTransitDependencyInjection;
-using Services = ItemsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +34,7 @@ builder.Services.AddDbContext<ItemsServiceContext>(ops =>
 builder.Services.AddTrendingAppMassTransit();
 
 // app services
-builder.Services.AddScoped<IItemsService, Services.ItemsService>();
+builder.Services.AddScoped<IItemsManager, ItemsManager>();
 
 var app = builder.Build();
 

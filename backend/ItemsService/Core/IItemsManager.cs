@@ -1,6 +1,6 @@
 ﻿namespace ItemsService.Core;
 
-public interface IItemsService
+public interface IItemsManager
 {
     /// <summary>
     /// Item Id will be replaced by an auto-generated Id
