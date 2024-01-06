@@ -26,6 +26,7 @@ public class PurchaseManagerTest
         _provider.Dispose();
     }
 
+
     [Test]
     public void SufficientCreditsPruchaseTest()
     {
@@ -75,5 +76,23 @@ public class PurchaseManagerTest
             Assert.That(item?.Users.Count, Is.EqualTo(0));
             Assert.That(user?.Items.Count, Is.EqualTo(0));
         });
+    }
+
+
+    [Test]
+    public void AlreadyPurchasedTest()
+    {
+        var context = _provider.GetRequiredService<PurchaseServiceContext>();
+        {
+            var _item = new Item { Id = 1, Price = 100, };
+            context.Items.AddRange(_item, new() { Id = 2, Price = 200 });
+            context.Users.Add(new User { Id = 1, Credits = 1000, Items = [_item] });
+            context.SaveChanges();
+        }
+
+        var purchaseManager = new PurchaseManager(context);
+
+        Assert.ThrowsAsync<ArgumentException>(async () => await purchaseManager.Purchase(1, 1));
+        Assert.DoesNotThrowAsync(async () => await purchaseManager.Purchase(1, 2));
     }
 }

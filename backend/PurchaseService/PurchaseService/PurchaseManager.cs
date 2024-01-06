@@ -1,4 +1,5 @@
-﻿using PurchaseService.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using PurchaseService.Core;
 
 namespace PurchaseService;
 
@@ -6,8 +7,14 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 {
     private readonly PurchaseServiceContext _context = context;
 
+    public async Task<bool> IsPurchased(int userId, int itemId)
+        => await _context.Users.AnyAsync(u => u.Id == userId && u.Items.Any(i => i.Id == itemId));
+
     public async Task Purchase(int userId, int itemId)
     {
+        if (await IsPurchased(userId, itemId))
+            throw new ArgumentException($"User with id {userId} has already purchased item with id {itemId}");
+
         var user = await _context.Users.FindAsync(userId) ?? throw new ArgumentException($"User with id {userId} does not exist");
         var item = await _context.Items.FindAsync(itemId) ?? throw new ArgumentException($"Item with id {itemId} does not exist");
 
