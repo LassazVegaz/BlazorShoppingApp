@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj" />
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

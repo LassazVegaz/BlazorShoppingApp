@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using PurchaseService;
+using PurchaseService.Core;
 using TrendingApp.Packages.Authentication.Extensions;
+using TrendingApp.Packages.MassTransitDependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+// mamanger
+builder.Services.AddScoped<IPurchaseManager, PurchaseManager>();
 
 // db context
 builder.Services.AddDbContext<PurchaseServiceContext>(ops =>
@@ -17,6 +22,12 @@ builder.Services.AddDbContext<PurchaseServiceContext>(ops =>
 // auth
 builder.Services.AddTrendingAppAuthentication();
 builder.Services.AddAuthorization();
+
+// masstransit
+builder.Services.AddTrendingAppMassTransit();
+
+// mapper
+builder.Services.AddAutoMapper(typeof(Mapper));
 
 
 var app = builder.Build();
