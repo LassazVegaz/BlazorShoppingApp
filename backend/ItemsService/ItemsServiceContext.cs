@@ -1,7 +1,7 @@
 ﻿using ItemsService.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ItemsService.Context;
+namespace ItemsService;
 
 public class ItemsServiceContext(DbContextOptions<ItemsServiceContext> options) : DbContext(options)
 {

@@ -1,5 +1,4 @@
 using ItemsService;
-using ItemsService.Context;
 using ItemsService.Core;
 using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.Authentication.Extensions;
