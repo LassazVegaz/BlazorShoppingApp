@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using TrendingApp.Packages.Contracts;
 using UsersService.Core.Data;
 using UsersService.Core.Exceptions;
 using UsersService.Core.Models;
@@ -10,10 +12,11 @@ using BC = BCrypt.Net.BCrypt;
 
 namespace UsersService.Logic.Services;
 
-public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory) : IUsersService
+public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory, IBus bus) : IUsersService
 {
-    private readonly ShoppingAppContext _context = contextFactory;
     private readonly UserOptions _userOptions = userOptions.Value;
+    private readonly ShoppingAppContext _context = contextFactory;
+    private readonly IBus _bus = bus;
 
 
     public async Task<User?> GetUserById(int id)
@@ -40,6 +43,9 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
         // if the email already exists, an exception will be thrown from the DB side
         _context.SaveChanges();
 
+        await _bus.Publish<UserCreated>(newUser);
+
+        newUser.Password = string.Empty;
         return newUser;
     }
 

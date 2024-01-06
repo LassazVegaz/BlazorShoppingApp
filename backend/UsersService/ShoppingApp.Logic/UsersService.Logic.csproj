@@ -8,11 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="MassTransit" Version="8.1.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj" />
     <ProjectReference Include="..\ShoppingApp.Core\UsersService.Core.csproj" />
   </ItemGroup>
 
