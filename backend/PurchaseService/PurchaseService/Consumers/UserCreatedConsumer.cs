@@ -14,5 +14,6 @@ public class UserCreatedConsumer(PurchaseServiceContext context, IMapper mapper)
     {
         var model = _mapper.Map<User>(context.Message);
         await _context.Users.AddAsync(model);
+        await _context.SaveChangesAsync();
     }
 }
