@@ -1,8 +1,7 @@
 ﻿using ItemsService.Core;
-using ItemsService.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ItemsService.Controllers;
+namespace ItemsService;
 
 [Route("api/[controller]")]
 [ApiController]

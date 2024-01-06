@@ -1,4 +1,4 @@
-﻿namespace ItemsService.Models;
+﻿namespace ItemsService;
 
 public class Item
 {

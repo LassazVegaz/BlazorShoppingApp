@@ -1,5 +1,4 @@
-﻿using ItemsService.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ItemsService;
 

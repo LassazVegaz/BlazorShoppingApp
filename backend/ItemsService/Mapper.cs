@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ItemsService.DTO.Out;
-using ItemsService.Models;
 
 namespace ItemsService;
 

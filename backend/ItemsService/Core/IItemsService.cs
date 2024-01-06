@@ -1,6 +1,4 @@
-﻿using ItemsService.Models;
-
-namespace ItemsService.Core;
+﻿namespace ItemsService.Core;
 
 public interface IItemsService
 {

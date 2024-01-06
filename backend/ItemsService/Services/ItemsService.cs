@@ -1,5 +1,4 @@
 ﻿using ItemsService.Core;
-using ItemsService.Models;
 
 namespace ItemsService.Services;
 
