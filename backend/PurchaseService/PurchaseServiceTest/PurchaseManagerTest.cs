@@ -21,11 +21,13 @@ public class PurchaseManagerTest
     [TearDown]
     public void TearDown()
     {
+        var context = _provider.GetRequiredService<PurchaseServiceContext>();
+        context.Database.EnsureDeleted();
         _provider.Dispose();
     }
 
     [Test]
-    public void PruchaseTest()
+    public void SufficientCreditsPruchaseTest()
     {
         var context = _provider.GetRequiredService<PurchaseServiceContext>();
         context.Users.Add(new User { Id = 1, Credits = 1000, });
@@ -61,7 +63,7 @@ public class PurchaseManagerTest
 
         var purchaseManager = new PurchaseManager(context);
 
-        Assert.ThrowsAsync<Exception>(async () => await purchaseManager.Purchase(1, 1));
+        Assert.ThrowsAsync<ArgumentException>(async () => await purchaseManager.Purchase(1, 1));
 
         var user = context.Users.Find(1);
         var item = context.Items.Find(1);

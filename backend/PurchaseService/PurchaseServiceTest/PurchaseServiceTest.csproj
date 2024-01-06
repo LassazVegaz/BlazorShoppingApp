@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PurchaseService.csproj" />
+    <ProjectReference Include="..\PurchaseService\PurchaseService.csproj" />
   </ItemGroup>
 
 </Project>
