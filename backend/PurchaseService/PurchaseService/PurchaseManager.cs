@@ -7,6 +7,13 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 {
     private readonly PurchaseServiceContext _context = context;
 
+    public async Task<IEnumerable<int>> GetPurchasedItems(int userId)
+        => await _context.Users.Where(u => u.Id == userId)
+                               .Include(u => u.Items)
+                               .Select(u => u.Items.Select(i => i.Id))
+                               .FirstOrDefaultAsync()
+        ?? throw new ArgumentException($"User with id {userId} does not exist");
+
     public async Task<bool> IsPurchased(int userId, int itemId)
         => await _context.Users.AnyAsync(u => u.Id == userId && u.Items.Any(i => i.Id == itemId));
 
