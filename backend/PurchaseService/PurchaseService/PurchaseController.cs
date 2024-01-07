@@ -13,7 +13,7 @@ public class PurchaseController(IPurchaseManager purchaseManager) : ControllerBa
 
 
     [HttpGet("isPurchased")]
-    public async Task<IActionResult> IsPurchased(int itemId)
+    public async Task<ActionResult<bool>> IsPurchased(int itemId)
     {
         var userId = int.Parse(User.Identity!.Name!);
 
@@ -30,5 +30,15 @@ public class PurchaseController(IPurchaseManager purchaseManager) : ControllerBa
         await _purchaseManager.Purchase(userId, itemId);
 
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<int>>> GetPurchasedItems()
+    {
+        var userId = int.Parse(User.Identity!.Name!);
+
+        var purchasedItems = await _purchaseManager.GetPurchasedItems(userId);
+
+        return Ok(purchasedItems);
     }
 }
