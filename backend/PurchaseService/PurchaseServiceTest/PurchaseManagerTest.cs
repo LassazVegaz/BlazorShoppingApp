@@ -95,4 +95,33 @@ public class PurchaseManagerTest
         Assert.ThrowsAsync<ArgumentException>(async () => await purchaseManager.Purchase(1, 1));
         Assert.DoesNotThrowAsync(async () => await purchaseManager.Purchase(1, 2));
     }
+
+
+    [Test]
+    public void GetPurchasedItemsTest()
+    {
+        var context = _provider.GetRequiredService<PurchaseServiceContext>();
+        context.Users.Add(new User { Id = 1, Credits = 1000, });
+        context.Items.AddRange(
+            new Item { Id = 1, Price = 100, }, new Item { Id = 2, Price = 200, }, new Item { Id = 3, Price = 200, });
+        context.SaveChanges();
+
+        var purchaseManager = new PurchaseManager(context);
+
+        IEnumerable<int> purchasedItems = [];
+        Assert.DoesNotThrowAsync(async () =>
+        {
+            await purchaseManager.Purchase(1, 1);
+            await purchaseManager.Purchase(1, 2);
+            purchasedItems = await purchaseManager.GetPurchasedItems(1);
+        });
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(purchasedItems.Count(), Is.EqualTo(2));
+            Assert.That(purchasedItems.SingleOrDefault(p => p == 1), Is.Not.EqualTo(default(int)));
+            Assert.That(purchasedItems.SingleOrDefault(p => p == 2), Is.Not.EqualTo(default(int)));
+            Assert.That(purchasedItems.SingleOrDefault(p => p == 3), Is.EqualTo(default(int)));
+        });
+    }
 }
