@@ -17,6 +17,7 @@ public class Mapper : Profile
 
         // event -> event
         CreateMap<UserPlacedOrder, OrderSavingStarted>();
+        CreateMap<OrderSavingStarted, OrderSavingFailed>();
         CreateMap<OrderSavingFinished, DeductingCreditsStarted>();
         CreateMap<DeductingCreditsStarted, RevertingSavedOrderFinished>();
         CreateMap<OrderSavingFailed, RevertingSavedOrderStarted>();
