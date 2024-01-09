@@ -28,4 +28,6 @@ public interface IUsersService
     /// Check if the email exists in the database
     /// </summary>
     Task<bool> EmailExists(string email);
+
+    Task DeductCredits(int userId, int credits);
 }
