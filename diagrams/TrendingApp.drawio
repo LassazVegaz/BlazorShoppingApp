@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-09T05:52:10.581Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="-JARsF7Of-CYQXq9NQfM" version="22.1.16" type="device">
+<mxfile host="Electron" modified="2024-01-09T07:05:49.202Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="5Qq4tMOI-gR8CQTni42v" version="22.1.16" type="device">
   <diagram name="Purchase State Machine" id="c07bpfMv5roMCaFiuGR-">
     <mxGraphModel dx="1050" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -24,19 +24,13 @@
         <mxCell id="WcquoDSI1du9C3Wa--Hi-8" value="Order Placed" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="180" y="160" width="140" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Kj1Ira81GGekSlFCbzU--2" value="saving order finished" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="WcquoDSI1du9C3Wa--Hi-9" target="Kj1Ira81GGekSlFCbzU--1">
-          <mxGeometry y="20" relative="1" as="geometry">
+        <mxCell id="Kj1Ira81GGekSlFCbzU--2" value="saving order finished" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WcquoDSI1du9C3Wa--Hi-9" target="Kj1Ira81GGekSlFCbzU--3">
+          <mxGeometry relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WcquoDSI1du9C3Wa--Hi-9" value="Saving Order" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="440" y="160" width="140" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="Kj1Ira81GGekSlFCbzU--4" value="deducting credits started" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Kj1Ira81GGekSlFCbzU--1" target="Kj1Ira81GGekSlFCbzU--3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="Kj1Ira81GGekSlFCbzU--1" value="Order Saved" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="760" y="160" width="140" height="40" as="geometry" />
+          <mxGeometry x="520" y="160" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Kj1Ira81GGekSlFCbzU--5" value="deducting credits finished" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kj1Ira81GGekSlFCbzU--3" target="WcquoDSI1du9C3Wa--Hi-4">
           <mxGeometry x="-0.0075" y="-20" relative="1" as="geometry">
@@ -44,7 +38,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Kj1Ira81GGekSlFCbzU--3" value="Deducting Credits" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="760" y="320" width="140" height="40" as="geometry" />
+          <mxGeometry x="520" y="320" width="140" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
