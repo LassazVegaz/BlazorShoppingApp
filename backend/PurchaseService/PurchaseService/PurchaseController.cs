@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PurchaseService.Core;
+using TrendingApp.Packages.Contracts.Sagas.Order;
 
 namespace PurchaseService;
 
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class PurchaseController(IPurchaseManager purchaseManager) : ControllerBase
+public class PurchaseController(IPurchaseManager purchaseManager, IBus bus) : ControllerBase
 {
     private readonly IPurchaseManager _purchaseManager = purchaseManager;
+    private readonly IBus _bus = bus;
 
 
     [HttpGet("isPurchased")]
@@ -27,7 +30,11 @@ public class PurchaseController(IPurchaseManager purchaseManager) : ControllerBa
     {
         var userId = int.Parse(User.Identity!.Name!);
 
-        await _purchaseManager.Purchase(userId, itemId);
+        await _bus.Publish(new UserPlacedOrder
+        {
+            UserId = userId,
+            ItemId = itemId
+        });
 
         return Ok();
     }
