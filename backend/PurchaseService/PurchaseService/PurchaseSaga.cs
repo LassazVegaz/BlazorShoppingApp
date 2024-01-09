@@ -4,13 +4,13 @@ using TrendingApp.Packages.Contracts.Sagas.Order;
 
 namespace PurchaseService;
 
-internal record PurchaseState : SagaStateMachineInstance
+public record PurchaseState : SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
     public State CurrentState { get; set; } = null!;
 }
 
-internal class PurchaseSaga : MassTransitStateMachine<PurchaseState>
+public class PurchaseSaga : MassTransitStateMachine<PurchaseState>
 {
     private readonly IMapper _mapper;
     private readonly ILogger<PurchaseSaga> _logger;
