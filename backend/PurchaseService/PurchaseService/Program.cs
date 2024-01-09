@@ -32,8 +32,8 @@ builder.Services.AddAutoMapper(typeof(Mapper));
 
 var app = builder.Build();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
