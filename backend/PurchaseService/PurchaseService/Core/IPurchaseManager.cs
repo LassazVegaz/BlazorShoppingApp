@@ -4,6 +4,8 @@ public interface IPurchaseManager
 {
     public Task Purchase(int userId, int itemId);
 
+    public Task RemovePurchase(int userId, int itemId, bool modifyCredits);
+
     /// <summary>
     /// Get items purchased by a user
     /// </summary>

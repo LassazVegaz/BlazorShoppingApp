@@ -39,4 +39,16 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
     public async Task<double> GetItemPrice(int itemId) => await _context.Items.Where(i => i.Id == itemId)
                                                                               .Select(i => i.Price)
                                                                               .FirstAsync();
+
+    public async Task RemovePurchase(int userId, int itemId, bool modifyCredits)
+    {
+        // we are gonna assume this is an existing purchase. otherwise EF will throw exceptions
+        var user = await _context.Users.Where(u => u.Id == userId)
+                                       .Include(u => u.Items.Where(i => i.Id == itemId))
+                                       .FirstAsync();
+        var item = user.Items.First();
+
+        user.Items.Remove(item);
+        await _context.SaveChangesAsync();
+    }
 }
