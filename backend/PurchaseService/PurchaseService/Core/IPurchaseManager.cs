@@ -14,4 +14,6 @@ public interface IPurchaseManager
     /// Check if user has purchased an item
     /// </summary>
     public Task<bool> IsPurchased(int userId, int itemId);
+
+    public Task<double> GetItemPrice(int itemId);
 }

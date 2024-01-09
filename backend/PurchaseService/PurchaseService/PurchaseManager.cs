@@ -7,6 +7,7 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 {
     private readonly PurchaseServiceContext _context = context;
 
+
     public async Task<IEnumerable<int>> GetPurchasedItems(int userId)
         => await _context.Users.Where(u => u.Id == userId)
                                .Include(u => u.Items)
@@ -34,4 +35,8 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task<double> GetItemPrice(int itemId) => await _context.Items.Where(i => i.Id == itemId)
+                                                                              .Select(i => i.Price)
+                                                                              .FirstAsync();
 }
