@@ -20,5 +20,6 @@ public class Mapper : Profile
         CreateMap<OrderSavingFinished, DeductingCreditsStarted>();
         CreateMap<DeductingCreditsStarted, RevertingSavedOrderFinished>();
         CreateMap<OrderSavingFailed, RevertingSavedOrderStarted>();
+        CreateMap<RevertingSavedOrderStarted, RevertingSavedOrderFinished>();
     }
 }
