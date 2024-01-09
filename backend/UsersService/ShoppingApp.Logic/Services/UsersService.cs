@@ -88,7 +88,7 @@ public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext 
 
     public async Task<bool> EmailExists(string email) => await _context.Users.AnyAsync(u => u.Email == email.ToLower());
 
-    public async Task DeductCredits(int userId, int credits)
+    public async Task DeductCredits(int userId, double credits)
     {
         var user = await _context.Users.FindAsync(userId) ?? throw new NotFoundException("User not found");
 

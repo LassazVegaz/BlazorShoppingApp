@@ -29,5 +29,5 @@ public interface IUsersService
     /// </summary>
     Task<bool> EmailExists(string email);
 
-    Task DeductCredits(int userId, int credits);
+    Task DeductCredits(int userId, double credits);
 }
