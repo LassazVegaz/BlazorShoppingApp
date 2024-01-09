@@ -25,7 +25,7 @@ public class PurchaseController(IPurchaseManager purchaseManager, IBus bus) : Co
         return Ok(isPurchased);
     }
 
-    [HttpPost]
+    [HttpPost("{itemId}")]
     public async Task<IActionResult> Purchase(int itemId)
     {
         var userId = int.Parse(User.Identity!.Name!);
