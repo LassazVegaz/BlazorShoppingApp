@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
-using UsersService;
 using UsersService.Core;
 using UsersService.DTO.In;
 using UsersService.DTO.Out;
 using UsersService.Options;
 using UsersService.Parameters;
 
-namespace ShoppingApp.API.Controllers;
+namespace UsersService;
 
 [Route("api/[controller]")]
 [ApiController]
