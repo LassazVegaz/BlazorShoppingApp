@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// mamanger
+// mamangers
 builder.Services.AddScoped<IPurchaseManager, PurchaseManager>();
+builder.Services.AddScoped<IItemsManager, ItemsManager>();
 
 // db context
 builder.Services.AddDbContext<PurchaseServiceContext>(ops =>
