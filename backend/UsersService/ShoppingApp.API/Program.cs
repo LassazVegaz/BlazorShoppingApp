@@ -42,7 +42,6 @@ builder.Services.AddTrendingAppMassTransit();
 
 // app services
 builder.Services.AddScoped<IUsersService, Services.UsersService>();
-builder.Services.AddScoped<IAuthService, Services.AuthService>();
 
 var app = builder.Build();
 
