@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\packages\TrendingApp.Packages.ApiExceptionsHandler\TrendingApp.Packages.ApiExceptionsHandler.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.Cors\TrendingApp.Packages.Cors.csproj" />
+    <ProjectReference Include="..\packages\TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj" />
+  </ItemGroup>
+
+</Project>
