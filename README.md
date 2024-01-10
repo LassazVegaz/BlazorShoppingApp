@@ -1,11 +1,11 @@
 # An App full of Features
 
 > [!CAUTION]\
-> This project is created to add a value to the author's CV. If the project is duplicated without proper credits, it will not add any value to the author's CV. Therefore, if this application is part of any other application, credits should be added. Check [LICENSE.txt](./LICENSE.txt)
+> This project is created to add value to the author's CV. If the project is duplicated without proper credits, it will not add any value to the author's CV. Therefore, if this application is part of any other application, credits should be added. Check [LICENSE.txt](./LICENSE.txt)
 
-Target of this project is to build an application (or system when speaking very technically) full of trending features using trending libraries, frameworks and coding patterns.
+The target of this project is to build an application (or system when speaking very technically) full of trending features using trending libraries, frameworks and coding patterns.
 
-Business domain and the requirements of the application are not very focused as much as the focus on technologies. The main traget is to learn new things by doing them. But still it has to be a logical application. So this is basically a shopping app.
+The business domain and the requirements of the application are not as focused as much as the focus on technologies. The main target is to learn new things by doing them. But still, it has to be a logical application. So this is basically a shopping app.
 
 ## Technologies used
 
@@ -25,8 +25,8 @@ Business domain and the requirements of the application are not very focused as 
   - Saga - distributed transactions
   - MySQL - database
 
-I will add more technologies as I go. Some of the technologies are not decided yet. They are seperated by `|` in the list.\
-Detailed explanation of best practices, frameworks & libraries in this project are discussed [here](./TECHNOLOGIES.md).
+I will add more technologies as I go. Some of the technologies have not been decided yet. They are separated by `|` in the list.\
+Detailed explanations of best practices, frameworks & libraries in this project are discussed [here](./TECHNOLOGIES.md).
 
 ## Features
 
@@ -49,4 +49,4 @@ I want to use micro frontends but still not sure how to do it. I like to use fra
 
 ## Contribution
 
-This is just a project to learn stuff. If you want to learn new trending stuff together, let's have some discussions. Talk to me on [Twitter](https://twitter.com/lassi2k) or [LinkedIn](https://www.linkedin.com/in/lasindu-w-abb08413a).
+This is a project to learn stuff. If you want to learn new trending stuff together, let's have some discussions. Talk to me on [Twitter](https://twitter.com/lassi2k) or [LinkedIn](https://www.linkedin.com/in/lasindu-w-abb08413a).
