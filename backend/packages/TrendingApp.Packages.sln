@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Contra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.MassTransitDependencyInjection", "TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj", "{4903FA6C-EE12-479C-8568-6788A8436541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendingApp.Packages.Exceptions", "TrendingApp.Packages.Exceptions\TrendingApp.Packages.Exceptions.csproj", "{F34D1FC1-357B-4A32-82F7-C7CE626E0E55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Exceptions", "TrendingApp.Packages.Exceptions\TrendingApp.Packages.Exceptions.csproj", "{F34D1FC1-357B-4A32-82F7-C7CE626E0E55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendingApp.Packages.ApiExceptionsHandler", "TrendingApp.Packages.ApiExceptionsHandler\TrendingApp.Packages.ApiExceptionsHandler.csproj", "{907CD0E9-431E-4D67-A366-305AD38F9978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.ApiExceptionsHandler", "TrendingApp.Packages.ApiExceptionsHandler\TrendingApp.Packages.ApiExceptionsHandler.csproj", "{907CD0E9-431E-4D67-A366-305AD38F9978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendingApp.Packages.Cors", "TrendingApp.Packages.Cors\TrendingApp.Packages.Cors.csproj", "{4310EADE-8D05-4AA4-92F1-9F9F62CE80D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{907CD0E9-431E-4D67-A366-305AD38F9978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{907CD0E9-431E-4D67-A366-305AD38F9978}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{907CD0E9-431E-4D67-A366-305AD38F9978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4310EADE-8D05-4AA4-92F1-9F9F62CE80D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4310EADE-8D05-4AA4-92F1-9F9F62CE80D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4310EADE-8D05-4AA4-92F1-9F9F62CE80D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4310EADE-8D05-4AA4-92F1-9F9F62CE80D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
