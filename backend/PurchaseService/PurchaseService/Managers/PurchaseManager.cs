@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PurchaseService.Core;
 
-namespace PurchaseService;
+namespace PurchaseService.Managers;
 
 public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 {

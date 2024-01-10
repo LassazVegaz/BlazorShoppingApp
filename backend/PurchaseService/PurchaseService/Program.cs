@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PurchaseService;
 using PurchaseService.Core;
+using PurchaseService.Managers;
 using TrendingApp.Packages.Authentication.Extensions;
 using TrendingApp.Packages.MassTransitDependencyInjection;
 
