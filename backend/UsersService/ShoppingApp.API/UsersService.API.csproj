@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.ApiExceptionsHandler\TrendingApp.Packages.ApiExceptionsHandler.csproj" />
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.Cors\TrendingApp.Packages.Cors.csproj" />
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.MassTransitDependencyInjection\TrendingApp.Packages.MassTransitDependencyInjection.csproj" />
     <ProjectReference Include="..\ShoppingApp.Core\UsersService.Core.csproj" />
     <ProjectReference Include="..\ShoppingApp.Logic\UsersService.Logic.csproj" />
