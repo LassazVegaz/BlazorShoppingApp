@@ -1,3 +1,5 @@
+using AuthService;
+using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.ApiExceptionsHandler;
 using TrendingApp.Packages.Authentication.Extensions;
 using TrendingApp.Packages.Cors;
@@ -6,6 +8,14 @@ using TrendingApp.Packages.MassTransitDependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+// db context
+builder.Services.AddDbContext<AuthServiceContext>(ops =>
+{
+    var consStr = builder.Configuration.GetConnectionString("AuthServiceDb");
+    var mySqlVersion = builder.Configuration.GetValue("MySQLVersion", "8.0.29");
+    ops.UseMySql(consStr, new MySqlServerVersion(mySqlVersion));
+});
 
 // cors
 builder.Services.AddTrendingAppCors();
