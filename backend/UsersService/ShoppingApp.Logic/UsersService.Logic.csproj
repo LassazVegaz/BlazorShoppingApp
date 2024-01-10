@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj" />
     <ProjectReference Include="..\..\packages\TrendingApp.Packages.Contracts\TrendingApp.Packages.Contracts.csproj" />
+    <ProjectReference Include="..\..\packages\TrendingApp.Packages.Exceptions\TrendingApp.Packages.Exceptions.csproj" />
     <ProjectReference Include="..\ShoppingApp.Core\UsersService.Core.csproj" />
   </ItemGroup>
 

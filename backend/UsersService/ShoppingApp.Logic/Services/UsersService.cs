@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TrendingApp.Packages.Contracts;
+using TrendingApp.Packages.Exceptions;
 using UsersService.Core.Data;
-using UsersService.Core.Exceptions;
 using UsersService.Core.Models;
 using UsersService.Core.Options;
 using UsersService.Core.Parameters;
