@@ -1,4 +1,4 @@
-﻿namespace UsersService.Parameters;
+﻿namespace UsersService.Core.Parameters;
 
 public class UpdateUser
 {

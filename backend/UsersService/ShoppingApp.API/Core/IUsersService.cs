@@ -1,4 +1,4 @@
-﻿using UsersService.Parameters;
+﻿using UsersService.Core.Parameters;
 
 namespace UsersService.Core;
 

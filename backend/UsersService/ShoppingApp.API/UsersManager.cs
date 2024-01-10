@@ -4,8 +4,8 @@ using Microsoft.Extensions.Options;
 using TrendingApp.Packages.Contracts;
 using TrendingApp.Packages.Exceptions;
 using UsersService.Core;
+using UsersService.Core.Parameters;
 using UsersService.Options;
-using UsersService.Parameters;
 using BC = BCrypt.Net.BCrypt;
 
 namespace UsersService;

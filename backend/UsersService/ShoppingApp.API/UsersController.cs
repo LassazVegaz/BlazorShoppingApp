@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
 using UsersService.Core;
+using UsersService.Core.Parameters;
 using UsersService.DTO.In;
 using UsersService.DTO.Out;
 using UsersService.Options;
-using UsersService.Parameters;
 
 namespace UsersService;
 
