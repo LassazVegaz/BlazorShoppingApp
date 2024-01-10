@@ -5,10 +5,11 @@ using TrendingApp.Packages.Contracts.Sagas.Order;
 
 namespace PurchaseService.Consumers;
 
-public class OrderSavingStartedConsumer(IPurchaseManager purchaseManager, ILogger<OrderSavingStartedConsumer> logger, IMapper mapper)
+public class OrderSavingStartedConsumer(IPurchaseManager purchaseManager, IItemsManager itemsManager, ILogger<OrderSavingStartedConsumer> logger, IMapper mapper)
     : IConsumer<OrderSavingStarted>
 {
     private readonly IPurchaseManager _purchaseManager = purchaseManager;
+    private readonly IItemsManager _itemsManager = itemsManager;
     private readonly ILogger<OrderSavingStartedConsumer> _logger = logger;
     private readonly IMapper _mapper = mapper;
 
@@ -19,7 +20,7 @@ public class OrderSavingStartedConsumer(IPurchaseManager purchaseManager, ILogge
         try
         {
             await _purchaseManager.Purchase(context.Message.UserId, context.Message.ItemId);
-            var deduction = await _purchaseManager.GetItemPrice(context.Message.ItemId);
+            var deduction = (await _itemsManager.GetItem(context.Message.ItemId))!.Price;
 
             await context.Publish(new OrderSavingFinished
             {

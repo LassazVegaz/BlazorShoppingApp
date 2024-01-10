@@ -36,10 +36,6 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
         await _context.SaveChangesAsync();
     }
 
-    public async Task<double> GetItemPrice(int itemId) => await _context.Items.Where(i => i.Id == itemId)
-                                                                              .Select(i => i.Price)
-                                                                              .FirstAsync();
-
     public async Task RevertPurchase(int userId, int itemId)
     {
         // we are gonna assume this is an existing purchase. otherwise EF will throw exceptions
