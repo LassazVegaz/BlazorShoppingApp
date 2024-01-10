@@ -83,6 +83,30 @@
           "Port": 8103
         }
       ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/auth",
+      "DownstreamPathTemplate": "/api/auth",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8104
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/auth/{everything}",
+      "DownstreamPathTemplate": "/api/auth/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8104
+        }
+      ]
     }
   ],
   "GlobalConfiguration": {
