@@ -3,12 +3,10 @@ using TrendingApp.Packages.ApiExceptionsHandler;
 using TrendingApp.Packages.Authentication.Extensions;
 using TrendingApp.Packages.Cors;
 using TrendingApp.Packages.MassTransitDependencyInjection;
+using UsersService.API;
 using UsersService.API.Constants;
-using UsersService.API.Mapper;
-using UsersService.Core.Data;
-using UsersService.Core.Options;
-using UsersService.Core.Services;
-using Services = UsersService.Logic.Services;
+using UsersService.API.Core;
+using UsersService.API.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,17 +29,17 @@ builder.Services.AddAuthorization();
 
 // db context
 var mySqlVersion = new MySqlServerVersion(builder.Configuration.GetValue("MySQLVersion", "8.0.29"));
-builder.Services.AddDbContext<ShoppingAppContext>(ops =>
+builder.Services.AddDbContext<UsersServiceContext>(ops =>
     ops.UseMySql(builder.Configuration.GetConnectionString("ShoppingAppDb"), mySqlVersion));
 
 // mapper
-builder.Services.AddAutoMapper(typeof(MapperProfile));
+builder.Services.AddAutoMapper(typeof(Mapper));
 
 // MassTransit
 builder.Services.AddTrendingAppMassTransit();
 
 // app services
-builder.Services.AddScoped<IUsersService, Services.UsersService>();
+builder.Services.AddScoped<IUsersService, UsersManager>();
 
 var app = builder.Build();
 

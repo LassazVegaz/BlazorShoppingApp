@@ -3,15 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Core", "ShoppingApp.Core\UsersService.Core.csproj", "{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Logic", "ShoppingApp.Logic\UsersService.Logic.csproj", "{AA7A9445-6458-4B43-8D50-2B5F94D8D216}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.API", "ShoppingApp.API\UsersService.API.csproj", "{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FD7F85D9-2DD3-46E3-B664-FF158A787BE2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.LogicTest", "ShoppingApp.LogicTest\UsersService.LogicTest.csproj", "{BFA33C3B-2364-4442-986C-16C514C4BBD1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendingApp.Packages.Authentication", "..\packages\TrendingApp.Packages.Authentication\TrendingApp.Packages.Authentication.csproj", "{AB2996A0-A3CE-42D7-8FC3-8D3A6D49AD81}"
 EndProject
@@ -33,22 +25,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7DB48D5-9B12-4549-A1A5-04DE97428B0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA7A9445-6458-4B43-8D50-2B5F94D8D216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA7A9445-6458-4B43-8D50-2B5F94D8D216}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA7A9445-6458-4B43-8D50-2B5F94D8D216}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA7A9445-6458-4B43-8D50-2B5F94D8D216}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8C8D7D3-6D27-4D45-80F1-25EFD28B8454}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFA33C3B-2364-4442-986C-16C514C4BBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFA33C3B-2364-4442-986C-16C514C4BBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFA33C3B-2364-4442-986C-16C514C4BBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFA33C3B-2364-4442-986C-16C514C4BBD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB2996A0-A3CE-42D7-8FC3-8D3A6D49AD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB2996A0-A3CE-42D7-8FC3-8D3A6D49AD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB2996A0-A3CE-42D7-8FC3-8D3A6D49AD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BFA33C3B-2364-4442-986C-16C514C4BBD1} = {FD7F85D9-2DD3-46E3-B664-FF158A787BE2}
 		{AB2996A0-A3CE-42D7-8FC3-8D3A6D49AD81} = {BDBB09F3-41BD-4F12-9C0F-785101D3830A}
 		{FB8199D6-F9F8-4E85-B6E6-6D39F2DB640B} = {BDBB09F3-41BD-4F12-9C0F-785101D3830A}
 		{3A7120B8-1FE6-456E-B3FD-6B5EEC6F1269} = {BDBB09F3-41BD-4F12-9C0F-785101D3830A}

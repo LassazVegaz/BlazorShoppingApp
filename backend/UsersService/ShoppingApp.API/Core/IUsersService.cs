@@ -1,7 +1,6 @@
-﻿using UsersService.Core.Models;
-using UsersService.Core.Parameters;
+﻿using UsersService.API.Parameters;
 
-namespace UsersService.Core.Services;
+namespace UsersService.API.Core;
 
 public interface IUsersService
 {

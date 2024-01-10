@@ -2,31 +2,31 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UsersService.Core.Data;
+using UsersService.API;
 
 #nullable disable
 
 namespace ShoppingApp.Core.Migrations
 {
-    [DbContext(typeof(ShoppingAppContext))]
-    partial class ShoppingAppContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsersServiceContext))]
+    [Migration("20240102100748_EmailUpdatedOnCol")]
+    partial class EmailUpdatedOnCol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("UsersService.Core.Models.User", b =>
+            modelBuilder.Entity("ShoppingApp.Core.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<double>("Credits")
-                        .HasColumnType("double");
 
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");

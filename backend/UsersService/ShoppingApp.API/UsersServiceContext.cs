@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UsersService.Core.Models;
 
-namespace UsersService.Core.Data;
+namespace UsersService.API;
 
-public class ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : DbContext(options)
+public class UsersServiceContext(DbContextOptions<UsersServiceContext> options) : DbContext(options)
 {
     public DbSet<User> Users { get; set; }
 

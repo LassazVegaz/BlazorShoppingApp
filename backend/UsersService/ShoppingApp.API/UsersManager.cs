@@ -3,19 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TrendingApp.Packages.Contracts;
 using TrendingApp.Packages.Exceptions;
-using UsersService.Core.Data;
-using UsersService.Core.Models;
-using UsersService.Core.Options;
-using UsersService.Core.Parameters;
-using UsersService.Core.Services;
+using UsersService.API.Core;
+using UsersService.API.Options;
+using UsersService.API.Parameters;
 using BC = BCrypt.Net.BCrypt;
 
-namespace UsersService.Logic.Services;
+namespace UsersService.API;
 
-public class UsersService(IOptions<UserOptions> userOptions, ShoppingAppContext contextFactory, IBus bus) : IUsersService
+public class UsersManager(IOptions<UserOptions> userOptions, UsersServiceContext context, IBus bus) : IUsersService
 {
     private readonly UserOptions _userOptions = userOptions.Value;
-    private readonly ShoppingAppContext _context = contextFactory;
+    private readonly UsersServiceContext _context = context;
     private readonly IBus _bus = bus;
 
 

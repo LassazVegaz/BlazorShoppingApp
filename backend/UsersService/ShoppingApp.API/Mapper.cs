@@ -2,14 +2,13 @@
 using TrendingApp.Packages.Contracts.Sagas.Order;
 using UsersService.API.DTO.In;
 using UsersService.API.DTO.Out;
-using UsersService.Core.Models;
-using UsersService.Core.Options;
+using UsersService.API.Options;
 
-namespace UsersService.API.Mapper;
+namespace UsersService.API;
 
-public class MapperProfile : Profile
+public class Mapper : Profile
 {
-    public MapperProfile()
+    public Mapper()
     {
         // source first, destination second
 

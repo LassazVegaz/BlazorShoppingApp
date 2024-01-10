@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UsersService.Core.Data;
+using UsersService.API;
 
 #nullable disable
 
 namespace ShoppingApp.Core.Migrations
 {
-    [DbContext(typeof(ShoppingAppContext))]
+    [DbContext(typeof(UsersServiceContext))]
     [Migration("20231213073716_UniqueEmail")]
     partial class UniqueEmail
     {

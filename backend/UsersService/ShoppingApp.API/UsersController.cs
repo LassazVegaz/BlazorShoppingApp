@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
+using UsersService.API;
+using UsersService.API.Core;
 using UsersService.API.DTO.In;
 using UsersService.API.DTO.Out;
-using UsersService.Core.Models;
-using UsersService.Core.Options;
-using UsersService.Core.Parameters;
-using UsersService.Core.Services;
+using UsersService.API.Options;
+using UsersService.API.Parameters;
 
 namespace ShoppingApp.API.Controllers;
 

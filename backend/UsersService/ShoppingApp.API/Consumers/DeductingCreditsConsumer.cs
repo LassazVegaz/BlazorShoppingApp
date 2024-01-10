@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MassTransit;
 using TrendingApp.Packages.Contracts.Sagas.Order;
-using UsersService.Core.Services;
+using UsersService.API.Core;
 
 namespace UsersService.API.Consumers;
 

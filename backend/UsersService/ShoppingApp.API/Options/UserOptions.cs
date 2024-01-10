@@ -1,4 +1,4 @@
-﻿namespace UsersService.Core.Options;
+﻿namespace UsersService.API.Options;
 
 public class UserOptions
 {
