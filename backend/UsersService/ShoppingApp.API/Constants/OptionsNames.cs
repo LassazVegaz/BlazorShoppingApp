@@ -1,4 +1,4 @@
-﻿namespace UsersService.API.Constants;
+﻿namespace UsersService.Constants;
 
 internal static class OptionsNames
 {

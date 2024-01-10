@@ -1,4 +1,4 @@
-﻿namespace UsersService.API.DTO.Out;
+﻿namespace UsersService.DTO.Out;
 
 /// <summary>
 /// This class should be used whenever user data is returned to the client.

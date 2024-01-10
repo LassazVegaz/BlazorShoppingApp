@@ -1,4 +1,4 @@
-﻿namespace UsersService.API.Constants;
+﻿namespace UsersService.Constants;
 
 public static class RegularExpressions
 {

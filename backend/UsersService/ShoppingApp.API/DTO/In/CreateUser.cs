@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using UsersService.API.Constants;
+using UsersService.Constants;
 
-namespace UsersService.API.DTO.In;
+namespace UsersService.DTO.In;
 
 public class CreateUser
 {

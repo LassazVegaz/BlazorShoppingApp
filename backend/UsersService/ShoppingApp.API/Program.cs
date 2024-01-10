@@ -3,10 +3,10 @@ using TrendingApp.Packages.ApiExceptionsHandler;
 using TrendingApp.Packages.Authentication.Extensions;
 using TrendingApp.Packages.Cors;
 using TrendingApp.Packages.MassTransitDependencyInjection;
-using UsersService.API;
-using UsersService.API.Constants;
-using UsersService.API.Core;
-using UsersService.API.Options;
+using UsersService;
+using UsersService.Constants;
+using UsersService.Core;
+using UsersService.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

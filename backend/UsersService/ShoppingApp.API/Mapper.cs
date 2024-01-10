@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using TrendingApp.Packages.Contracts.Sagas.Order;
-using UsersService.API.DTO.In;
-using UsersService.API.DTO.Out;
-using UsersService.API.Options;
+using UsersService.DTO.In;
+using UsersService.DTO.Out;
+using UsersService.Options;
 
-namespace UsersService.API;
+namespace UsersService;
 
 public class Mapper : Profile
 {

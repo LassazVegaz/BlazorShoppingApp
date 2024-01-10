@@ -1,4 +1,4 @@
-﻿namespace UsersService.API;
+﻿namespace UsersService;
 
 public class User
 {

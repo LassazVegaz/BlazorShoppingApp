@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TrendingApp.Packages.Contracts;
 using TrendingApp.Packages.Exceptions;
-using UsersService.API.Core;
-using UsersService.API.Options;
-using UsersService.API.Parameters;
+using UsersService.Core;
+using UsersService.Options;
+using UsersService.Parameters;
 using BC = BCrypt.Net.BCrypt;
 
-namespace UsersService.API;
+namespace UsersService;
 
 public class UsersManager(IOptions<UserOptions> userOptions, UsersServiceContext context, IBus bus) : IUsersService
 {

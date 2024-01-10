@@ -1,6 +1,6 @@
-﻿using UsersService.API.Parameters;
+﻿using UsersService.Parameters;
 
-namespace UsersService.API.Core;
+namespace UsersService.Core;
 
 public interface IUsersService
 {

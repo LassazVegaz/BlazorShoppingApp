@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MassTransit;
 using TrendingApp.Packages.Contracts.Sagas.Order;
-using UsersService.API.Core;
+using UsersService.Core;
 
-namespace UsersService.API.Consumers;
+namespace UsersService.Consumers;
 
 public class DeductingCreditsConsumer(ILogger<DeductingCreditsConsumer> logger, IUsersService usersService, IMapper mapper)
     : IConsumer<DeductingCreditsStarted>

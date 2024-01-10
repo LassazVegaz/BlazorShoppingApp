@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace UsersService.API;
+namespace UsersService;
 
 public class UsersServiceContext(DbContextOptions<UsersServiceContext> options) : DbContext(options)
 {
