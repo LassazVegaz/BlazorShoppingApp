@@ -16,11 +16,12 @@ public class Mapper : Profile
         CreateMap<ItemCreated, Item>();
 
         // event -> event
-        CreateMap<UserPlacedOrder, OrderSavingStarted>();
         CreateMap<OrderSavingStarted, OrderSavingFailed>();
-        CreateMap<OrderSavingFinished, DeductingCreditsStarted>();
-        CreateMap<DeductingCreditsStarted, RevertingSavedOrderFinished>();
-        CreateMap<OrderSavingFailed, RevertingSavedOrderStarted>();
         CreateMap<RevertingSavedOrderStarted, RevertingSavedOrderFinished>();
+
+        // state -> event
+        CreateMap<PurchaseState, OrderSavingStarted>();
+        CreateMap<PurchaseState, DeductingCreditsStarted>();
+        CreateMap<PurchaseState, RevertingSavedOrderStarted>();
     }
 }

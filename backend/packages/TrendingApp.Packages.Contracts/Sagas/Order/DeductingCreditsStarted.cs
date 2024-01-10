@@ -6,6 +6,5 @@ public record DeductingCreditsStarted : CorrelatedBy<Guid>
 {
     public Guid CorrelationId { get; set; }
     public int UserId { get; set; }
-    public int ItemId { get; set; }
     public double Deduction { get; set; }
 }

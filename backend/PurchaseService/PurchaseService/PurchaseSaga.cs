@@ -8,6 +8,9 @@ public record PurchaseState : SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
     public State CurrentState { get; set; } = null!;
+    public int? UserId { get; set; }
+    public int? ItemId { get; set; }
+    public double? Deduction { get; set; }
 }
 
 public class PurchaseSaga : MassTransitStateMachine<PurchaseState>
@@ -34,23 +37,25 @@ public class PurchaseSaga : MassTransitStateMachine<PurchaseState>
         // everything starts when user has placed the order
         Initially(
             When(UserPlacedOrder)
-                .Then(context => _logger.LogInformation("UserPlacedOrder event received"))
-                .PublishAsync(ctx => ctx.Init<OrderSavingStarted>(_mapper.Map<OrderSavingStarted>(ctx.Message)))
-                .Then(context => _logger.LogInformation("OrderSavingStarted event published"))
+                .Then(ctx => _logger.LogInformation("UserPlacedOrder event received"))
+                .Then(ctx => { ctx.Saga.UserId = ctx.Message.UserId; ctx.Saga.ItemId = ctx.Message.ItemId; })
+                .PublishAsync(ctx => ctx.Init<OrderSavingStarted>(_mapper.Map<OrderSavingStarted>(ctx.Saga)))
+                .Then(ctx => _logger.LogInformation("OrderSavingStarted event published"))
                 .TransitionTo(SavingOrder)
         );
 
         // while saving the order, handle both success and failure
         During(SavingOrder,
             When(OrderSavingFinished)
-                .Then(context => _logger.LogInformation("OrderSavingFinished event received"))
-                .PublishAsync(ctx => ctx.Init<DeductingCreditsStarted>(_mapper.Map<DeductingCreditsStarted>(ctx.Message)))
-                .Then(context => _logger.LogInformation("DeductingCreditsStarted event published"))
+                .Then(ctx => _logger.LogInformation("OrderSavingFinished event received"))
+                .Then(ctx => ctx.Saga.Deduction = ctx.Message.Deduction)
+                .PublishAsync(ctx => ctx.Init<DeductingCreditsStarted>(_mapper.Map<DeductingCreditsStarted>(ctx.Saga)))
+                .Then(ctx => _logger.LogInformation("DeductingCreditsStarted event published"))
                 .TransitionTo(DeductingCredits),
             When(OrderSavingFailed)
-                .Then(context => _logger.LogInformation("OrderSavingFailed event received"))
-                .PublishAsync(ctx => ctx.Init<RevertingSavedOrderStarted>(_mapper.Map<RevertingSavedOrderStarted>(ctx.Message)))
-                .Then(context => _logger.LogInformation("RevertingSavedOrderStarted event published"))
+                .Then(ctx => _logger.LogInformation("OrderSavingFailed event received"))
+                .PublishAsync(ctx => ctx.Init<RevertingSavedOrderStarted>(_mapper.Map<RevertingSavedOrderStarted>(ctx.Saga)))
+                .Then(ctx => _logger.LogInformation("RevertingSavedOrderStarted event published"))
                 .TransitionTo(RevertingSavedOrder)
         );
 
@@ -58,22 +63,22 @@ public class PurchaseSaga : MassTransitStateMachine<PurchaseState>
         // after success, the saga comes to an end from one side
         During(DeductingCredits,
             When(DeductingCreditsFinished)
-                .Then(context => _logger.LogInformation("DeductingCreditsFinished event received"))
+                .Then(ctx => _logger.LogInformation("DeductingCreditsFinished event received"))
                 .Finalize()
-                .Then(context => _logger.LogInformation("Purchase saga finished")),
+                .Then(ctx => _logger.LogInformation("Purchase saga finished")),
             When(DeductingCreditsFailed)
-                .Then(context => _logger.LogInformation("DeductingCreditsFailed event received"))
-                .PublishAsync(ctx => ctx.Init<RevertingSavedOrderStarted>(_mapper.Map<RevertingSavedOrderStarted>(ctx.Message)))
-                .Then(context => _logger.LogInformation("RevertingSavedOrderStarted event published"))
+                .Then(ctx => _logger.LogInformation("DeductingCreditsFailed event received"))
+                .PublishAsync(ctx => ctx.Init<RevertingSavedOrderStarted>(_mapper.Map<RevertingSavedOrderStarted>(ctx.Saga)))
+                .Then(ctx => _logger.LogInformation("RevertingSavedOrderStarted event published"))
                 .TransitionTo(RevertingSavedOrder)
         );
 
         // after revertig the saved order, the saga comes to an end from one side
         During(RevertingSavedOrder,
             When(RevertingSavedOrderFinished)
-                .Then(context => _logger.LogInformation("RevertingSavedOrderFinished event received"))
+                .Then(ctx => _logger.LogInformation("RevertingSavedOrderFinished event received"))
                 .Finalize()
-                .Then(context => _logger.LogInformation("Purchase saga finished"))
+                .Then(ctx => _logger.LogInformation("Purchase saga finished"))
         );
     }
 }
