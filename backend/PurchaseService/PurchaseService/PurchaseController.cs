@@ -40,6 +40,9 @@ public class PurchaseController(IBus bus, IPurchaseManager purchaseManager, IIte
         if (user.Credits < item.Price)
             return BadRequest($"User with id {userId} does not have enough money to buy item with id {itemId}");
 
+        if (await _purchaseManager.IsPurchased(userId, itemId))
+            return BadRequest($"User with id {userId} has already purchased (or purchasing) item with id {itemId}");
+
         await _bus.Publish(new UserPlacedOrder
         {
             UserId = userId,
