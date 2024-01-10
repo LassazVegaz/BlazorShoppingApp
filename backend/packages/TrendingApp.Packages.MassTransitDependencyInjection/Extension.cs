@@ -11,7 +11,13 @@ public static class Extension
         {
             ops.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(false));
 
-            ops.AddConsumers(Assembly.GetEntryAssembly());
+            var assembly = Assembly.GetEntryAssembly();
+
+            ops.AddConsumers(assembly);
+
+            ops.AddSagas(assembly);
+            ops.AddSagaStateMachines(assembly);
+            ops.SetInMemorySagaRepositoryProvider();
 
             ops.UsingRabbitMq((context, config) =>
             {

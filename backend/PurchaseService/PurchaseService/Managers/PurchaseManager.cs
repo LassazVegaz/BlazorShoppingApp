@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PurchaseService.Core;
 
-namespace PurchaseService;
+namespace PurchaseService.Managers;
 
 public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 {
     private readonly PurchaseServiceContext _context = context;
+
 
     public async Task<IEnumerable<int>> GetPurchasedItems(int userId)
         => await _context.Users.Where(u => u.Id == userId)
@@ -32,6 +33,18 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
 
         user.Items.Add(item);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task RevertPurchase(int userId, int itemId)
+    {
+        // we are gonna assume this is an existing purchase. otherwise EF will throw exceptions
+        var user = await _context.Users.Where(u => u.Id == userId)
+                                       .Include(u => u.Items.Where(i => i.Id == itemId))
+                                       .FirstAsync();
+        var item = user.Items.First();
+
+        user.Items.Remove(item);
         await _context.SaveChangesAsync();
     }
 }

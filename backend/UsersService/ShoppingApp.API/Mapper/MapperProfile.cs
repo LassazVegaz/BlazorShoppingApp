@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TrendingApp.Packages.Contracts.Sagas.Order;
 using UsersService.API.DTO.In;
 using UsersService.API.DTO.Out;
 using UsersService.Core.Models;
@@ -18,5 +19,9 @@ public class MapperProfile : Profile
 
         // receiving from client
         CreateMap<CreateUser, User>();
+
+        // event -> event
+        CreateMap<DeductingCreditsStarted, DeductingCreditsFinished>();
+        CreateMap<DeductingCreditsStarted, DeductingCreditsFailed>();
     }
 }
