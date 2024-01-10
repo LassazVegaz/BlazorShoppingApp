@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 // mamangers
 builder.Services.AddScoped<IPurchaseManager, PurchaseManager>();
 builder.Services.AddScoped<IItemsManager, ItemsManager>();
+builder.Services.AddScoped<IUsersManager, UsersManager>();
 
 // db context
 builder.Services.AddDbContext<PurchaseServiceContext>(ops =>
