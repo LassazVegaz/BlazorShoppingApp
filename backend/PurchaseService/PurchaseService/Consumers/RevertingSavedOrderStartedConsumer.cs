@@ -14,6 +14,7 @@ public class RevertingSavedOrderStartedConsumer(IPurchaseManager purchaseManager
 
     public async Task Consume(ConsumeContext<RevertingSavedOrderStarted> context)
     {
+        _logger.LogInformation("RevertingSavedOrderStarted event received");
         _logger.LogInformation("Checking if purchase record exists");
         if (await _purchaseManager.IsPurchased(context.Message.UserId, context.Message.ItemId))
         {

@@ -14,6 +14,7 @@ public class OrderSavingStartedConsumer(IPurchaseManager purchaseManager, ILogge
 
     public async Task Consume(ConsumeContext<OrderSavingStarted> context)
     {
+        _logger.LogInformation("OrderSavingStarted event received");
         _logger.LogInformation("Creating purchase record");
         try
         {
@@ -26,10 +27,11 @@ public class OrderSavingStartedConsumer(IPurchaseManager purchaseManager, ILogge
                 UserId = context.Message.UserId,
                 Deduction = deduction,
             });
+            _logger.LogInformation("OrderSavingFinished event published");
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed to creating purchase record");
+            _logger.LogError(e, "Failed creating purchase record");
             await context.Publish(_mapper.Map<OrderSavingFailed>(context.Message));
         }
     }
