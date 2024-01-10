@@ -62,8 +62,8 @@
     },
     {
       "UpstreamHttpMethod": [],
-      "UpstreamPathTemplate": "/api/pruchase",
-      "DownstreamPathTemplate": "/api/pruchase",
+      "UpstreamPathTemplate": "/api/purchase",
+      "DownstreamPathTemplate": "/api/purchase",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -74,8 +74,8 @@
     },
     {
       "UpstreamHttpMethod": [],
-      "UpstreamPathTemplate": "/api/pruchase/{anything}",
-      "DownstreamPathTemplate": "/api/pruchase/{anything}",
+      "UpstreamPathTemplate": "/api/purchase/{anything}",
+      "DownstreamPathTemplate": "/api/purchase/{anything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
