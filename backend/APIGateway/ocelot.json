@@ -38,30 +38,6 @@
     },
     {
       "UpstreamHttpMethod": [],
-      "UpstreamPathTemplate": "/api/auth",
-      "DownstreamPathTemplate": "/api/auth",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8101
-        }
-      ]
-    },
-    {
-      "UpstreamHttpMethod": [],
-      "UpstreamPathTemplate": "/api/auth/{anything}",
-      "DownstreamPathTemplate": "/api/auth/{anything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8101
-        }
-      ]
-    },
-    {
-      "UpstreamHttpMethod": [],
       "UpstreamPathTemplate": "/api/purchase",
       "DownstreamPathTemplate": "/api/purchase",
       "DownstreamScheme": "http",
