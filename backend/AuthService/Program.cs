@@ -1,4 +1,5 @@
 using AuthService;
+using AuthService.Core;
 using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.ApiExceptionsHandler;
 using TrendingApp.Packages.Authentication.Extensions;
@@ -33,6 +34,9 @@ builder.Services.AddTrendingAppMassTransit();
 
 // auto mapper
 builder.Services.AddAutoMapper(typeof(Mapper));
+
+// app services
+builder.Services.AddScoped<IAuthManager, AuthManager>();
 
 
 var app = builder.Build();

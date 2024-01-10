@@ -1,10 +1,9 @@
-﻿using AuthService;
-using AuthService.Core;
+﻿using AuthService.Core;
 using Microsoft.EntityFrameworkCore;
 using TrendingApp.Packages.Authentication.Services;
 using BC = BCrypt.Net.BCrypt;
 
-namespace UsersService.Logic.Services;
+namespace AuthService;
 
 public class AuthManager(AuthServiceContext context, ITokensService tokensService) : IAuthManager
 {
