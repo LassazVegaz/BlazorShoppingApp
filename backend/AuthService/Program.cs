@@ -31,6 +31,9 @@ builder.Services.AddAuthorization();
 // MassTransit
 builder.Services.AddTrendingAppMassTransit();
 
+// auto mapper
+builder.Services.AddAutoMapper(typeof(Mapper));
+
 
 var app = builder.Build();
 
