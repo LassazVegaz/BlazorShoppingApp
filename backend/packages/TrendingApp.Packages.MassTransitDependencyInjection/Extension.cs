@@ -9,7 +9,15 @@ public static class Extension
     public static IServiceCollection AddTrendingAppMassTransit(this IServiceCollection services)
         => services.AddMassTransit(ops =>
         {
-            ops.AddConsumers(Assembly.GetExecutingAssembly());
+            ops.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(false));
+
+            var assembly = Assembly.GetEntryAssembly();
+
+            ops.AddConsumers(assembly);
+
+            ops.AddSagas(assembly);
+            ops.AddSagaStateMachines(assembly);
+            ops.SetInMemorySagaRepositoryProvider();
 
             ops.UsingRabbitMq((context, config) =>
             {
