@@ -9,9 +9,12 @@ namespace PurchaseService;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class PurchaseController(IPurchaseManager purchaseManager, IBus bus) : ControllerBase
+public class PurchaseController(IBus bus, IPurchaseManager purchaseManager, IItemsManager itemsManager, IUsersManager usersManager)
+    : ControllerBase
 {
     private readonly IPurchaseManager _purchaseManager = purchaseManager;
+    private readonly IItemsManager _itemsManager = itemsManager;
+    private readonly IUsersManager _usersManager = usersManager;
     private readonly IBus _bus = bus;
 
 
@@ -29,6 +32,13 @@ public class PurchaseController(IPurchaseManager purchaseManager, IBus bus) : Co
     public async Task<IActionResult> Purchase(int itemId)
     {
         var userId = int.Parse(User.Identity!.Name!);
+
+        var item = await _itemsManager.GetItem(itemId);
+        if (item is null) return NotFound($"Item with id {itemId} does not exist");
+
+        var user = (await _usersManager.GetUser(userId))!;
+        if (user.Credits < item.Price)
+            return BadRequest($"User with id {userId} does not have enough money to buy item with id {itemId}");
 
         await _bus.Publish(new UserPlacedOrder
         {
