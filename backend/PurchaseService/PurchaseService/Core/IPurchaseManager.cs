@@ -4,7 +4,12 @@ public interface IPurchaseManager
 {
     public Task Purchase(int userId, int itemId);
 
-    public Task RemovePurchase(int userId, int itemId, bool modifyCredits);
+    /// <summary>
+    /// This will remove the purchase record and add credits back to user.
+    /// <br />
+    /// Note: This will throw errors if the purchase record does not exist.
+    /// </summary>
+    public Task RevertPurchase(int userId, int itemId);
 
     /// <summary>
     /// Get items purchased by a user

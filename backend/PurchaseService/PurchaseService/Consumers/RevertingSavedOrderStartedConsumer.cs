@@ -19,7 +19,7 @@ public class RevertingSavedOrderStartedConsumer(IPurchaseManager purchaseManager
         if (await _purchaseManager.IsPurchased(context.Message.UserId, context.Message.ItemId))
         {
             _logger.LogInformation("Removing purchase record");
-            await _purchaseManager.RemovePurchase(context.Message.UserId, context.Message.ItemId, false);
+            await _purchaseManager.RevertPurchase(context.Message.UserId, context.Message.ItemId);
         }
         else
         {

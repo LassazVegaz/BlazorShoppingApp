@@ -40,7 +40,7 @@ public class PurchaseManager(PurchaseServiceContext context) : IPurchaseManager
                                                                               .Select(i => i.Price)
                                                                               .FirstAsync();
 
-    public async Task RemovePurchase(int userId, int itemId, bool modifyCredits)
+    public async Task RevertPurchase(int userId, int itemId)
     {
         // we are gonna assume this is an existing purchase. otherwise EF will throw exceptions
         var user = await _context.Users.Where(u => u.Id == userId)
